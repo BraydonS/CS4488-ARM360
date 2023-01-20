@@ -23,21 +23,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ARM360.h">
+    <QtRcc Include="arm360.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="arm360.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtMoc Include="arm360.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="ARM360.cpp">
+    <ClCompile Include="arm360.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <QtMoc Include="ARM360Plugin.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="ARM360Plugin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <None Include="arm360plugin.json">
+    <ResourceCompile Include="$pro_name$.rc">
+    </ResourceCompile>
+    <None Include="$pro_name$.ico">
       <Filter>Resource Files</Filter>
     </None>
-
+    <None Include="$pro_name$.def">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ARM360.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <ResourceCompile Include="ARM360.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

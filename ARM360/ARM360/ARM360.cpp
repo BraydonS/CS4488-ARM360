@@ -1,6 +1,11 @@
-#include "ARM360.h"
+#include "stdafx.h"
+#include "arm360.h"
 
 ARM360::ARM360(QWidget *parent)
-    : QWidget(parent)
+    : QMainWindow(parent)
 {
+    ui.setupUi(this);
 }
+
+ARM360::~ARM360()
+{}
