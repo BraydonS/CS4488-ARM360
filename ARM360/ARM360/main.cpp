@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "arm360.h"
+#include "ARM360.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])

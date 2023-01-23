@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "arm360.h"
+#include "ARM360.h"
 
 ARM360::ARM360(QWidget *parent)
     : QMainWindow(parent)
