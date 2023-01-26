@@ -1,5 +1,4 @@
 <RCC>
     <qresource prefix="ARM360">
-    <file>ARM360.h</file>
     </qresource>
 </RCC>
