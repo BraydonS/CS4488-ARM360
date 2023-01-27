@@ -24,7 +24,7 @@ private:
     Translator(std::string armFile);
 
     // Private methods
-    bool translate(std::string armFile);
+    //bool translate(std::string armFile); // Uncomment when Hex4digit is defined
     void setLoaded(bool loaded);
     std::string* removeTheElement(std::string arr[], int index);
     std::string removeComments(std::string line);
