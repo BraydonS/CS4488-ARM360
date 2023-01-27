@@ -1,3 +1,4 @@
+// .h file for development so the IDE can reconize the classes we have yet to implement.
 #include "stdafx.h"
 #include <string>
 
@@ -6,15 +7,16 @@ Originally a interface, but .h files effectly function as interfaces. So this ma
 */
 class ExecutorInterface{
 
-    public: void setProgramState(/*ProgramState state*/);
+    public: 
+        void setProgramState(/*ProgramState state*/);
 
-    public: bool hasState();
+        bool hasState();
 
-    public: bool next();
+        bool next();
 
-    public: bool hasNext();
+        bool hasNext();
 
-    public: void clearState();
-
-    public: std::string getLastExceptionMessage();
+        void clearState();
+        
+        std::string getLastExceptionMessage();
 };

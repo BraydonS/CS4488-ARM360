@@ -1,24 +1,30 @@
 #include <string>
 //#include <ProgramState.h>
 //#include <Hex4digit.h>
+// .h file for development so the IDE can reconize the classes we have yet to implement.
 
 class ExecutorFacade{
 
-public: int getMemoryIndex(){}
+    public: 
+        int getMemoryIndex(){}
 
-public: int incrementMemoryIndex(){}
+        int incrementMemoryIndex(){}
 
-private: void updatePCHistory(){}
+        bool next(){}
 
-//private: void determineInstruction(Hex4digit instance){}
+        bool hasNext(){}
 
-public: bool next(){}
+        void clearState(){}
 
-public: bool hasNext(){}
+        std::string getLastExceptionMessage(){}
 
-public: void clearState(){}
 
-public: std::string getLastExceptionMessage(){}
+    private: 
+        void updatePCHistory(){}
 
-private: void unrecognizedInstruction(/*programState state*/){}
+        //Commented out until we implement Hex 4digit
+        //private: void determineInstruction(Hex4digit instance){}
+
+        //Commented out parameters until we implement programState
+        void unrecognizedInstruction(/*programState state*/){}
 };
