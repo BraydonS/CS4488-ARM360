@@ -1,3 +1,5 @@
+//Author: Braydon Spaulding
+
 #pragma once
 
 #include <vector>
