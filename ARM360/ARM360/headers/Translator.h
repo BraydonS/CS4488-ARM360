@@ -7,6 +7,10 @@
 #include <vector>
 //#include "FileManager.h"
 //#include "Hex4digit.h"
+//#include "HexadecimalConvertor.h"
+//#include "MemoryHistorySpace.h"
+//#include "MockDataGenerator.h"
+//#include "ProgramState.h"
 
 class Translator {
 private:

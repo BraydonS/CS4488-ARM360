@@ -5,6 +5,7 @@
 #pragma once
 #include <string>
 #include "Translator.h"
+//#include "Hex4digit.h"
 
 class TranslatorFacade {
 private:

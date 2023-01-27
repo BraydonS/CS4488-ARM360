@@ -5,6 +5,7 @@
 #pragma once
 #include <string>
 //#include "ProgramState.h"
+//#include "Hex4digit.h"
 
 class InstructionSet {
 public:
