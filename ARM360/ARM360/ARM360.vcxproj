@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7A7DFFFE-3C84-469C-9503-D29EAAC5E3D6}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.20348.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.20348.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
@@ -104,6 +104,11 @@
     </ClCompile>
     <ClInclude Include="headers\ProgramState\Header.h" />
     <ClInclude Include="headers\stdafx.h" />
+    <ClInclude Include="headers\Translator.h" />
+    <ClInclude Include="headers\TranslatorFacade.h" />
+    <ClInclude Include="InstructionParser.h" />
+    <ClInclude Include="InstructionSet.h" />
+    <ClInclude Include="Orchestrator.h" />
     <QtMoc Include="headers\arm360.h" />
     <QtRcc Include="arm360.qrc" />
     <QtUic Include="arm360.ui" />
