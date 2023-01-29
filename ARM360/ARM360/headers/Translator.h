@@ -30,13 +30,13 @@ private:
     // Private methods
     //bool translate(std::string armFile); // Uncomment when Hex4digit is defined
     void setLoaded(bool loaded);
-    std::string* removeTheElement(std::string arr[], int index);
+    std::vector<std::string> removeTheElement(std::string arr[], int index);
     std::string removeComments(std::string line);
-    std::string* parseInLineHexNumbers(std::string file[]);
+    std::vector<std::string> parseInLineHexNumbers(std::string file[]);
     std::string readFile(std::string file);
-    std::string* parseFile(std::string armFile);
+    std::vector<std::string> parseFile(std::string armFile);
     void parseOutLabels(std::string file[]);
-    std::string* initializeArray();
+    std::vector<std::string> initializeArray();
     void setLabels(std::string lineOfCode, std::string parsedFile[], int lineIndex);
     //std::vector<Hex4digit> initializeHexMemory(); //Can uncomment when Hex4digit has been defined
 

@@ -114,10 +114,8 @@
     <ClInclude Include="headers\ProgramState\programstate.h" />
     <ClInclude Include="headers\stdafx.h" />
     <ClInclude Include="headers\Translator.h" />
+    <ClInclude Include="headers\TranslatorAccess.h" />
     <ClInclude Include="headers\TranslatorFacade.h" />
-    <ClInclude Include="InstructionParser.h" />
-    <ClInclude Include="InstructionSet.h" />
-    <ClInclude Include="Orchestrator.h" />
     <QtMoc Include="headers\arm360.h" />
     <QtRcc Include="arm360.qrc" />
     <QtUic Include="arm360.ui" />
