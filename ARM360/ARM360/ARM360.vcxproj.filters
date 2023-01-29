@@ -63,9 +63,6 @@
     <ClInclude Include="headers\ExecutorInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\FileManager\filemanager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\InstructionParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -88,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\TranslatorAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\FileManager\filemanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
