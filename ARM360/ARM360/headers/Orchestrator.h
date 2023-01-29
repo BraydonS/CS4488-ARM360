@@ -34,9 +34,9 @@ public:
 	void clearProgram();
 	//ProgramState getProgramState();
 	void sendInput(char input[]);
-	char* getOutput();
+	std::vector<char> getOutput();
 	bool translateAndLoad(std::string path);
-	char* convertToHexChars(short number);
+	std::vector<char> convertToHexChars(short number);
 	int convertToInt(char number[]);
 	std::string loadFile(std::string path);
 
