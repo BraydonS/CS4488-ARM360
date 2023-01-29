@@ -87,6 +87,9 @@
     <ClInclude Include="headers\TranslatorFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\TranslatorAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="headers\arm360.h">
