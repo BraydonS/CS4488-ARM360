@@ -1,9 +1,13 @@
+#pragma once
+#include <string>
+#include <vector>
+
 class HexDataClass {
 public:
     void setValue(int number);
-    void setValue(string number);
+    void setValue(std::string number);
     int getValue();
-    char[] getHexChars();
+    std::vector<char> getHexChars();
     int getMiddle2Value();
     int getLast2Value();
 };

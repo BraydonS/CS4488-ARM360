@@ -2,7 +2,7 @@
 //security publickey required
 
 
-
+#pragma once
 #include <array>
 #include <string>
 // required <regex> and <algorithm> library for std::transform() function
@@ -20,7 +20,8 @@ public:
      * @param hexArray  any char[] will be accepted and cleaned to work.
      * @return the integer value
      */
-    static int hexToDecimal(char* hexArray) {
+    static int hexToDecimal(char* hexArray);
+        /*
         hexArray = cleanCharHex(hexArray); // input scrub
         int index = strlen(hexArray) - 1;
         int power = 1;
@@ -47,20 +48,21 @@ public:
         }
 
         return result;
-    }
+        */
 
     /**
      * int Decimal value to Hexidecimal Char[]
      * @param value
      * @return char[5] of the +/- & 4 hex digits
      */
-    std::array<char, 5> decimalToHex(int value) {
+    std::array<char, 5> decimalToHex(int value);
         /// <summary>
         /// cmted out until implemented
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        /*value = hex4digitValueWrap(value);
+        /*
+        value = hex4digitValueWrap(value);
         std::array<char, 5> output = makeBlankChar5();
         int index = output.size() - 1;
         int remainder;
@@ -80,8 +82,8 @@ public:
         }
 
 
-        return output;*/
-    }
+        return output;
+        */
 
 
     /**
@@ -89,13 +91,14 @@ public:
      * @param n 0-15
      * @return 0-9,a-f  otherwise 0;
      */
-    char hexChar(int n) {
-        /// <summary>
+    char hexChar(int n);
+       /// <summary>
        /// cmted out until implemented
        /// </summary>
        /// <param name="value"></param>
        /// <returns></returns>
-       /* char result = '0';
+       /* 
+       char result = '0';
         switch (n) {
         case 0: result = '0';
             break;
@@ -146,19 +149,20 @@ public:
             break;
         default: result = '0';
         }
-        return result;*/
-    }
+        return result;
+        */
 
 
 
 
-    int hexValue(char n) {
-        /// <summary>
+    int hexValue(char n);
+       /// <summary>
        /// cmted out until implemented
        /// </summary>
        /// <param name="value"></param>
        /// <returns></returns>
-        /*int result = 0;
+        /*
+        int result = 0;
         switch (n) {
         case '0':
             result = 0;
@@ -210,30 +214,31 @@ public:
             break;
         default: result = 0;
         }
-        return result;*/
-    }
+        return result;
+        */
 
     // MAX and MIN needs to be defined
-    int hex4digitValueWrap(int n) {
+    int hex4digitValueWrap(int n);
         /// <summary>
         /// commented out unitl implemented
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        /*if (n > MAX) {
+        /*
+        if (n > MAX) {
             n = MIN + (n - MAX);
         }
         else if (n < MIN) {
             n = MAX + (n - MIN);
         }
-        return n;*/
-    }
+        return n;
+        */
 
 
 
     // required <regex> and <algorithm> library for std::transform() function
 
-    char* cleanCharHex(char toClean[]) {
+    char* cleanCharHex(char toClean[]);
         /// <summary>
        /// cmted out until implemented
        /// </summary>
@@ -265,45 +270,47 @@ public:
         //    toCleanIndex--;
         //}
         //return result;
-    }
 
 
 
-    int signToInt(char c) {
+    int signToInt(char c);
         /// <summary>
        /// cmted out until implemented
        /// </summary>
        /// <param name="value"></param>
        /// <returns></returns>
 
-       /* int result = 1;
+       /* 
+       int result = 1;
         if (c == '-') {
             result = -1;
         }
-        return result;*/
-    }
+        return result;
+        */
 
-    std::array<char, 5> makeBlankChar5() {
+    std::array<char, 5> makeBlankChar5();
         /// <summary>
        /// cmted out until implemented
        /// </summary>
        /// <param name="value"></param>
        /// <returns></returns>
-       /* std::array<char, 5> array;
+       /* 
+       std::array<char, 5> array;
         array[0] = '+';
         for (int i = 1; i < 5; i++) {
             array[i] = '0';
         }
-        return array;*/
-    }
+        return array;
+        */
 
-    std::array<char, 5> cleanCharHex(std::array<char, 5> toClean) {
+    std::array<char, 5> cleanCharHex(std::array<char, 5> toClean);
         /// <summary>
-       /// cmted out until implemented
-       /// </summary>
-       /// <param name="value"></param>
-       /// <returns></returns>
-        /*std::array<char, 5> result = makeBlankChar5();
+        /// cmted out until implemented
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /*
+        std::array<char, 5> result = makeBlankChar5();
         std::string input(toClean.begin(), toClean.end());
         input = std::string(toClean.begin(), toClean.end());
         input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
@@ -320,9 +327,7 @@ public:
             resultIndex--;
             toCleanIndex--;
         }
-        return result;*/
-    }
+        return result;
+        */
 
-
-}
-
+};
