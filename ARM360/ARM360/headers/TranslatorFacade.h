@@ -5,7 +5,7 @@
 #pragma once
 #include <string>
 #include "Translator.h"
-//#include "Hex4digit.h"
+#include "Hex4digit.h"
 
 class TranslatorFacade {
 private:
@@ -19,6 +19,6 @@ public:
 	bool loadFile(std::string armFile);
 	void clearFile();
 	bool isTranslatable();
-	//std::vector<Hex4digit> translateToMachine(); //Can uncomment when Hex4digit has been defined
+	std::vector<Hex4digit> translateToMachine();
 	std::string getLastExceptionMessage();
 };

@@ -3,6 +3,7 @@
 // 01/27/23
 
 // .h file for development so the IDE can reconize the classes we have yet to implement.
+#pragma once
 #include "stdafx.h"
 #include <string>
 

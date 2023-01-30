@@ -4,21 +4,22 @@
 
 #pragma once
 #include <string>
-//#include "ExecutorFacade.h"
-//#include "FleManager.h"
-//#include "Hex4digit.h"
-//#include "HexadecimalConvertor.h"
-//#include "ProgramState"
+#include <vector>
+#include "ExecutorFacade.h"
+#include "FileManager/FileManager.h"
+#include "Hex4digit.h"
+#include "HexadecimalConvertor.h"
+#include "ProgramState/ProgramState.h"
 #include "TranslatorFacade.h"
 
 class Orchestrator {
 private:
 	//Instance variables
 	static Orchestrator* instancePtr;
-	//ProgramState state;
+	ProgramState state;
 	TranslatorFacade translator;
-	//ExecutorFacade executor;
-	//FileManager fileManager;
+	ExecutorFacade executor;
+	FileManager fileManager;
 	std::string error;
 
 	// Private methods
@@ -32,7 +33,7 @@ public:
 	std::string getError();
 	bool next();
 	void clearProgram();
-	//ProgramState getProgramState();
+	ProgramState getProgramState();
 	void sendInput(char input[]);
 	std::vector<char> getOutput();
 	bool translateAndLoad(std::string path);

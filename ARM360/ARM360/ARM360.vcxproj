@@ -98,7 +98,6 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -106,13 +105,18 @@
     <ClInclude Include="headers\ExecutorAccess.h" />
     <ClInclude Include="headers\ExecutorFacade.h" />
     <ClInclude Include="headers\ExecutorInterface.h" />
-    <ClInclude Include="headers\FileManager\filemanager.h" />
+    <ClInclude Include="headers\FileManager\FileManager.h" />
+    <ClInclude Include="headers\Hex4digit.h" />
+    <ClInclude Include="headers\HexaDataClass.h" />
+    <ClInclude Include="headers\HexadecimalConvertor.h" />
     <ClInclude Include="headers\InstructionParser.h" />
     <ClInclude Include="headers\InstructionSet.h" />
+    <ClInclude Include="headers\MemoryHistorySpace.h" />
     <ClInclude Include="headers\MockDataGenerator.h" />
+    <ClInclude Include="headers\NumberConvertorAccess.h" />
     <ClInclude Include="headers\Orchestrator.h" />
     <ClInclude Include="headers\ProgramState\Header.h" />
-    <ClInclude Include="headers\ProgramState\programstate.h" />
+    <ClInclude Include="headers\ProgramState\ProgramState.h" />
     <ClInclude Include="headers\stdafx.h" />
     <ClInclude Include="headers\Translator.h" />
     <ClInclude Include="headers\TranslatorAccess.h" />

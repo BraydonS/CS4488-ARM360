@@ -46,9 +46,6 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ProgramState\ProgramState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\stdafx.h">
@@ -78,7 +75,7 @@
     <ClInclude Include="headers\Orchestrator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\ProgramState\programstate.h">
+    <ClInclude Include="headers\ProgramState\ProgramState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Translator.h">
@@ -90,7 +87,22 @@
     <ClInclude Include="headers\TranslatorAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\FileManager\filemanager.h">
+    <ClInclude Include="headers\FileManager\FileManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Hex4digit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\HexaDataClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\HexadecimalConvertor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\NumberConvertorAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MemoryHistorySpace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

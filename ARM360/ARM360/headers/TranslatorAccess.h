@@ -4,6 +4,7 @@
 
 // Will probably want to consoldate this into another class
 
+#pragma once
 #include <string>
 
 class TranslatorAccess {

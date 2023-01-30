@@ -4,13 +4,12 @@
 
 #pragma once
 #include <string>
-//#include "ProgramState.h"
-//#include "Hex4digit.h"
+#include "ProgramState/ProgramState.h"
+#include "Hex4digit.h"
 
 class InstructionSet {
 public:
 	// Public methods
-	/* //Can uncomment when ProgramState is defined
 	
 	static void incrementProgramCounter(ProgramState state);
 	static void halt(ProgramState state);
@@ -29,6 +28,4 @@ public:
 	static void readInt(ProgramState state, char reg);
 	static void writeInt(ProgramState state, char reg);
 	static void skip(ProgramState state);
-
-	*/
 };
