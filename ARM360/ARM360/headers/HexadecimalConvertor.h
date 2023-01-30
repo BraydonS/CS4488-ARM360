@@ -55,7 +55,12 @@ public:
      * @return char[5] of the +/- & 4 hex digits
      */
     std::array<char, 5> decimalToHex(int value) {
-        value = hex4digitValueWrap(value);
+        /// <summary>
+        /// cmted out until implemented
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /*value = hex4digitValueWrap(value);
         std::array<char, 5> output = makeBlankChar5();
         int index = output.size() - 1;
         int remainder;
@@ -75,7 +80,7 @@ public:
         }
 
 
-        return output;
+        return output;*/
     }
 
 
@@ -85,7 +90,12 @@ public:
      * @return 0-9,a-f  otherwise 0;
      */
     char hexChar(int n) {
-        char result = '0';
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+       /* char result = '0';
         switch (n) {
         case 0: result = '0';
             break;
@@ -136,14 +146,19 @@ public:
             break;
         default: result = '0';
         }
-        return result;
+        return result;*/
     }
 
 
 
 
     int hexValue(char n) {
-        int result = 0;
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+        /*int result = 0;
         switch (n) {
         case '0':
             result = 0;
@@ -195,18 +210,23 @@ public:
             break;
         default: result = 0;
         }
-        return result;
+        return result;*/
     }
 
     // MAX and MIN needs to be defined
     int hex4digitValueWrap(int n) {
-        if (n > MAX) {
+        /// <summary>
+        /// commented out unitl implemented
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        /*if (n > MAX) {
             n = MIN + (n - MAX);
         }
         else if (n < MIN) {
             n = MAX + (n - MIN);
         }
-        return n;
+        return n;*/
     }
 
 
@@ -214,54 +234,76 @@ public:
     // required <regex> and <algorithm> library for std::transform() function
 
     char* cleanCharHex(char toClean[]) {
-        // Set up the result.
-        char* result = makeBlankChar5();
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+       /// 
+        //// Set up the result.
+        //char* result = makeBlankChar5();
 
-        // Convert toClean to a string for use of some functions.
-        std::string input(toClean);
-        input = std::regex_replace(input, std::regex("^ +| +$|( ) +"), "$1");
-        std::transform(input.begin(), input.end(), input.begin(), ::tolower);
-        input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
+        //// Convert toClean to a string for use of some functions.
+        //std::string input(toClean);
+        //input = std::regex_replace(input, std::regex("^ +| +$|( ) +"), "$1");
+        //std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+        //input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
 
-        // check for negative (result will be set to positive by default)
-        if (input[0] == '-') { result[0] = '-'; }
+        //// check for negative (result will be set to positive by default)
+        //if (input[0] == '-') { result[0] = '-'; }
 
-        // clean out the sign
-        input = std::regex_replace(input, std::regex("[+-]"), "");
+        //// clean out the sign
+        //input = std::regex_replace(input, std::regex("[+-]"), "");
 
-        // Double countdown loop,
-        // Counting down from the last index of each to fill in result starting from the 1's digit.
-        int toCleanIndex = input.length() - 1;
-        int resultIndex = 4;
-        while ((resultIndex > -1) && (toCleanIndex > -1)) {
-            result[resultIndex] = input[toCleanIndex];
-            resultIndex--;
-            toCleanIndex--;
-        }
-        return result;
+        //// Double countdown loop,
+        //// Counting down from the last index of each to fill in result starting from the 1's digit.
+        //int toCleanIndex = input.length() - 1;
+        //int resultIndex = 4;
+        //while ((resultIndex > -1) && (toCleanIndex > -1)) {
+        //    result[resultIndex] = input[toCleanIndex];
+        //    resultIndex--;
+        //    toCleanIndex--;
+        //}
+        //return result;
     }
 
 
 
     int signToInt(char c) {
-        int result = 1;
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+
+       /* int result = 1;
         if (c == '-') {
             result = -1;
         }
-        return result;
+        return result;*/
     }
 
     std::array<char, 5> makeBlankChar5() {
-        std::array<char, 5> array;
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+       /* std::array<char, 5> array;
         array[0] = '+';
         for (int i = 1; i < 5; i++) {
             array[i] = '0';
         }
-        return array;
+        return array;*/
     }
 
     std::array<char, 5> cleanCharHex(std::array<char, 5> toClean) {
-        std::array<char, 5> result = makeBlankChar5();
+        /// <summary>
+       /// cmted out until implemented
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+        /*std::array<char, 5> result = makeBlankChar5();
         std::string input(toClean.begin(), toClean.end());
         input = std::string(toClean.begin(), toClean.end());
         input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
@@ -278,7 +320,7 @@ public:
             resultIndex--;
             toCleanIndex--;
         }
-        return result;
+        return result;*/
     }
 
 
