@@ -6,6 +6,8 @@
 //Date Started: 01/24
 
 class ProgramState {
+
+public:
 	
 	constexpr static int TOTAL_MEMORY_SPACES = 256;
 
@@ -40,7 +42,7 @@ class ProgramState {
 		return result;
 	}
 	//TODO Finish this
-	/*void clearProgramState() {
+	void clearProgramState() {
 		for (int i = 0; i < REGISTER_COUNT; i++) {
 			registers[i].setValue(0);
 		}
@@ -50,7 +52,7 @@ class ProgramState {
 		}
 		memoryStateHistory.clear();
 		pcHistory.clear();
-	}*/
+	}
 
 	std::string printableProgramState();
 
@@ -59,18 +61,21 @@ class ProgramState {
 private:
 	constexpr static int REGISTER_COUNT = 16;
 
-	static ProgramState *emulationState;
+	static ProgramState* emulationState;
 
-	void fillOutMemory(std::array<Hex4digit,256> toFillOut) {
-		for (int i = 0; toFillOut.size() < TOTAL_MEMORY_SPACES; i++) {
-			toFillOut[i] = Hex4digit(0);
+	void fillOutMemory(std::array<Hex4digit,256> code) {
+		for (int i = code.size(); i < TOTAL_MEMORY_SPACES; i++) {
+			code[i] = Hex4digit(0);
 		}
 	}
 
 	ProgramState() {
+		emulationState = nullptr;
+
 		for (int i = 0; i < REGISTER_COUNT; i++) {
 			registers[i] = (Hex4digit());
 		}
+
 		input = Hex4digit();
 		output = Hex4digit();
 		pcHistory = std::vector<MemoryHistorySpace>();
