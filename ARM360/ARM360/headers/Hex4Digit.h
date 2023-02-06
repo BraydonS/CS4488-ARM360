@@ -102,5 +102,5 @@ public:
     int getValue();
         //return hex;
 
-    char* getHexChars();
+    std::vector<char> getHexChars();
 };

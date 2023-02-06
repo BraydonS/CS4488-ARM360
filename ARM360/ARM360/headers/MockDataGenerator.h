@@ -15,7 +15,7 @@ class MockDataGenerator{
 
         static int getRandomHexValue4(){}
 
-        static int getRandomHexValue4(){}
+        static int getRandomHexValue5(){}
 
         // Originally a char[], but we will use a vector instead
         static std::vector<char> getRandomHexChar5(){}
