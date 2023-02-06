@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-// ExecutorFacade Header file
-// Show Pratoomratana
-// 01/27/23
-
-=======
 
 #pragma once
->>>>>>> 5202c205fea8e71e36963cf257b8b439ebff4f5d
 #include <string>
 #include <ProgramState/ProgramState.h>
 #include <Hex4digit.h>
