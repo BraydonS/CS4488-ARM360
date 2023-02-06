@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "HexadecimalConvertor.h"
+#include <vector>
 
 class Hex4digit {
 private:
@@ -103,4 +104,16 @@ public:
         //return hex;
 
     std::vector<char> getHexChars();
+
+    std::vector<char> getSignedHexChars();
+
+    std::string getString();
+
+    int getMiddle2Value();
+
+    int getLast2Value();
+
+    static char hexChar(int n);
+
+    static int hexValue(char n);
 };
