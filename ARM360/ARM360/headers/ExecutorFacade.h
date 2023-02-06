@@ -8,23 +8,27 @@
 class ExecutorFacade{
 
     public: 
-        int getMemoryIndex(){}
+        int getMemoryIndex();
 
-        int incrementMemoryIndex(){}
+        int incrementMemoryIndex();
 
-        bool next(){}
+        bool next();
 
-        bool hasNext(){}
+        bool hasNext();
 
-        void clearState(){}
+        void setProgramState(ProgramState state);
 
-        std::string getLastExceptionMessage(){}
+        bool hasState();
+
+        void clearState();
+
+        std::string getLastExceptionMessage();
 
 
     private: 
-        void updatePCHistory(){}
+        void updatePCHistory();
 
-        private: void determineInstruction(Hex4digit instance){}
+        void determineInstruction(Hex4digit instance);
 
-        void unrecognizedInstruction(ProgramState state){}
+        void unrecognizedInstruction(ProgramState state);
 };
