@@ -102,6 +102,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\TranslatorFacade.cpp" />
     <ClInclude Include="headers\ExecutorAccess.h" />
     <ClInclude Include="headers\ExecutorFacade.h" />
     <ClInclude Include="headers\ExecutorInterface.h" />
