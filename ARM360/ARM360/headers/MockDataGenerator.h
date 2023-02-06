@@ -9,19 +9,19 @@
 class MockDataGenerator{
     
     public: 
-        char getRandomHexChar(){}
+        char getRandomHexChar();
 
-        static int getRandomHexValue(){}
+        static int getRandomHexValue();
 
-        static int getRandomHexValue4(){}
+        static int getRandomHexValue4();
 
-        static int getRandomHexValue5(){}
+        static int getRandomHexValue5();
 
         // Originally a char[], but we will use a vector instead
-        static std::vector<char> getRandomHexChar5(){}
+        static std::vector<char> getRandomHexChar5();
 
-        static char* getJunkChar4(){}
+        static char* getJunkChar4();
 
         // Again, originally a char[]
-        std::vector<char> getJunkChar(){}
+        std::vector<char> getJunkChar();
 };
