@@ -55,7 +55,7 @@ public:
      * @param value
      * @return char[5] of the +/- & 4 hex digits
      */
-    std::array<char, 5> decimalToHex(int value);
+    static std::array<char, 5> decimalToHex(int value);
         /// <summary>
         /// cmted out until implemented
         /// </summary>
