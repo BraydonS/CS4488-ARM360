@@ -25,6 +25,7 @@ private:
 	// Private methods
 	Orchestrator();
 	void resetError();
+	Orchestrator(const Orchestrator&); // Used for dereferencing the instance pointer -- might be an issue that this is needed
 
 
 public:
