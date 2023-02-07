@@ -98,6 +98,8 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ExecutorFacade.cpp" />
+    <ClCompile Include="src\MockDataGenerator.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

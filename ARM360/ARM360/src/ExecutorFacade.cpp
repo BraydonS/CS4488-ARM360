@@ -1,6 +1,7 @@
 // ExecutorFacade Class
 // Show Pratoomratana
 // 01/28/23
+#include "stdafx.h"
 #include <string>
 #include "ProgramState/ProgramState.h"
 #include "InstructionSet.h"
