@@ -12,7 +12,7 @@
 class ProgramState {
 
 public:
-	constexpr static int TOTAL_MEMORY_SPACES = 256;
+	constexpr static int TOTAL_MEMORY_SPACES= 256;
 
 	 std::array<Hex4digit,256> registers;
 	 Hex4digit input;
@@ -21,7 +21,7 @@ public:
 	 std::vector<std::array<Hex4digit, TOTAL_MEMORY_SPACES>> memoryStateHistory;
 
 	static ProgramState getInstance();
-	bool initializeState(std::vector<Hex4digit> code);
+	bool initializeState(std::array<Hex4digit,TOTAL_MEMORY_SPACES> code);
 
 	void clearProgramState();
 
@@ -32,9 +32,9 @@ public:
 private:
 	constexpr static int REGISTER_COUNT = 16;
 
-	static ProgramState emulationState;
+	static ProgramState* emulationState;
 
-	void fillOutMemory(std::vector<Hex4digit> toFillOut);
+	void fillOutMemory(std::array<Hex4digit, TOTAL_MEMORY_SPACES> toFillOut);
 
 	ProgramState();
 
