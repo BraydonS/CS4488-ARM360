@@ -4,7 +4,7 @@
 #include <string>
 #include "ProgramState/ProgramState.h"
 #include "InstructionSet.h"
-#include "Hex4Digit.h"
+#include "Hex4digit.h"
 
 class ExecutorFacade{
 
@@ -18,6 +18,8 @@ class ExecutorFacade{
             return MEMORYSTATEINDEX;
         }
 
+        // Function to execute the next instruction and update the memory index.
+        // @return bool : Whether or not the execution was successfull.
         bool next(){
             // Check if the programState is instantiated. 
             // and check if there's already a instruction in the program counter.
@@ -44,6 +46,8 @@ class ExecutorFacade{
             return true;
         }
 
+        // Function to check if the next instruction goes out of bounds.
+        // @return bool : whether or not the next instruction is valid.
         bool hasNext(){
 
             // The current value and size of the Program Counter respecivly. 
@@ -68,16 +72,17 @@ class ExecutorFacade{
                 return false;
             }
 
-            return false;
+            return true;
         }
 
-        // Simply creates the current program state with an empty vector.
+        // Function to Simply creates the current program state with an empty vector.
         void setProgramState(ProgramState state){
             std::vector<Hex4digit> code;
             state.initializeState(code);
         }
 
         // Simply checks if the state of the program is empty or not.
+        // @return bool: whether or not a memorystatehistory currently exists.
         bool hasState() {
             if (ProgramState::getInstance().memorystatehistory.empty()){
                 EXCEPTIONMESSAGE = "No state has been created";
@@ -86,11 +91,14 @@ class ExecutorFacade{
             return true;
         }
 
+        // Clears the current state of the programState.
         void clearState(){
             MEMORYSTATEINDEX = 0;
             ProgramState::getInstance().clearProgramState();
         }
 
+        // Simply gets the last exceptionMessage from the program.
+        // @return string: string of last exception message.
         std::string getLastExeptionMessage(){
             return EXCEPTIONMESSAGE;
         }
@@ -110,29 +118,32 @@ class ExecutorFacade{
         }
 
         // Takes a hex instruction based on the first value and executes the corresponding instruction.
+        // @param : The current object instance of the Hex4digit class.
         void determineInstruction(Hex4digit instance){
             ProgramState state = ProgramState::getInstance();
             switch(instance.getHexChars()[1]){
-                case "0": InstructionSet::halt(state);
-                case "1": InstructionSet::load(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
-                case "2": InstructionSet::store(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
-                case "3": InstructionSet::add(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
-                case "4": InstructionSet::subt(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
-                case "5": InstructionSet::mult(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
-                case "6": InstructionSet::intDivide(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
-                case "7": InstructionSet::loadIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
-                case "8": InstructionSet::storeIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
-                case "9": InstructionSet::branch(state, instance.getMiddle2Value());
-                case "a": InstructionSet::branchZero(state, instance.getHexChars()[2], instance.getLast2Value());
-                case "b": InstructionSet::branchNeg(state, instance.getHexChars()[2], instance.getLast2Value());
-                case "c": InstructionSet::branchPos(state, instance.getHexChars()[2], instance.getLast2Value());
-                case "d": InstructionSet::readInt(state, instance.getHexChars()[2]);
-                case "e": InstructionSet::writeInt(state, instance.getHexChars()[2]);
-                case "f": InstructionSet::skip(state);
+                case '0': InstructionSet::halt(state);
+                case '1': InstructionSet::load(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
+                case '2': InstructionSet::store(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
+                case '3': InstructionSet::add(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
+                case '4': InstructionSet::subt(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
+                case '5': InstructionSet::mult(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
+                case '6': InstructionSet::intDivide(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]);
+                case '7': InstructionSet::loadIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
+                case '8': InstructionSet::storeIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX);
+                case '9': InstructionSet::branch(state, instance.getMiddle2Value());
+                case 'a': InstructionSet::branchZero(state, instance.getHexChars()[2], instance.getLast2Value());
+                case 'b': InstructionSet::branchNeg(state, instance.getHexChars()[2], instance.getLast2Value());
+                case 'c': InstructionSet::branchPos(state, instance.getHexChars()[2], instance.getLast2Value());
+                case 'd': InstructionSet::readInt(state, instance.getHexChars()[2]);
+                case 'e': InstructionSet::writeInt(state, instance.getHexChars()[2]);
+                case 'f': InstructionSet::skip(state);
                 default:  unrecognizedInstruction(state);
                 }
         }
 
+    // If the given programState is unknown update the exceptionMessage.
+    // @param : The current programState
     void unrecognizedInstruction(ProgramState state) {
         EXCEPTIONMESSAGE = "The given instruction was not recognized!";
         InstructionSet::halt(state);
