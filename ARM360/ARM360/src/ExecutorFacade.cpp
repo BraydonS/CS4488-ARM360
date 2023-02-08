@@ -22,7 +22,7 @@ void incrementMemoryIndex() {
 void updatePCHistory(){                                             
     MemoryHistorySpace pc = MemoryHistorySpace();
     pc.memoryLocation = MEMORYSTATEINDEX;
-    ProgramState::getInstance().pchistory.push_back(pc);
+    ProgramState::getInstance().pcHistory.push_back(pc);
 }
 
 //Public methods
@@ -36,7 +36,7 @@ bool hasNext(){
 
     // The current value and size of the Program Counter respecivly. 
     int programStateValue = ProgramState::getInstance().registers[15].getValue();
-    int programStateSize = ProgramState::getInstance().memorystatehistory.at(MEMORYSTATEINDEX).size();
+    int programStateSize = ProgramState::getInstance().memoryStateHistory.at(MEMORYSTATEINDEX).size();
 
     // If the Counter Count is >= to the length of memory list,then it's gone past the program memory.
     if(programStateValue >= programStateSize) {
@@ -61,14 +61,14 @@ bool hasNext(){
 
 // Function to Simply creates the current program state with an empty vector.
 void setProgramState(ProgramState state){
-    std::vector<Hex4digit> code;
+    std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> code;
     state.initializeState(code);
 }
 
 // Simply checks if the state of the program is empty or not.
 // @return bool: whether or not a memorystatehistory currently exists.
 bool hasState() {
-    if (ProgramState::getInstance().memorystatehistory.empty()){
+    if (ProgramState::getInstance().memoryStateHistory.empty()){
         EXCEPTIONMESSAGE = "No state has been created";
         return false;
     }
@@ -119,7 +119,7 @@ bool next(){
     // The next instruction to be executed is indexed by the Program Counter.
     // E.G If Register 15 has the value 7, index 7 in the memorystatehistory will be executed.
     Hex4digit instruction = ProgramState::getInstance()
-                            .memorystatehistory.at(MEMORYSTATEINDEX)
+                            .memoryStateHistory.at(MEMORYSTATEINDEX)
                             .at(ProgramState::getInstance().registers[15].getValue());
     
     // Get the instruction and update the history and memory index.
@@ -128,9 +128,9 @@ bool next(){
     incrementMemoryIndex();
 
     // Copy over the memory vector to the next index in the list.
-    std::vector<std::vector<Hex4digit>> memState = ProgramState::getInstance().memorystatehistory;
+    std::vector<std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES>> memState = ProgramState::getInstance().memoryStateHistory;
     memState.insert(memState.begin() + MEMORYSTATEINDEX, 
-                    ProgramState::getInstance().memorystatehistory.at(MEMORYSTATEINDEX - 1));
+                    ProgramState::getInstance().memoryStateHistory.at(MEMORYSTATEINDEX - 1));
     
     return true;
 }
