@@ -61,19 +61,19 @@
     <ClCompile Include="src\ProgramState\ProgramState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexadecimalConvertor.cpp">
+    <ClCompile Include="src\HexadecimalConvertor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexDataClass.cpp">
+    <ClCompile Include="src\Hex4Digit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\Hex4Digit.cpp">
+    <ClCompile Include="src\MemoryHistorySpace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\MemoryHistorySpace.cpp">
+    <ClCompile Include="src\NumberConvertorAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\NumberConvertorAccess.cpp">
+    <ClCompile Include="src\HexDataClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

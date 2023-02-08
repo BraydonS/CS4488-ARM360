@@ -98,13 +98,13 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\Hex4Digit.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexadecimalConvertor.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexDataClass.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\MemoryHistorySpace.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\NumberConvertorAccess.cpp" />
     <ClCompile Include="src\ExecutorFacade.cpp" />
+    <ClCompile Include="src\Hex4Digit.cpp" />
+    <ClCompile Include="src\HexadecimalConvertor.cpp" />
+    <ClCompile Include="src\HexDataClass.cpp" />
+    <ClCompile Include="src\MemoryHistorySpace.cpp" />
     <ClCompile Include="src\MockDataGenerator.cpp" />
+    <ClCompile Include="src\NumberConvertorAccess.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />
     <ClCompile Include="src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="src\stdafx.cpp">
