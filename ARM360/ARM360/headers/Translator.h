@@ -11,6 +11,7 @@
 #include "MemoryHistorySpace.h"
 #include "MockDataGenerator.h"
 #include "ProgramState/ProgramState.h"
+#include "InstructionParser.h"
 
 class Translator {
 private:
@@ -26,17 +27,18 @@ private:
     
     // Private constructor for SIngleton
     Translator(std::string armFile);
+    Translator(const Translator&); // Used for dereferencing the instance pointer -- might be an issue that this is needed
 
     // Private methods
     bool translate(std::string armFile);
     void setLoaded(bool loaded);
-    std::vector<std::string> removeTheElement(std::string arr[], int index);
+    std::string* removeTheElement(std::string arr[], int index);
     std::string removeComments(std::string line);
-    std::vector<std::string> parseInLineHexNumbers(std::string file[]);
+    std::string* parseInLineHexNumbers(std::string file[]);
     std::string readFile(std::string file);
-    std::vector<std::string> parseFile(std::string armFile);
+    std::string* parseFile(std::string armFile);
     void parseOutLabels(std::string file[]);
-    std::vector<std::string> initializeArray();
+    std::string* initializeArray();
     void setLabels(std::string lineOfCode, std::string parsedFile[], int lineIndex);
     std::vector<Hex4digit> initializeHexMemory();
 
