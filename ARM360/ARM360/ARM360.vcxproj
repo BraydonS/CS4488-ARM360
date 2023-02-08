@@ -98,6 +98,11 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\Hex4Digit.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexadecimalConvertor.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\HexDataClass.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\MemoryHistorySpace.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\NumberConvertorAccess.cpp" />
     <ClCompile Include="src\ExecutorFacade.cpp" />
     <ClCompile Include="src\MockDataGenerator.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />
@@ -128,6 +133,7 @@
     <ClInclude Include="headers\TranslatorFacade.h" />
     <QtMoc Include="headers\arm360.h" />
     <QtRcc Include="arm360.qrc" />
+    <QtUic Include="..\..\..\..\..\..\source\repos\ARM360Project\ARM360Project\ARM360Project.ui" />
     <QtUic Include="arm360.ui" />
     <None Include="ARM360.ico" />
     <ResourceCompile Include="ARM360.rc" />
