@@ -20,7 +20,6 @@
 /// <summary>
 /// Memory size is currently static, could be potentially be passed into constructor in future
 /// </summary>
-constexpr static int TOTAL_MEMORY_SPACES = 256;
 	
 ProgramState ProgramState::getInstance() {
 	if (emulationState == nullptr) {
@@ -117,9 +116,6 @@ Hex4digit ProgramState::getMemoryStateValue(int n) {
 }
 
 //Private Methods
-constexpr static int REGISTER_COUNT = 16;
-
-
 
 /// <summary>
 /// Fills out the remaining unused space of a user's instructions with zeroes 
