@@ -29,7 +29,7 @@ ProgramState ProgramState::getInstance() {
 }
 
 /// <summary>
-/// 
+/// Initializes the ProgramState using provided instructions
 /// </summary>
 /// <param name="code">An array of Hex4digits composed of user instuctions</param>
 /// <returns>If the instructions were successfully initialized</returns>
