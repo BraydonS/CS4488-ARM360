@@ -1,16 +1,16 @@
-#include "pch.h"
-#include "CppUnitTest.h"
+// #include "pch.h"
+// //#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+// using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace ARM360Test
-{
-	TEST_CLASS(ARM360Test)
-	{
-	public:
+// namespace ARM360Test
+// {
+// 	TEST_CLASS(ARM360Test)
+// 	{
+// 	public:
 		
-		TEST_METHOD(TestMethod1)
-		{
-		}
-	};
-}
+// 		TEST_METHOD(TestMethod1)
+// 		{
+// 		}
+// 	};
+// }
