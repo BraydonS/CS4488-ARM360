@@ -1,4 +1,9 @@
-// #include "pch.h"
+// Main entry point for the test.
+// Automated tests courtesy of this person: http://qtcreator.blogspot.com/2009/10/running-multiple-unit-tests.html
+#include "pch.h"
+#include "AutoTest.h"
+
+TEST_MAIN
 // //#include "CppUnitTest.h"
 
 // using namespace Microsoft::VisualStudio::CppUnitTestFramework;
