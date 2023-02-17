@@ -15,24 +15,24 @@ std::string EXCEPTIONMESSAGE = "No Error";
 // Private methods
 
 // Updates index of current memory is being accessed.
-void incrementMemoryIndex() {
+void ExecutorFacade::incrementMemoryIndex() {
     MEMORYSTATEINDEX++;
 }
 // Updates the program counter with the last memory location.
-void updatePCHistory(){                                             
+void ExecutorFacade::updatePCHistory(){                                             
     MemoryHistorySpace pc = MemoryHistorySpace();
     pc.memoryLocation = MEMORYSTATEINDEX;
     ProgramState::getInstance().pcHistory.push_back(pc);
 }
 
 //Public methods
-int getMemoryStateIndex(){
+int ExecutorFacade::getMemoryStateIndex(){
     return MEMORYSTATEINDEX;
 }
 
 // Function to check if the next instruction goes out of bounds.
 // @return bool : whether or not the next instruction is valid.
-bool hasNext(){
+bool ExecutorFacade::hasNext(){
 
     // The current value and size of the Program Counter respecivly. 
     int programStateValue = ProgramState::getInstance().registers[15].getValue();
@@ -60,14 +60,14 @@ bool hasNext(){
 }
 
 // Function to Simply creates the current program state with an empty vector.
-void setProgramState(ProgramState state){
+void ExecutorFacade::setProgramState(ProgramState state){
     std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> code;
     state.initializeState(code);
 }
 
 // Simply checks if the state of the program is empty or not.
 // @return bool: whether or not a memorystatehistory currently exists.
-bool hasState() {
+bool ExecutorFacade::hasState() {
     if (ProgramState::getInstance().memoryStateHistory.empty()){
         EXCEPTIONMESSAGE = "No state has been created";
         return false;
@@ -77,14 +77,14 @@ bool hasState() {
 
 // If the given programState is unknown update the exceptionMessage.
 // @param : The current programState
-void unrecognizedInstruction(ProgramState state) {
+void ExecutorFacade::unrecognizedInstruction(ProgramState state) {
     EXCEPTIONMESSAGE = "The given instruction was not recognized!";
     InstructionSet::halt(state);
 }
 
 // Takes a hex instruction based on the first value and executes the corresponding instruction.
 // @param : The current object instance of the Hex4digit class.
-void determineInstruction(Hex4digit instance){
+void ExecutorFacade::determineInstruction(Hex4digit instance){
     ProgramState state = ProgramState::getInstance();
     switch(instance.getHexChars()[1]){
         case '0': InstructionSet::halt(state); break;
@@ -109,7 +109,7 @@ void determineInstruction(Hex4digit instance){
 
 // Function to execute the next instruction and update the memory index.
 // @return bool : Whether or not the execution was successfull.
-bool next(){
+bool ExecutorFacade::next(){
     // Check if the programState is instantiated. 
     // and check if there's already a instruction in the program counter.
     if (!hasState() || !hasNext()){
@@ -136,13 +136,13 @@ bool next(){
 }
 
 // Clears the current state of the programState.
-void clearState(){
+void ExecutorFacade::clearState(){
     MEMORYSTATEINDEX = 0;
     ProgramState::getInstance().clearProgramState();
 }
 
 // Simply gets the last exceptionMessage from the program.
 // @return string: string of last exception message.
-std::string getLastExeptionMessage(){
+std::string ExecutorFacade::getLastExceptionMessage(){
     return EXCEPTIONMESSAGE;
 }
