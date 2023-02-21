@@ -99,6 +99,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ExecutorFacade.cpp" />
+    <ClCompile Include="src\InstructionParser.cpp" />
     <ClCompile Include="src\InstructionSet.cpp" />
     <ClCompile Include="src\MockDataGenerator.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />

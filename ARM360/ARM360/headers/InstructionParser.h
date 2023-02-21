@@ -5,6 +5,8 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include <sstream>
+#include <iostream>
 
 class InstructionParser {
 private:
@@ -17,6 +19,7 @@ private:
 	void loadInstructions();
 	void loadRegisters();
 	void loadMemory();
+	std::string convertToHexString(int decimal);
 
 public:
 	// Public Methods
