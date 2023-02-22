@@ -3,14 +3,16 @@
 #include <string>
 #include <ProgramState/ProgramState.h>
 #include <Hex4digit.h>
-// .h file for development so the IDE can reconize the classes we have yet to implement.
 
 class ExecutorFacade{
 
     public: 
-        int getMemoryIndex();
 
-        int incrementMemoryIndex();
+        int getMemoryStateIndex();
+
+        //int getMemoryIndex();
+
+        void incrementMemoryIndex();
 
         bool next();
 
