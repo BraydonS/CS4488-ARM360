@@ -8,27 +8,20 @@
 class FileManager {
 public:
 
-	static FileManager getInstance();
+	static FileManager* getInstance();
+
 	bool checkFile(std::string pathString);
+	std::string readFile(const std::string& path);
+	bool writeFile(const std::string& path, const std::string& content);
 
-	std::string fileToString(std::string path);
-	std::string readFile(std::string file);
 	std::string getLastErrorMessage();
-
-	bool saveFile(std::string path, std::string content);
 
 private:
 	
-	std::string defaultMessage;
 	std::string lastErrorMessage;
-	std::ofstream writer;
 
-	static FileManager instance;
+	static FileManager* instance;
 
 	FileManager();
-
-	bool setWriteFile(std::string path);
-	void write(std::string toWrite);
-	void closeWrite();
 
 };

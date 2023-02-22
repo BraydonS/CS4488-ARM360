@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "Hex4Digit.h"
 #include "MemoryHistorySpace.h"
-#include <string>
-#include <sstream>
 #include "ProgramState/programstate.h"
+#include <sstream>
 
 /// <summary>
 /// The ProgramState singleton is a data class operated on by the executor, which stores the machine state in a vector of state arrays
@@ -21,11 +20,11 @@
 /// Memory size is currently static, could be potentially be passed into constructor in future
 /// </summary>
 	
-ProgramState ProgramState::getInstance() {
+ProgramState* ProgramState::getInstance() {
 	if (emulationState == nullptr) {
-		ProgramState::emulationState;
+		ProgramState::emulationState = new ProgramState();
 	}
-	return *emulationState;
+	return emulationState;
 }
 
 /// <summary>
