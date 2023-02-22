@@ -15,10 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ARM360Test.cpp">
+    <ClCompile Include="ClassTests\ARM360Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassTests\MockDataGeneratorTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassTests\ExecutorFacadeTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
