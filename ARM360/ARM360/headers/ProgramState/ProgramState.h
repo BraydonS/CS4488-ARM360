@@ -20,7 +20,7 @@ public:
 	 std::vector<MemoryHistorySpace> pcHistory;
 	 std::vector<std::array<Hex4digit, TOTAL_MEMORY_SPACES>> memoryStateHistory;
 
-	static ProgramState getInstance();
+	static ProgramState* getInstance();
 	bool initializeState(std::array<Hex4digit,TOTAL_MEMORY_SPACES> code);
 
 	void clearProgramState();
