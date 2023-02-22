@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FileManager/FileManager.h"
+#include <regex>
 
 /// <summary>
 /// The FileManager is used to read/write user code to from/to a file
@@ -52,9 +53,8 @@ std::string FileManager::readFile(const std::string& path) {
 	try {
 		std::ifstream input_file(path);
 		if (input_file.is_open()) {
-			while (getline(input_file, line)) {
-				text += line;
-			}
+			text.assign((std::istreambuf_iterator<char>(input_file)),
+				(std::istreambuf_iterator<char>()));
 			input_file.close();
 		}
 	}
@@ -70,28 +70,32 @@ std::string FileManager::readFile(const std::string& path) {
 };
 
 /// <summary>
-/// Write the given content to a file at the given path. If the file already exists, it is overwritten. 
+/// Write the given content to a file at the given path ending in .txt. If the file already exists, it is overwritten. 
 /// </summary>
-/// <param name="path">The path to the file to write</param>
+/// <param name="path">The path to a .txt file to write to</param>
 /// <param name="content">The content to write to the file</param>
 /// <returns>True if the write operation was successful, false otherwise</returns>
 bool FileManager::writeFile(const std::string& path, const std::string& content) {
 	bool result = false;
-	try {
-		std::remove(path.c_str());
-		std::ofstream output_file(path);
-		result = true;
+
+	std::regex pattern(".*\.txt$");
+	if (std::regex_match(path, pattern)) {
+		try {
+			std::remove(path.c_str());
+			std::ofstream output_file(path);
+			result = true;
 
 
-		if (result) {
-			output_file << content;
+			if (result) {
+				output_file << content;
+			}
+
+			output_file.close();
+
 		}
-
-		output_file.close();
-
-	}
-	catch (const std::exception& e) {
-		lastErrorMessage = "File Manager: in saveFile()\n" + std::string(e.what());
+		catch (const std::exception& e) {
+			lastErrorMessage = "File Manager: in saveFile()\n" + std::string(e.what());
+		}
 	}
 
 	return result;
