@@ -6,8 +6,8 @@
 #include <memory>
 #include <string>
 #include <array>
-#include "Hex4digit.h"
-#include "MemoryHistorySpace.h"
+#include "../Hex4digit.h"
+#include "../MemoryHistorySpace.h"
 
 class ProgramState {
 

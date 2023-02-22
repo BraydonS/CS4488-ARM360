@@ -133,5 +133,5 @@ int Orchestrator::convertToInt(char number[]) {
 // @param path : A string containing the path to a file
 // @return string : The file as a single string
 std::string Orchestrator::loadFile(std::string path) {
-    return fileManager.fileToString(path);
+    return fileManager.readFile(path);
 }
