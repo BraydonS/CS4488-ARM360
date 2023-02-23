@@ -1,6 +1,4 @@
-//need to include package library tool
 
-#pragma once
 
 class MemoryHistorySpace {
 public:

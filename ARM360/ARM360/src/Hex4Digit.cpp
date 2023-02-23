@@ -1,5 +1,10 @@
 #include <string>
+#include <cstring>
 #include <array>
+#include <algorithm>
+#include "HexadecimalConvertor.h"
+#include "Hex4Digit.h"
+
 
 class HexDataClass {
 public:
@@ -23,11 +28,16 @@ private:
 public:
     Hex4digit() : hex(0) {};
     Hex4digit(std::array<char, 5> value) : hex(HexadecimalConverter::hexToDecimal(value)) {};
-    Hex4digit(std::string value) : hex(HexadecimalConverter::hexToDecimal(std::array<char, 5>(value.begin(), value.end()))) {};
     Hex4digit(int value) : hex(value) {};
 
     void setValue(int number) override { hex = number; };
-    void setValue(std::string number) override { hex = HexadecimalConverter::hexToDecimal(std::array<char, 5>(number.begin(), number.end())); };
+
+    void setValue(std::string number) override {
+        std::array<char, 5> arr{};
+        std::copy(number.begin(), number.end(), arr.begin());
+        hex = HexadecimalConverter::hexToDecimal(arr);
+    };
+
     void setValue(std::array<char, 5> number) { hex = HexadecimalConverter::hexToDecimal(number); };
     void setFirst(char first) {
         std::array<char, 5> change = HexadecimalConverter::decimalToHex(hex);
@@ -68,5 +78,26 @@ public:
     }
     int getValue() override {
         return hex;
-    } 
-    };
+    }
+
+    std::array<char, 5> getHexChars() override {
+        return HexadecimalConverter::decimalToHex(hex);
+    }
+
+    int getMiddle2Value() override {
+        std::array<char, 5> hexChars = getHexChars();
+        int result = (HexadecimalConvertor::hexValue(hexChars[2]) * 16) +
+            HexadecimalConverter::hexValue(hexChars[3]);
+        return result;
+    }
+
+    char hexChar(int n) {
+        return HexadecimalConvertor::hexChar(n);
+    }
+
+    static int hexValue(char n) {
+
+        return HexadecimalConverter::hexValue(n);
+    }
+
+};
