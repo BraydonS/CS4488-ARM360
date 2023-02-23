@@ -4,12 +4,11 @@
 
 #include "stdafx.h"
 #include "Translator.h"
-#include <iostream>
-#include <regex>
+
 
 // Private constructor for Singleton
 // @param armFile string : The path to the ARM file to be loaded
-Translator::Translator(std::string armFile) {
+Translator::Translator(std::string armFile) : fileMan(*(FileManager::getInstance())) {
     setTranslatable(this->translate(armFile));
 }
 
@@ -118,31 +117,31 @@ std::string Translator::removeComments(std::string line) {
     return lineCopy;
 }
 
-std::string* Translator::parseInLineHexNumbers(std::string file[]) {
-    //Stop compile error until implementation is written
-    std::string test[3]{};
-    return test;
-    // Working on conversion
-    /*
+// Method that parses out hex numbers from a file
+// @param file : A string[] representation of the file to be parsed from
+// @return string* : A string* of all hex numbers
+std::string* Translator::parseInLineHexNumbers(std::string file[]) {    
     int end = (*file).length();
     int start = 256; // max memory space
 
     if (end < 256) {
-        std::string memory[] = initializeArray();
-        Pattern pattern = Pattern.compile("[0-9]{4}");
+        std::string memory[256] = { "" };
+        std::regex pattern("[0-9]{4}");
 
         for (int i = 0; i < (*file).length(); i++) {
-            std::string newLine = file[i].trim();
-            Matcher matcher = pattern.matcher(newLine);
-            if (matcher.find() && newLine.length() > 5) {
+            std::string newLine = file[i];
+            Translator::trim(newLine);
+            std::smatch m;
+            std::regex_search(newLine, m, pattern);
+            if (m.length() && newLine.length() > 5) {
 
-                std::string labelAddress = "m" + Integer.toHexString(start - 1);
-                std::string number = matcher.group();
+                std::string labelAddress = "m" + Translator::convertToHexString(start - 1);
+                std::string number = m[0];
 
                 memory[start - 1] = number;
 
                 // replace number with memory location
-                newLine = newLine.replaceAll(number, labelAddress);
+                newLine = std::regex_replace(newLine, std::regex(number), labelAddress);
 
                 start--;
             }
@@ -153,46 +152,130 @@ std::string* Translator::parseInLineHexNumbers(std::string file[]) {
         }
         return memory;
     }
-
     return file;
-    */
 }
 
+// Method that reads the specified file in
+// @param file : The path of the file to be read in
+// @return string : A string containing the text of the file
 std::string Translator::readFile(std::string file) {
-    //Stop compile error until implementation is written
-    return "Test";
+    return fileMan.readFile(file);
 }
 
+// Method that parses a file of "0x" and "#", then splits it on ";"
+// @param armFile : The file to be parsed
+// @return string* : A string[] of the file split of ";"
 std::string* Translator::parseFile(std::string armFile) {
-    //Stop compile error until implementation is written
-    std::string test[3]{};
-    return test;
-    //return std::vector<std::string>(begin(test), end(test));
+    std::string noComments = Translator::removeComments(armFile);
+    noComments = std::regex_replace(noComments, std::regex("0x"), "");
+    noComments = std::regex_replace(noComments, std::regex("#"), "");
+
+    if (noComments.empty()) {
+        return  nullptr;
+    }
+    char delimitter = ';';
+    size_t start = 0;
+    size_t end = noComments.find(delimitter);
+    std::string array[256];
+    int i = 0;
+    while (end >= 0) {
+        array[i] = noComments.substr(start, end);
+        start = end + 1;
+        end = noComments.find(delimitter);
+        i++;
+    }
+    return array;
 }
 
+// Method that parses out labels from a file
+// @param file : A string[] representation of a file
 void Translator::parseOutLabels(std::string file[]) {
-
+    for (int i = 0; i < (*file).length(); i++) {
+        std::string line = file[i];
+        if (line.find(":") >= 0) {
+            // replace all label occurrence
+            this->setLabels(std::regex_replace(line, std::regex("\\s"), ""), file, i);
+        }
+    }
 }
 
-std::string* Translator::initializeArray() {
-    //Stop compile error until implementation is written
-    std::string test[3]{};
-    return test;
-    //return std::vector<std::string>(begin(test), end(test));
-}
 
 void Translator::setLabels(std::string lineOfCode, std::string parsedFile[], int lineIndex) {
+    std::string lineArray[256];
+    char delimitter = ':';
+    size_t start = 0;
+    size_t end = lineOfCode.find(delimitter);
+    int i = 0;
+    while (end >= 0) {
+        lineArray[i] = lineOfCode.substr(start, end);
+        start = end + 1;
+        end = lineOfCode.find(delimitter);
+        i++;
+    }
 
+    // checks if label is defined on one line
+    if (lineOfCode[lineOfCode.length() - 1] == ':') { // Checks if last char of string is ':'
+        parsedFile = removeTheElement(parsedFile, lineIndex);
+    }
+    else {
+        parsedFile[lineIndex] = std::regex_replace(*parsedFile, std::regex(lineArray[0] + ":"), "");
+    }
+
+    std::string labelAddress;
+    if (lineIndex < 10) {
+        labelAddress = "0" + Translator::convertToHexString(lineIndex);
+    }
+    else {
+        labelAddress = Translator::convertToHexString(lineIndex);
+    }
+
+    for (int i = 0; i < (*parsedFile).length(); i++) {
+        parsedFile[i] = std::regex_replace(parsedFile[i], std::regex(lineArray[0]), labelAddress);
+    }
 }
 
-
+// Method that creates a vector of size 256, filled with Hex4digit objects
+// @return vector<Hex4dgit> : A vector representing the memory
 std::vector<Hex4digit> Translator::initializeHexMemory() {
-    //Stop compile error until implementation is written
-    return std::vector<Hex4digit>();
+    std::vector<Hex4digit> memory(256, Hex4digit());
+
+    return memory;
 }
+
+// Method that converts a decimal number to its hexadecimal representation
+// @param number : The number to convert, in base 10
+// @return string : The number in base 16
+std::string Translator::convertToHexString(int number) {
+    // Create an iostream to write to
+    std::ostringstream ss;
+    // Change output base to hex, write number to stream, then change output base back to decmial
+    ss << std::hex << number << std::dec;
+    // Return the string representation of the stream
+    return ss.str();
+}
+
+// Three methods for triming strings - found at https://stackoverflow.com/questions/216823/how-to-trim-an-stdstring
+// trim from start (in place)
+inline void Translator::ltrim(std::string& s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+        return !std::isspace(ch);
+        }));
+}
+// trim from end (in place)
+inline void Translator::rtrim(std::string& s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+        return !std::isspace(ch);
+        }).base(), s.end());
+}
+// trim from both ends (in place)
+inline void Translator::trim(std::string& s) {
+    rtrim(s);
+    ltrim(s);
+}
+// End of methods for triming strings - found at https://stackoverflow.com/questions/216823/how-to-trim-an-stdstring
 
 // Public methods
-// 
+
 // Method that indicates whether the loaded file was translatable or not
 // @return bool : true if the file was able to be translated, false otherwise
 bool Translator::isTranslatable() {
@@ -252,20 +335,22 @@ void Translator::clearFile() {
     std::cout << "Translator: Cleared all files.";
 }
 
+// Method that gets the current exception message
+// @return string : The current exception message
 std::string Translator::getExceptionMessage() {
-    //Stop compile error until implementation is written
-    return "Test";
+    return this->exceptionMessage;
 }
 
+// Method that updates the exception message
+// @param exceptionMessage : The message to be set
 void Translator::setExceptionMessage(std::string exceptionMessage) {
-
+    this->exceptionMessage = exceptionMessage;
 }
 
+// Method that converts a string array into a vector of Hex4digit objects
+// @param parsedFile : A string[] representation of the file
+// @return vector<Hex4digit> : A vector of converted Hex4digit objects
 std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
-    // Working on conversion
-    //Stop compile error until implementation is written
-    return std::vector<Hex4digit>();
-    /*
     this->parseOutLabels(parsedFile);
     InstructionParser instructionParser = InstructionParser::getInstance();
     parsedFile = this->parseInLineHexNumbers(parsedFile);
@@ -274,44 +359,62 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
 
     for (int lineIndex = 0; lineIndex < (*parsedFile).length(); lineIndex++) {
         std::string line = parsedFile[lineIndex];
-        StringBuilder builder = new StringBuilder();
+        std::string builder;
+        //StringBuilder builder = new StringBuilder();
 
         // remove trailing space
-        line = line.trim();
+        Translator::trim(line);
 
-        if (line.isEmpty()) {
+        if (line.empty()) {
             continue;
         }
 
 
         // split on each instruction
-        for (String elem : line.split(" ")) {
-            String instruction = "";
-            if (!elem.isEmpty()) {
-                instruction = instructionParser.getParser().get(elem);
+        std::string instructions[256];
+        char delimitter = ' ';
+        size_t start = 0;
+        size_t end = line.find(delimitter);
+        int i = 0;
+        while (end >= 0) {
+            instructions[i] = line.substr(start, end);
+            start = end + 1;
+            end = line.find(delimitter);
+            i++;
+        }
+
+        for (std::string elem : instructions) {
+            std::string instruction = "";
+            if (!elem.empty()) {
+                instruction = instructionParser.getParser().at(elem);
             }
 
             // adds instruction code to string if it is valid
             // else append unknown instruction
-            builder.append(Objects.requireNonNullElse(instruction, elem));
+            if (instruction != "") {
+                builder.append(instruction);
+            }
+            else {
+                builder.append(elem);
+            }
         }
 
         //            System.out.println("Line: "+line);
         //
 
 
-        if (builder.length() > 4 && builder.charAt(0) != '-') {
-            String exception = String.format("Instruction memory overflow occurred at Line %d. \n" +
-                "Line: %s", lineIndex, builder);
-            this.setExceptionMessage(exception);
-            this.clearFile();
-            // System.out.println(this.getExceptionMessage());
-            return null;
+        if (builder.length() > 4 && builder[0] != '-') {
+            std::string exception = "Instruction memory overflow occurred at Line " + std::to_string(lineIndex) + ". \n" +
+                "Line: " + builder;
+            this->setExceptionMessage(exception);
+            this->clearFile();
+            std::cout << this->getExceptionMessage() << std::endl;
+            throw std::runtime_error("Memory overflow encountered.");
         }
         else {
             int stop = 5;
             // not negative instruction
-            if (builder.charAt(0) != '-') {
+            if (builder[0] != '-') {
                 stop = 4;
             }
 
@@ -325,26 +428,22 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
         //            System.out.println("After checking Translated instruct:"+builder);
 
 
-        String lineOfCode = builder.toString();
+        std::string lineOfCode = builder;
         // check if line matches hex format
-        if (lineOfCode.matches("^[-0-9a-f]+$")) {
+        if (std::regex_match(lineOfCode, std::regex("^[-0-9a-f]+$"))) {
             // create hex digit
-            Hex4digit hex = new Hex4digit();
+            Hex4digit hex;
             hex.setValue(lineOfCode);
-            translatedFile.set(lineIndex, hex); // adds hex code to list
+            translatedFile[lineIndex] = hex; // adds hex code to list
         }
         else {
-            String exception = String.format("Line %d contains unknown instructions.", lineIndex);
-            this.setExceptionMessage(exception);
-            this.clearFile();
-            // System.out.println(this.getExceptionMessage());
-            return null;
+            std::string exception = "Line " + std::to_string(lineIndex) + " contains unknown instructions.";
+            this->setExceptionMessage(exception);
+            this->clearFile();
+            std::cout << this->getExceptionMessage() << std::endl;
+            throw std::runtime_error("Unknown instructions found.");
         }
 
-
     }
-    // System.out.println("File successfully converted to hex code.");
-
     return translatedFile;
-    */
 }

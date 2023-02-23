@@ -6,7 +6,7 @@
 #include "Orchestrator.h"
 
 // Private constructor to enforce Singleton pattern
-Orchestrator::Orchestrator() : state(ProgramState::getInstance()), translator(), executor(), fileManager(FileManager::getInstance()) {
+Orchestrator::Orchestrator() : state(*(ProgramState::getInstance())), translator(), executor(), fileManager(*(FileManager::getInstance())) {
     resetError();
 }
 
