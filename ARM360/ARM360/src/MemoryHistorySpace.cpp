@@ -1,3 +1,4 @@
+#include "Hex4Digit.h"
 
 
 class MemoryHistorySpace {

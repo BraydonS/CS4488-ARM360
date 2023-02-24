@@ -68,6 +68,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\InstructionParser.cpp">
+	  <Filter>Source Files</Filter>
+	</ClCompile>
+    <ClCompile Include="src\HexadecimalConvertor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hex4Digit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemoryHistorySpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NumberConvertorAccess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HexDataClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
