@@ -5,6 +5,11 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <regex>
+#include <iostream>
+#include <algorithm>
+#include <cctype>
+#include <locale>
 #include "FileManager/FileManager.h"
 #include "Hex4digit.h"
 #include "HexadecimalConvertor.h"
@@ -20,7 +25,7 @@ private:
     bool loaded;
     //Vectors can not be null, as null is different in C++; check if vector is empty, instead of checking for null
     std::vector<Hex4digit> translatedCode;
-    FileManager fileMan = FileManager::getInstance();
+    FileManager fileMan;
     static Translator* instancePtr;
     std::string exceptionMessage = "No Error";
     bool isFileTranslatable = false;
@@ -38,9 +43,15 @@ private:
     std::string readFile(std::string file);
     std::string* parseFile(std::string armFile);
     void parseOutLabels(std::string file[]);
-    std::string* initializeArray();
     void setLabels(std::string lineOfCode, std::string parsedFile[], int lineIndex);
     std::vector<Hex4digit> initializeHexMemory();
+    std::string convertToHexString(int number);
+
+    // Three methods for triming strings - found at https://stackoverflow.com/questions/216823/how-to-trim-an-stdstring
+    static inline void ltrim(std::string& s);
+    static inline void rtrim(std::string& s);
+    static inline void trim(std::string& s);
+    // End of methods for triming strings - found at https://stackoverflow.com/questions/216823/how-to-trim-an-stdstring
 
 public:
     // Public methods
