@@ -1,6 +1,5 @@
 // Main entry point for the test.
-// Automated tests courtesy of this person: http://qtcreator.blogspot.com/2009/10/running-multiple-unit-tests.html
-#include "../pch.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/ProgramState/ProgramState.h"
 #include "../../ARM360/headers/FileManager/FileManager.h"

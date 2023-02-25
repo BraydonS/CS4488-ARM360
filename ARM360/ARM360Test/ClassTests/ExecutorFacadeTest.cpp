@@ -1,4 +1,4 @@
-#include "../pch.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/ExecutorFacade.h"
 #include "../../ARM360/headers/ProgramState/ProgramState.h"
@@ -13,7 +13,9 @@ namespace ARM360Test {
 
 public:
 
-	TEST_METHOD(incrementMemoryIndexTest) {}
+	TEST_METHOD(incrementMemoryIndexTest) {
+	
+	}
 
 	TEST_METHOD(updatePCHistoryTest) {}
 

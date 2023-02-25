@@ -1,6 +1,7 @@
-#include "../pch.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/MockDataGenerator.h"
+#include <regex>
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -10,7 +11,13 @@ namespace ARM360Test {
 
 public:
 
-	TEST_METHOD(getRandomHexCharTest) {}
+	TEST_METHOD(getRandomHexCharTest) {
+		char randomHexChar = MockDataGenerator::getRandomHexChar();
+		std::string randomHexString(1, randomHexChar);
+		std::regex hexCheckerRegex("([a-f]|[0-9])*");
+		bool matchFound = std::regex_match(randomHexString, hexCheckerRegex);
+		Assert::IsTrue(matchFound);
+	}
 
 	TEST_METHOD(getRandomHexValueTest) {}
 
