@@ -29,9 +29,9 @@ int MockDataGenerator::getRandomHexValue(){
 int MockDataGenerator::getRandomHexValue4(){
     int result = 1;
     result = result * (rand()%15 + 1);
-    result = result * (rand()%15 + 1);
-    result = result * (rand()%15 + 1);
-    result = result * (rand()%15 + 1);
+    //result = result * (rand()%15 + 1);
+    //result = result * (rand()%15 + 1);
+    //result = result * (rand()%15 + 1);
     // rand() doesn't have a boolean random operator so this is a workaround even = true, odd = false
     if ((rand()%10) % 2 == 0){
         result = result * -1;
@@ -39,7 +39,7 @@ int MockDataGenerator::getRandomHexValue4(){
     return result;
 }
 
-// Function to make a vector<char> of random hex character that could be posative or negative.
+// Function to make a vector<char> of random hex character that could be positive or negative.
 // return result : a vector<char> of random hex numbers.
 std::vector<char> MockDataGenerator::getRandomHexChar5(){
     std::vector<char> result(5);
@@ -53,12 +53,12 @@ std::vector<char> MockDataGenerator::getRandomHexChar5(){
     return result;
 }
 
-// Generates a random character
+// Generates a random (non-hex) character
 // @return result : A random char.
 char MockDataGenerator::getJunkChar(){
     char result = '0';
     int c = rand()%16;
-    result = (char)(c + 103);
+    result = (char)(c + 103); // ASCII char 103 is 'g', so g to v for the random char.
     return result;
 }
 
