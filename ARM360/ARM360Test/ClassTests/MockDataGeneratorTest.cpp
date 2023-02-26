@@ -31,7 +31,7 @@ public:
 
 	// Test that checks if the array is only filled with valid hex character or +/- characters.
 	TEST_METHOD(getRandomHexChar5Test) {
-		std::regex hexCheckerRegex("([a-f]|[0-9]|\-|\+)*"); // 0-9 & a-f & + or - should be the only valid chars.
+		std::regex hexCheckerRegex("([a-f]|[0-9]|\\-|\\+)*"); // 0-9 & a-f & + or - should be the only valid chars.
 		std::vector<char> randomHexVector = MockDataGenerator::getRandomHexChar5();
 		for (auto currentHexValue : randomHexVector) {
 			std::string currentHexValueAsString(1, currentHexValue);
