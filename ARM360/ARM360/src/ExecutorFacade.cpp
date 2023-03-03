@@ -22,7 +22,7 @@ void ExecutorFacade::incrementMemoryIndex() {
 void ExecutorFacade::updatePCHistory(){                                             
     MemoryHistorySpace pc = MemoryHistorySpace();
     pc.memoryLocation = MEMORYSTATEINDEX;
-    ProgramState::getInstance().pcHistory.push_back(pc);
+    ProgramState::getInstance()->pcHistory.push_back(pc);
 }
 
 //Public methods
@@ -35,8 +35,8 @@ int ExecutorFacade::getMemoryStateIndex(){
 bool ExecutorFacade::hasNext(){
 
     // The current value and size of the Program Counter respecivly. 
-    int programStateValue = ProgramState::getInstance().registers[15].getValue();
-    int programStateSize = ProgramState::getInstance().memoryStateHistory.at(MEMORYSTATEINDEX).size();
+    int programStateValue = ProgramState::getInstance()->registers[15].getValue();
+    int programStateSize = ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX).size();
 
     // If the Counter Count is >= to the length of memory list,then it's gone past the program memory.
     if(programStateValue >= programStateSize) {
@@ -68,7 +68,7 @@ void ExecutorFacade::setProgramState(ProgramState state){
 // Simply checks if the state of the program is empty or not.
 // @return bool: whether or not a memorystatehistory currently exists.
 bool ExecutorFacade::hasState() {
-    if (ProgramState::getInstance().memoryStateHistory.empty()){
+    if (ProgramState::getInstance()->memoryStateHistory.empty()){
         EXCEPTIONMESSAGE = "No state has been created";
         return false;
     }
@@ -85,25 +85,25 @@ void ExecutorFacade::unrecognizedInstruction(ProgramState state) {
 // Takes a hex instruction based on the first value and executes the corresponding instruction.
 // @param : The current object instance of the Hex4digit class.
 void ExecutorFacade::determineInstruction(Hex4digit instance){
-    ProgramState state = ProgramState::getInstance();
+    ProgramState *state = ProgramState::getInstance();
     switch(instance.getHexChars()[1]){
-        case '0': InstructionSet::halt(state); break;
-        case '1': InstructionSet::load(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '2': InstructionSet::store(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '3': InstructionSet::add(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '4': InstructionSet::subt(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '5': InstructionSet::mult(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '6': InstructionSet::intDivide(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '7': InstructionSet::loadIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '8': InstructionSet::storeIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '9': InstructionSet::branch(state, instance.getMiddle2Value()); break;
-        case 'a': InstructionSet::branchZero(state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'b': InstructionSet::branchNeg(state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'c': InstructionSet::branchPos(state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'd': InstructionSet::readInt(state, instance.getHexChars()[2]); break;
-        case 'e': InstructionSet::writeInt(state, instance.getHexChars()[2]); break;
-        case 'f': InstructionSet::skip(state); break;
-        default:  unrecognizedInstruction(state);
+        case '0': InstructionSet::halt(*state); break;
+        case '1': InstructionSet::load(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '2': InstructionSet::store(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '3': InstructionSet::add(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '4': InstructionSet::subt(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '5': InstructionSet::mult(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '6': InstructionSet::intDivide(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '7': InstructionSet::loadIndirect(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '8': InstructionSet::storeIndirect(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '9': InstructionSet::branch(*state, instance.getMiddle2Value()); break;
+        case 'a': InstructionSet::branchZero(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'b': InstructionSet::branchNeg(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'c': InstructionSet::branchPos(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'd': InstructionSet::readInt(*state, instance.getHexChars()[2]); break;
+        case 'e': InstructionSet::writeInt(*state, instance.getHexChars()[2]); break;
+        case 'f': InstructionSet::skip(*state); break;
+        default:  unrecognizedInstruction(*state);
         }
 }
 
@@ -119,8 +119,8 @@ bool ExecutorFacade::next(){
     // The next instruction to be executed is indexed by the Program Counter.
     // E.G If Register 15 has the value 7, index 7 in the memorystatehistory will be executed.
     Hex4digit instruction = ProgramState::getInstance()
-                            .memoryStateHistory.at(MEMORYSTATEINDEX)
-                            .at(ProgramState::getInstance().registers[15].getValue());
+                            ->memoryStateHistory.at(MEMORYSTATEINDEX)
+                            .at(ProgramState::getInstance()->registers[15].getValue());
     
     // Get the instruction and update the history and memory index.
     determineInstruction(instruction);
@@ -128,9 +128,9 @@ bool ExecutorFacade::next(){
     incrementMemoryIndex();
 
     // Copy over the memory vector to the next index in the list.
-    std::vector<std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES>> memState = ProgramState::getInstance().memoryStateHistory;
+    std::vector<std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES>> memState = ProgramState::getInstance()->memoryStateHistory;
     memState.insert(memState.begin() + MEMORYSTATEINDEX, 
-                    ProgramState::getInstance().memoryStateHistory.at(MEMORYSTATEINDEX - 1));
+                    ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX - 1));
     
     return true;
 }
@@ -138,7 +138,7 @@ bool ExecutorFacade::next(){
 // Clears the current state of the programState.
 void ExecutorFacade::clearState(){
     MEMORYSTATEINDEX = 0;
-    ProgramState::getInstance().clearProgramState();
+    ProgramState::getInstance()->clearProgramState();
 }
 
 // Simply gets the last exceptionMessage from the program.
