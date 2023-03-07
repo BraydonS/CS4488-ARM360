@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cstdio>
+#include "stdafx.h"
 #include "HexadecimalConverter.h"
 #include <array>
 #include <string>
