@@ -6,7 +6,7 @@
 #include <regex>
 // required <regex> and <algorithm> library for std::transform() function
 
-class HexadecimalConvertor {
+class HexadecimalConverter {
 public:
     // GLOBAL VARIABLE Min and Max for our 4 digit hexadecimal numbers
     const static int MAX = 65535;

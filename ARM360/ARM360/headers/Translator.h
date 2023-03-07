@@ -12,7 +12,7 @@
 #include <locale>
 #include "FileManager/FileManager.h"
 #include "Hex4digit.h"
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 #include "MemoryHistorySpace.h"
 #include "MockDataGenerator.h"
 #include "ProgramState/ProgramState.h"

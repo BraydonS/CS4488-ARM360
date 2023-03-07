@@ -1,6 +1,6 @@
 #include <cstring>
 #include <cstdio>
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 #include <array>
 #include <string>
 
@@ -17,8 +17,8 @@
      * @param hexArray  any char[] will be accepted and cleaned to work.
      * @return the integer value
      */
-int HexadecimalConvertor::hexToDecimal(char* hexArray) {
-    hexArray = HexadecimalConvertor::cleanCharHex(hexArray); // input scrub
+int HexadecimalConverter::hexToDecimal(char* hexArray) {
+    hexArray = HexadecimalConverter::cleanCharHex(hexArray); // input scrub
     int index = strlen(hexArray) - 1;
     int power = 1;
     int result = 0;
@@ -212,7 +212,7 @@ int hex4digitValueWrap(int n) {
 
 char* cleanCharHex(char toClean[]) {
     // Set up the result.
-    char* result = makeBlankChar5();
+    char* result = makeBlankChar5().data();
 
     // Convert toClean to a string for use of some functions.
     std::string input(toClean);

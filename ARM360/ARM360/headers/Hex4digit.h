@@ -2,7 +2,7 @@
 #pragma once
 #include <string>
 #include <regex>
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 
 class Hex4digit {
 private:

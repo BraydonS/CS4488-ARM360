@@ -68,9 +68,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\InstructionParser.cpp">
-	  <Filter>Source Files</Filter>
-	</ClCompile>
-    <ClCompile Include="src\HexadecimalConvertor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HexadecimalConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Hex4Digit.cpp">
@@ -83,6 +83,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\HexDataClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileManager\FileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -135,7 +138,7 @@
     <ClInclude Include="headers\HexaDataClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\HexadecimalConvertor.h">
+    <ClInclude Include="headers\HexadecimalConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\NumberConvertorAccess.h">

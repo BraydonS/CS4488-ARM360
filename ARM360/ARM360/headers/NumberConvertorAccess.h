@@ -1,7 +1,7 @@
 
 #include <string>
 #include "Hex4digit.h"
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 
 class Hex4digit {
 private:

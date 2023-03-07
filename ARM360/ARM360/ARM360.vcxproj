@@ -103,14 +103,14 @@
     <ClCompile Include="src\InstructionSet.cpp" />
     <ClCompile Include="src\FileManager\FileManager.cpp" />
     <ClCompile Include="src\Hex4Digit.cpp" />
-    <ClCompile Include="src\HexadecimalConvertor.cpp" />
+    <ClCompile Include="src\HexadecimalConverter.cpp" />
     <ClCompile Include="src\HexDataClass.cpp" />
     <ClCompile Include="src\MemoryHistorySpace.cpp" />
     <ClCompile Include="src\MockDataGenerator.cpp" />
     <ClCompile Include="src\NumberConvertorAccess.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />
     <ClCompile Include="src\ProgramState\ProgramState.cpp" />
-	<ClCompile Include="src\Translator.cpp" />
+    <ClCompile Include="src\Translator.cpp" />
     <ClCompile Include="src\TranslatorFacade.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -122,7 +122,7 @@
     <ClInclude Include="headers\FileManager\FileManager.h" />
     <ClInclude Include="headers\Hex4digit.h" />
     <ClInclude Include="headers\HexaDataClass.h" />
-    <ClInclude Include="headers\HexadecimalConvertor.h" />
+    <ClInclude Include="headers\HexadecimalConverter.h" />
     <ClInclude Include="headers\InstructionParser.h" />
     <ClInclude Include="headers\InstructionSet.h" />
     <ClInclude Include="headers\MemoryHistorySpace.h" />
@@ -137,7 +137,7 @@
     <ClInclude Include="headers\TranslatorFacade.h" />
     <QtMoc Include="headers\arm360.h" />
     <QtRcc Include="arm360.qrc" />
-	<QtUic Include="arm360.ui" />
+    <QtUic Include="arm360.ui" />
     <None Include="ARM360.ico" />
     <ResourceCompile Include="ARM360.rc" />
     <ClCompile Include="src\arm360.cpp" />

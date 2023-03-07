@@ -3,19 +3,19 @@
 #include <array>
 #include <algorithm>
 #include "stdafx.h"
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 #include "Hex4digit.h"
 
 Hex4digit::Hex4digit() : hex(0) {}
 
-Hex4digit::Hex4digit(std::array<char, 5> value) : hex(HexadecimalConvertor::hexToDecimal(value.data())) {}
+Hex4digit::Hex4digit(std::array<char, 5> value) : hex(HexadecimalConverter::hexToDecimal(value.data())) {}
 
-Hex4digit::Hex4digit(std::string value) : hex(HexadecimalConvertor::hexToDecimal(value.data())) {
+Hex4digit::Hex4digit(std::string value) : hex(HexadecimalConverter::hexToDecimal(value.data())) {
     //std::array<char, 5> temp;
     //for (int i = 0; i < value.size(); i++) {
     //    temp[i] = value[i];
     //}
-    //this->hex = HexadecimalConvertor::hexToDecimal(temp);
+    //this->hex = HexadecimalConverter::hexToDecimal(temp);
 }
 
 Hex4digit::Hex4digit(int value) : hex(value) {}
@@ -25,39 +25,39 @@ void Hex4digit::setValue(int number) {
 }
 
 void Hex4digit::setValue(std::string number) {
-    hex = HexadecimalConvertor::hexToDecimal(number.data());
+    hex = HexadecimalConverter::hexToDecimal(number.data());
 
     //std::array<char, 5> arr{};
     //std::copy(number.begin(), number.end(), arr.begin());
-    //hex = HexadecimalConvertor::hexToDecimal(arr);
+    //hex = HexadecimalConverter::hexToDecimal(arr);
 }
 
 void Hex4digit::setValue(std::array<char, 5> number) {
-    hex = HexadecimalConvertor::hexToDecimal(number.data());
+    hex = HexadecimalConverter::hexToDecimal(number.data());
 }
 
 void Hex4digit::setFirst(char first) {
-    std::array<char, 5> change = HexadecimalConvertor::decimalToHex(hex);
+    std::array<char, 5> change = HexadecimalConverter::decimalToHex(hex);
     change[1] = first;
-    hex = HexadecimalConvertor::hexToDecimal(change.data());
+    hex = HexadecimalConverter::hexToDecimal(change.data());
 }
 
 void Hex4digit::setSecond(char second) {
-    std::array<char, 5> change = HexadecimalConvertor::decimalToHex(hex);
+    std::array<char, 5> change = HexadecimalConverter::decimalToHex(hex);
     change[2] = second;
-    hex = HexadecimalConvertor::hexToDecimal(change.data());
+    hex = HexadecimalConverter::hexToDecimal(change.data());
 }
 
 void Hex4digit::setThird(char third) {
-    std::array<char, 5> change = HexadecimalConvertor::decimalToHex(hex);
+    std::array<char, 5> change = HexadecimalConverter::decimalToHex(hex);
     change[3] = third;
-    hex = HexadecimalConvertor::hexToDecimal(change.data());
+    hex = HexadecimalConverter::hexToDecimal(change.data());
 }
 
 void Hex4digit::setFourth(char fourth) {
-    std::array<char, 5> change = HexadecimalConvertor::decimalToHex(hex);
+    std::array<char, 5> change = HexadecimalConverter::decimalToHex(hex);
     change[4] = fourth;
-    hex = HexadecimalConvertor::hexToDecimal(change.data());
+    hex = HexadecimalConverter::hexToDecimal(change.data());
 }
 
 bool Hex4digit::isPositive() {
@@ -69,19 +69,19 @@ char Hex4digit::getSign() {
 }
 
 char Hex4digit::getFirst() {
-    return HexadecimalConvertor::decimalToHex(hex)[1];
+    return HexadecimalConverter::decimalToHex(hex)[1];
 }
 
 char Hex4digit::getSecond() {
-    return HexadecimalConvertor::decimalToHex(hex)[2];
+    return HexadecimalConverter::decimalToHex(hex)[2];
 }
 
 char Hex4digit::getThird() {
-    return HexadecimalConvertor::decimalToHex(hex)[3];
+    return HexadecimalConverter::decimalToHex(hex)[3];
 }
 
 char Hex4digit::getFourth() {
-    return HexadecimalConvertor::decimalToHex(hex)[4];
+    return HexadecimalConverter::decimalToHex(hex)[4];
 }
 
 int Hex4digit::getValue() {
@@ -89,7 +89,7 @@ int Hex4digit::getValue() {
 }
 
 std::array<char, 5> Hex4digit::getHexChars() {
-    std::array<char, 5> temp = HexadecimalConvertor::decimalToHex(hex);
+    std::array<char, 5> temp = HexadecimalConverter::decimalToHex(hex);
     std::string str = "";
     // Convert to a string for regex
     for (int i = 0; i < temp.size(); i++) {
@@ -106,7 +106,7 @@ std::array<char, 5> Hex4digit::getHexChars() {
 }
 
 std::array<char, 5> Hex4digit::getSignedHexChars() {
-    return HexadecimalConvertor::decimalToHex(hex);
+    return HexadecimalConverter::decimalToHex(hex);
 }
 
 std::string Hex4digit::getString() {
@@ -120,18 +120,18 @@ std::string Hex4digit::getString() {
 
 int Hex4digit::getMiddle2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConvertor::hexValue(hexChars[2]) * 16) +
-        HexadecimalConvertor::hexValue(hexChars[3]);
+    int result = (HexadecimalConverter::hexValue(hexChars[2]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[3]);
     return result;
 }
 
 int Hex4digit::getLast2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConvertor::hexValue(hexChars[3]) * 16) +
-        HexadecimalConvertor::hexValue(hexChars[4]);
+    int result = (HexadecimalConverter::hexValue(hexChars[3]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[4]);
     return result;
 }
 
 char Hex4digit::hexChar(int n) {
-    return HexadecimalConvertor::hexChar(n);
+    return HexadecimalConverter::hexChar(n);
 }

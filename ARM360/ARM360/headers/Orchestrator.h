@@ -8,7 +8,7 @@
 #include "ExecutorFacade.h"
 #include "FileManager/FileManager.h"
 #include "Hex4digit.h"
-#include "HexadecimalConvertor.h"
+#include "HexadecimalConverter.h"
 #include "ProgramState/ProgramState.h"
 #include "TranslatorFacade.h"
 
