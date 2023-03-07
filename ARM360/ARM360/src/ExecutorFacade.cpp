@@ -2,9 +2,6 @@
 // Show Pratoomratana
 // 02/01/2023
 #include <string>
-#include "ProgramState/ProgramState.h"
-#include "InstructionSet.h"
-#include "Hex4digit.h"
 #include "stdafx.h"
 #include "ExecutorFacade.h"
 
@@ -21,7 +18,7 @@ void ExecutorFacade::incrementMemoryIndex() {
 // Updates the program counter with the last memory location.
 void ExecutorFacade::updatePCHistory(){                                             
     MemoryHistorySpace pc = MemoryHistorySpace();
-    pc.memoryLocation = MEMORYSTATEINDEX;
+    pc.setMemoryLocation(MEMORYSTATEINDEX);
     ProgramState::getInstance()->pcHistory.push_back(pc);
 }
 

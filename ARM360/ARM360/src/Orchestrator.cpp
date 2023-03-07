@@ -94,7 +94,12 @@ void Orchestrator::sendInput(char input[]) {
 /// </summary>
 /// <returns>The output of the input</returns>
 std::vector<char> Orchestrator::getOutput() {
-    return state.output.getHexChars();
+    std::array<char, 5> temp = state.output.getHexChars();
+    std::vector<char> vec;
+    for (int i = 0; i < temp.size(); i++) {
+        vec.push_back(temp[i]);
+    }
+    return vec;
 }
 
 /// <summary>

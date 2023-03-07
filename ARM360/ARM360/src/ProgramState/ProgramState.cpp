@@ -38,9 +38,9 @@ bool ProgramState::initializeState(std::array<Hex4digit,TOTAL_MEMORY_SPACES> ins
 
 	if ((!instructions.empty()) && (instructions.size() > 0)) {
 		MemoryHistorySpace pc = MemoryHistorySpace();
-		pc.memoryLocation = 0;
+		pc.setMemoryLocation(0);
 		//TODO this is probably a bit of a hack, might fix
-		pc.value.setValue(&instructions[0].getHexChars()[0]);
+		pc.getValue().setValue(&instructions[0].getHexChars()[0]);
 		pcHistory.push_back(pc);
 
 		fillOutMemory(instructions);

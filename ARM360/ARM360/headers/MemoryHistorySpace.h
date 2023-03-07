@@ -8,4 +8,8 @@ private:
     int memoryLocation;
 public:
     MemoryHistorySpace();
+    int getMemoryLocation();
+    void setMemoryLocation(int mem);
+    Hex4digit getValue();
+    void setValue(Hex4digit val);
 };

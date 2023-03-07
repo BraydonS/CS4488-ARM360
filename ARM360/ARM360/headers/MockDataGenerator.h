@@ -3,7 +3,9 @@
 // 01/27/23
 
 #pragma once
+#include "Hex4digit.h"
 #include <vector>
+
 class MockDataGenerator{
     
     public: 

@@ -2,6 +2,7 @@
 #pragma once
 #include <string>
 #include "ProgramState/ProgramState.h"
+#include "InstructionSet.h"
 #include "Hex4digit.h"
 
 class ExecutorFacade{

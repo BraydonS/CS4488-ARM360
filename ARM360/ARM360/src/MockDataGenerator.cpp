@@ -2,7 +2,6 @@
 // Show Pratoomratana
 // 02/05/23
 #include <stdlib.h>
-#include <Hex4digit.h>
 #include "stdafx.h"
 #include "MockDataGenerator.h"
 
