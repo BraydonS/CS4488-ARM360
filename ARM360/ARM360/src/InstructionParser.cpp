@@ -7,14 +7,18 @@
 
 // Private methods
 
-// Private constructor to enforce Singleton pattern
+/// <summary>
+/// Private constructor to enforce Singleton pattern
+/// </summary>
 InstructionParser::InstructionParser() {
     loadInstructions();
     loadRegisters();
     loadMemory();
 }
 
-// Method that loads instructions into the InstructionParser
+/// <summary>
+/// Method that loads instructions into the InstructionParser
+/// </summary>
 void InstructionParser::loadInstructions() {
     this->parser.insert("hlt", "0");
     this->parser.insert("ld", "1");
@@ -35,7 +39,9 @@ void InstructionParser::loadInstructions() {
     this->parser.insert("s", "f000");
 }
 
-// Method that loads the registers into the InstructionParser
+/// <summary>
+/// Method that loads the registers into the InstructionParser
+/// </summary>
 void InstructionParser::loadRegisters() {
     for (int i = 0; i < 16; i++) {
 
@@ -54,7 +60,9 @@ void InstructionParser::loadRegisters() {
     this->parser.insert(std::string("pc"), convertToHexString(15));
 }
 
-// Method that loads the memory addresses into the InstructionParser
+/// <summary>
+/// Method that loads the memory addresses into the InstructionParser
+/// </summary>
 void InstructionParser::loadMemory() {
     for (int i = 0; i < 16; i++) {
 
@@ -73,9 +81,11 @@ void InstructionParser::loadMemory() {
     }
 }
 
-// Method that converts a decimal number to its hexadecimal representation
-// @param number : The number to convert, in base 10
-// @return string : The number in base 16
+/// <summary>
+/// Method that converts a decimal number to its hexadecimal representation
+/// </summary>
+/// <param name="number">The number to convert, in base 10</param>
+/// <returns>The number in base 16</returns>
 std::string convertToHexString(int number) {
     // Create an iostream to write to
     std::ostringstream ss;
@@ -87,8 +97,10 @@ std::string convertToHexString(int number) {
 
 // Public methods
 
-// Method that gets the Singleton instance of InstructionParser
-// @return Orchestrator : The only instance of InstructionParser
+/// <summary>
+/// Method that gets the Singleton instance of InstructionParser
+/// </summary>
+/// <returns>The only instance of InstructionParser</returns>
 InstructionParser InstructionParser::getInstance() {
     if (instancePtr == nullptr) {
         instancePtr = new InstructionParser();
@@ -96,8 +108,10 @@ InstructionParser InstructionParser::getInstance() {
     return *instancePtr;
 }
 
-// Method that gets the parser
-// @return unordered_map<string, string> : The InstructionParser's parser
+/// <summary>
+/// Method that gets the parser
+/// </summary>
+/// <returns>The InstructionParser's parser</returns>
 std::unordered_map<std::string, std::string> InstructionParser::getParser() {
     return this->parser;
 }

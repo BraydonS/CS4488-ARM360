@@ -5,12 +5,16 @@
 #include "stdafx.h"
 #include "Orchestrator.h"
 
-// Private constructor to enforce Singleton pattern
+/// <summary>
+/// Private constructor to enforce Singleton pattern
+/// </summary>
 Orchestrator::Orchestrator() : state(*(ProgramState::getInstance())), translator(), executor(), fileManager(*(FileManager::getInstance())) {
     resetError();
 }
 
-// Method that resets the error
+/// <summary>
+/// Method that resets the error
+/// </summary>
 void Orchestrator::resetError() {
     error = "Orchestrator: No Error.";
 }
@@ -18,8 +22,10 @@ void Orchestrator::resetError() {
 
 // Public methods
 
-// Method that gets the Singleton instance of Orchestrator
-// @return Orchestrator : The only instance of Orchestrator
+/// <summary>
+/// Method that gets the Singleton instance of Orchestrator
+/// </summary>
+/// <returns>The only instance of Orchestrator</returns>
 Orchestrator Orchestrator::getInstance() {
         if (instancePtr == nullptr) {
             instancePtr = new Orchestrator();
@@ -27,14 +33,18 @@ Orchestrator Orchestrator::getInstance() {
         return *instancePtr;
 }
 
-// Method that gets the current error
-// @return string : The current error message
+/// <summary>
+/// Method that gets the current error
+/// </summary>
+/// <returns>The current error message</returns>
 std::string Orchestrator::getError() {
     return error;
 }
 
-// Method that 
-// @return bool : True if the operation succeeded correctly; false otherwise
+/// <summary>
+/// Method that advances the executor to the next instruction, if it exists
+/// </summary>
+/// <returns>True if the operation succeeded correctly; false otherwise</returns>
 bool Orchestrator::next() {
     resetError();
     bool result = executor.hasState();
@@ -56,32 +66,42 @@ bool Orchestrator::next() {
     return result;
 }
 
-// Method that clears the program currently loaded
+/// <summary>
+/// Method that clears the program currently loaded
+/// </summary>
 void Orchestrator::clearProgram() {
     executor.clearState();
 }
 
-// Method that gets the ProgramState
-// @return ProgramState : the current ProgramState
+/// <summary>
+/// Method that gets the ProgramState
+/// </summary>
+/// <returns>the current ProgramState</returns>
 ProgramState Orchestrator::getProgramState() {
     return state;
 }
 
-// Method that initializes an input
-// @param input : an array of char
+/// <summary>
+/// Method that initializes an input
+/// </summary>
+/// <param name="input">an array of char</param>
 void Orchestrator::sendInput(char input[]) {
     state.input.setValue(input);
 }
 
-// Method that gets the result of the input
-// @return vector<char> : The output of the input
+/// <summary>
+/// Method that gets the result of the input
+/// </summary>
+/// <returns>The output of the input</returns>
 std::vector<char> Orchestrator::getOutput() {
     return state.output.getHexChars();
 }
 
-// Method that loads a file and translates it
-// @param path : A string containing the path to a file
-// @return bool : True if the file was translated successfully; false otherwise
+/// <summary>
+/// Method that loads a file and translates it
+/// </summary>
+/// <param name="path">A string containing the path to a file</param>
+/// <returns>True if the file was translated successfully; false otherwise</returns>
 bool Orchestrator::translateAndLoad(std::string path) {
     resetError();
     boolean result;
@@ -113,25 +133,31 @@ bool Orchestrator::translateAndLoad(std::string path) {
     return result;
 }
 
-// Method that converts a number to hexadecimal chars
-// @param number : The number to be converted as a short
-// @return vector<char> : A vector of hexidecimal chars
+/// <summary>
+/// Method that converts a number to hexadecimal chars
+/// </summary>
+/// <param name="number">The number to be converted as a short</param>
+/// <returns>A vector of hexidecimal chars</returns>
 std::vector<char> Orchestrator::convertToHexChars(short number) {
     // Convert char array to vector, then return it
     std::array<char, 5> temp = HexadecimalConverter::decimalToHex(number);
     return std::vector<char>(temp.begin(), temp.end());
 }
 
-// Method that converts an array of char to ints
-// @param number : An array of char
-// @return int : The int representation of the input
+/// <summary>
+/// Method that converts an array of char to ints
+/// </summary>
+/// <param name="number">An array of char</param>
+/// <returns>The int representation of the input</returns>
 int Orchestrator::convertToInt(char number[]) {
     return HexadecimalConverter::hexToDecimal(number);
 }
 
-// Method that loads a file
-// @param path : A string containing the path to a file
-// @return string : The file as a single string
+/// <summary>
+/// Method that loads a file
+/// </summary>
+/// <param name="path">A string containing the path to a file</param>
+/// <returns>The file as a single string</returns>
 std::string Orchestrator::loadFile(std::string path) {
     return fileManager.readFile(path);
 }

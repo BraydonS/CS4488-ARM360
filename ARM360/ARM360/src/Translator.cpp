@@ -6,17 +6,21 @@
 #include "Translator.h"
 
 
-// Private constructor for Singleton
-// @param armFile string : The path to the ARM file to be loaded
+/// <summary>
+/// Private constructor for Singleton
+/// </summary>
+/// <param name="getInstance">The path to the ARM file to be loaded</param>
 Translator::Translator(std::string armFile) : fileMan(*(FileManager::getInstance())) {
     setTranslatable(this->translate(armFile));
 }
 
 // Private methods
 
-// Method that reads the file, parses it, converts it to hexadecimal, and sets the translated code to the hexadecimal code
-// @param armFile string : The path to the ARM file to be translated
-// @return bool : true if the file was translated successfully, false otherwise
+/// <summary>
+/// Method that reads the file, parses it, converts it to hexadecimal, and sets the translated code to the hexadecimal code
+/// </summary>
+/// <param name="armFile">The path to the ARM file to be translated</param>
+/// <returns>true if the file was translated successfully, false otherwise</returns>
 bool Translator::translate(std::string armFile) {
     this->setArmFile(this->readFile(armFile));
     // Check and set if file is read successfully
@@ -49,15 +53,20 @@ bool Translator::translate(std::string armFile) {
     return false;
 }
 
-// Method that updates the bool loaded
-// @param loaded : bool value to be set as the value for loaded
+/// <summary>
+/// Method that updates the bool loaded
+/// </summary>
+/// <param name="loaded">bool value to be set as the value for loaded</param>
 void Translator::setLoaded(bool loaded) {
     this->loaded = loaded;
 }
 
-// Method that returns a new array sized one less than inputted, without the specified index
-// @param arr : string[] the array to copy
-// @param index : int the index of the element to remove from the array
+/// <summary>
+/// Method that returns a new array sized one less than inputted, without the specified index
+/// </summary>
+/// <param name="arr">string[] the array to copy</param>
+/// <param name="index">int the index of the element to remove from the array</param>
+/// <returns>A string* to the string[] without the nth element</returns>
 std::string* Translator::removeTheElement(std::string arr[], int index) {
     // If the array is empty or the index is not in array range
     // return the original array
@@ -89,9 +98,11 @@ std::string* Translator::removeTheElement(std::string arr[], int index) {
     return arr;
 }
 
-// Method that removes comments from a string of the form @Comment@
-// @param line : A string
-// @return string : The string without any comments
+/// <summary>
+/// Method that removes comments from a string of the form @Comment@
+/// </summary>
+/// <param name="line">A string</param>
+/// <returns>The string without any comments</returns>
 std::string Translator::removeComments(std::string line) {
     std::string lineCopy = line;
     while (lineCopy.find("@") > -1) {
@@ -117,9 +128,11 @@ std::string Translator::removeComments(std::string line) {
     return lineCopy;
 }
 
-// Method that parses out hex numbers from a file
-// @param file : A string[] representation of the file to be parsed from
-// @return string* : A string* of all hex numbers
+/// <summary>
+/// Method that parses out hex numbers from a file
+/// </summary>
+/// <param name="file">A string[] representation of the file to be parsed from</param>
+/// <returns>A string* to the string[] of all hex numbers</returns>
 std::string* Translator::parseInLineHexNumbers(std::string file[]) {    
     int end = (*file).length();
     int start = 256; // max memory space
@@ -155,16 +168,20 @@ std::string* Translator::parseInLineHexNumbers(std::string file[]) {
     return file;
 }
 
-// Method that reads the specified file in
-// @param file : The path of the file to be read in
-// @return string : A string containing the text of the file
+/// <summary>
+/// Method that reads the specified file in
+/// </summary>
+/// <param name="file">The path of the file to be read in</param>
+/// <returns>A string containing the text of the file</returns>
 std::string Translator::readFile(std::string file) {
     return fileMan.readFile(file);
 }
 
-// Method that parses a file of "0x" and "#", then splits it on ";"
-// @param armFile : The file to be parsed
-// @return string* : A string[] of the file split of ";"
+/// <summary>
+/// Method that parses a file of "0x" and "#", then splits it on ";"
+/// </summary>
+/// <param name="armFile">The file to be parsed</param>
+/// <returns>A string* to the string[] of the file split of ";"</returns>
 std::string* Translator::parseFile(std::string armFile) {
     std::string noComments = Translator::removeComments(armFile);
     noComments = std::regex_replace(noComments, std::regex("0x"), "");
@@ -187,8 +204,10 @@ std::string* Translator::parseFile(std::string armFile) {
     return array;
 }
 
-// Method that parses out labels from a file
-// @param file : A string[] representation of a file
+/// <summary>
+/// Method that parses out labels from a file
+/// </summary>
+/// <param name="file">A string[] representation of a file</param>
 void Translator::parseOutLabels(std::string file[]) {
     for (int i = 0; i < (*file).length(); i++) {
         std::string line = file[i];
@@ -234,17 +253,21 @@ void Translator::setLabels(std::string lineOfCode, std::string parsedFile[], int
     }
 }
 
-// Method that creates a vector of size 256, filled with Hex4digit objects
-// @return vector<Hex4dgit> : A vector representing the memory
+/// <summary>
+/// Method that creates a vector of size 256, filled with Hex4digit objects
+/// </summary>
+/// <returns>A vector representing the memory</returns>
 std::vector<Hex4digit> Translator::initializeHexMemory() {
     std::vector<Hex4digit> memory(256, Hex4digit());
 
     return memory;
 }
 
-// Method that converts a decimal number to its hexadecimal representation
-// @param number : The number to convert, in base 10
-// @return string : The number in base 16
+/// <summary>
+/// Method that converts a decimal number to its hexadecimal representation
+/// </summary>
+/// <param name="number">The number to convert, in base 10</param>
+/// <returns>The number in base 16</returns>
 std::string Translator::convertToHexString(int number) {
     // Create an iostream to write to
     std::ostringstream ss;
@@ -276,20 +299,26 @@ inline void Translator::trim(std::string& s) {
 
 // Public methods
 
-// Method that indicates whether the loaded file was translatable or not
-// @return bool : true if the file was able to be translated, false otherwise
+/// <summary>
+/// Method that indicates whether the loaded file was translatable or not
+/// </summary>
+/// <returns>true if the file was able to be translated, false otherwise</returns>
 bool Translator::isTranslatable() {
     return this->isFileTranslatable;
 }
 
-// Method that updates the bool isFileTranalatable
-// @param translatable : bool value to be set as the value for isFileTranslatable
+/// <summary>
+/// Method that updates the bool isFileTranalatable
+/// </summary>
+/// <param name="translatable">bool value to be set as the value for isFileTranslatable</param>
 void Translator::setTranslatable(bool translatable) {
     this->isFileTranslatable = translatable;
 }
 
-// Method that gets returns a reference to the the Singleton instance of the Translator
-// @return Translator : The Translator object
+/// <summary>
+/// Method that gets returns a reference to the the Singleton instance of the Translator
+/// </summary>
+/// <returns>The Translator object</returns>
 Translator Translator::getInstance(std::string armFile) {
     if (instancePtr == nullptr) {
         instancePtr = new Translator(armFile); // initialize translator
@@ -297,37 +326,50 @@ Translator Translator::getInstance(std::string armFile) {
     return *instancePtr;
 }
 
-// Method that loads the path of an ARM file
-// @param armFile : string that contains the path of the ARM file to be loaded
+/// <summary>
+/// Method that loads the path of an ARM file
+/// </summary>
+/// <param name="armFile">string that contains the path of the ARM file to be loaded</param>
 void Translator::setArmFile(std::string armFile) {
     this->armFile = armFile;
 }
 
-// Method that sets the translated codeof the Translator to the provided code
-// @param translatedCode : vector<Hex4digit> containing translated code
+/// <summary>
+/// Method that sets the translated codeof the Translator to the provided code
+/// </summary>
+/// <param name="translatedCode">vector containing translated code</param>
 void Translator::setTranslatedCode(std::vector<Hex4digit> translatedCode){
     this->translatedCode = translatedCode;
 }
 
-// Method that returns the path of the ARM file currently loaded
-// @return string : The path of the loaded ARM file
+/// <summary>
+/// Method that returns the path of the ARM file currently loaded
+/// </summary>
+/// <returns>The path of the loaded ARM file</returns>
 std::string Translator::getArmFile() {
     return this->armFile;
 }
 
-// Method that indicates whether the Translator is loaded with a file or not
-// @return bool : true if the Translator has a file loaded, false otherwise
+/// <summary>
+/// Method that indicates whether the Translator is loaded with a file or not
+/// </summary>
+/// <returns>true if the Translator has a file loaded, false otherwise</returns>
 bool Translator::isLoaded() {
     return this->loaded;
 }
 
-// Method that returns the translated code in the Translator
-// @return vector<Hex4digit> : The translated code
+/// <summary>
+/// Method that returns the translated code in the Translator
+/// </summary>
+/// <returns>The translated code</returns>
 std::vector<Hex4digit> Translator::getTranslatedCode() {
     return this->translatedCode;
 }
 
-// Method that clears the loaded file and all traces of it from the Translator
+
+/// <summary>
+/// // Method that clears the loaded file and all traces of it from the Translator
+/// </summary>
 void Translator::clearFile() {
     setArmFile("");
     setLoaded(false);
@@ -335,21 +377,30 @@ void Translator::clearFile() {
     std::cout << "Translator: Cleared all files.";
 }
 
-// Method that gets the current exception message
-// @return string : The current exception message
+/// <summary>
+/// Method that gets the current exception message
+/// </summary>
+/// <returns>The current exception message</returns>
 std::string Translator::getExceptionMessage() {
     return this->exceptionMessage;
 }
 
 // Method that updates the exception message
 // @param exceptionMessage : The message to be set
+
+/// <summary>
+/// Method that updates the exception message
+/// </summary>
+/// <param name="exceptionMessage">The message to be set</param>
 void Translator::setExceptionMessage(std::string exceptionMessage) {
     this->exceptionMessage = exceptionMessage;
 }
 
-// Method that converts a string array into a vector of Hex4digit objects
-// @param parsedFile : A string[] representation of the file
-// @return vector<Hex4digit> : A vector of converted Hex4digit objects
+/// <summary>
+/// Method that converts a string array into a vector of Hex4digit objects
+/// </summary>
+/// <param name="parsedFile">A string[] representation of the file</param>
+/// <returns>A vector of converted Hex4digit objects</returns>
 std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
     this->parseOutLabels(parsedFile);
     InstructionParser instructionParser = InstructionParser::getInstance();

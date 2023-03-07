@@ -5,23 +5,29 @@
 #include "stdafx.h"
 #include "InstructionSet.h"
 
-// Method that increments the program counter by one
-// @param state : A program state object
+/// <summary>
+/// Method that increments the program counter by one
+/// </summary>
+/// <param name="state">A program state object</param>
 void InstructionSet::incrementProgramCounter(ProgramState state) {
 	state.registers[15].setValue((state.registers[15].getValue() + 1));
 }
 
-// Method that halts the program
-// @param state : A program state object
+/// <summary>
+/// Method that halts the program
+/// </summary>
+/// <param name="state">A program state object</param>
 void InstructionSet::halt(ProgramState state) {
     state.registers[15].setValue(-1);
 }
 
-// Method that loads a specified Hex4Digit value into the specified register 
-// @param state : A program state object
-// @param mem : The location of memory
-// @param reg : The register to be loaded into
-// @param index : An integer representation of the current index
+/// <summary>
+/// Method that loads a specified Hex4Digit value into the specified register 
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="mem">The location of memory</param>
+/// <param name="reg">The register to be loaded into</param>
+/// <param name="index">An integer representation of the current index</param>
 void InstructionSet::load(ProgramState state, int mem, char reg, int index) {
     Hex4digit value = state.memoryStateHistory[(index)][(mem)];
     state.registers[Hex4digit::hexValue(reg)].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
@@ -29,66 +35,78 @@ void InstructionSet::load(ProgramState state, int mem, char reg, int index) {
     incrementProgramCounter(state);
 }
 
-// Method that stores a specified Hex4Digit value into the specified register 
-// @param state : A program state object
-// @param mem : The location of memory
-// @param reg : The register to be loaded into
-// @param index : An integer representation of the current index
+/// <summary>
+/// Method that stores a specified Hex4Digit value into the specified register  
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="mem">The location of memory</param>
+/// <param name="reg">The register to be loaded into</param>
+/// <param name="index">An integer representation of the current index</param>
 void InstructionSet::store(ProgramState state, int mem, char reg, int index) {
     Hex4digit value = state.registers[Hex4digit::hexValue(reg)];
     state.memoryStateHistory[index][mem].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
-// Method that adds the values of two registers together and stores the result in a third register 
-// @param state : A program state object
-// @param reg1 : The register containing the first value
-// @param reg2 : The register containing the second value
-// @param reg3 : The register to store the result in
+/// <summary>
+/// Method that adds the values of two registers together and stores the result in a third register 
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg1">The register containing the first value</param>
+/// <param name="reg2">The register containing the second value</param>
+/// <param name="reg3">The register to store the result in</param>
 void InstructionSet::add(ProgramState state, char reg1, char reg2, char reg3) {
     int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() + state.registers[Hex4digit::hexValue(reg2)].getValue());
     state.registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
-
-// Method that subtracts the values of two registers together and stores the result in a third register 
-// @param state : A program state object
-// @param reg1 : The register containing the first value
-// @param reg2 : The register containing the second value
-// @param reg3 : The register to store the result in
+ 
+/// <summary>
+/// Method that subtracts the values of two registers together and stores the result in a third register
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg1">The register containing the first value</param>
+/// <param name="reg2">The register containing the second value</param>
+/// <param name="reg3">The register to store the result in</param>
 void InstructionSet::subt(ProgramState state, char reg1, char reg2, char reg3) {
     int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() - state.registers[Hex4digit::hexValue(reg2)].getValue());
     state.registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
-
-// Method that multiplies the values of two registers together and stores the result in a third register 
-// @param state : A program state object
-// @param reg1 : The register containing the first value
-// @param reg2 : The register containing the second value
-// @param reg3 : The register to store the result in
+ 
+/// <summary>
+/// Method that multiplies the values of two registers together and stores the result in a third register
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg1">The register containing the first value</param>
+/// <param name="reg2">The register containing the second value</param>
+/// <param name="reg3">The register to store the result in</param>
 void InstructionSet::mult(ProgramState state, char reg1, char reg2, char reg3) {
     int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() * state.registers[Hex4digit::hexValue(reg2)].getValue());
     state.registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
-
-// Method that divides the values of two registers together and stores the result in a third register 
-// @param state : A program state object
-// @param reg1 : The register containing the first value
-// @param reg2 : The register containing the second value
-// @param reg3 : The register to store the result in
+ 
+/// <summary>
+/// Method that divides the values of two registers together and stores the result in a third register
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg1">The register containing the first value</param>
+/// <param name="reg2">The register containing the second value</param>
+/// <param name="reg3">The register to store the result in</param>
 void InstructionSet::intDivide(ProgramState state, char reg1, char reg2, char reg3) {
     int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() / state.registers[Hex4digit::hexValue(reg2)].getValue());
     state.registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
 
-// Method that loads the contents of the tempory storage, form storeIndirect
-// @param state : A program state object
-// @param mem : The location of memory
-// @param reg : The register to be loaded into
-// @param index : An integer representation of the current index
+/// <summary>
+/// Method that loads the contents of the tempory storage, form storeIndirect  
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="mem">The location of memory</param>
+/// <param name="reg">The register to be loaded into</param>
+/// <param name="index">An integer representation of the current index</param>
 void InstructionSet::loadIndirect(ProgramState state, int mem, char reg, int index) {
     Hex4digit address = state.memoryStateHistory[index][mem];
     Hex4digit value = state.memoryStateHistory[index][address.getValue()];
@@ -96,11 +114,13 @@ void InstructionSet::loadIndirect(ProgramState state, int mem, char reg, int ind
     incrementProgramCounter(state);
 }
 
-// Method that stores a specified Hex4Digit value into a tempory location, for retrival later
-// @param state : A program state object
-// @param mem : The location of memory
-// @param reg : The register to be loaded from
-// @param index : An integer representation of the current index
+/// <summary>
+/// Method that stores a specified Hex4Digit value into a tempory location, for retrival later 
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="mem">The location of memory</param>
+/// <param name="reg">The register to be loaded into</param>
+/// <param name="index">An integer representation of the current index</param>
 void InstructionSet::storeIndirect(ProgramState state, int mem, char reg, int index) {
     Hex4digit value = state.registers[Hex4digit::hexValue(reg)];
     Hex4digit address = state.memoryStateHistory[index][mem];
@@ -108,17 +128,21 @@ void InstructionSet::storeIndirect(ProgramState state, int mem, char reg, int in
     incrementProgramCounter(state);
 }
 
-// Method that changes the program counter to the specified memory index
-// @param state : A program state object
-// @param mem : The location of memory to point to
+/// <summary>
+/// Method that changes the program counter to the specified memory index
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="mem">The location of memory to point to</param>
 void InstructionSet::branch(ProgramState state, int mem) {
     state.registers[15].setValue(mem);
 }
 
-// Method that changes the program counter to the specified memory index if the specified register is zero
-// @param state : A program state object
-// @param mem : The location of memory to point to
-// @param reg : The register to check
+/// <summary>
+/// Method that changes the program counter to the specified memory index if the specified register is zero
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg">The register to check</param>
+/// <param name="mem">The location of memory to point to</param>
 void InstructionSet::branchZero(ProgramState state, char reg, int mem) {
     if (state.registers[Hex4digit::hexValue(reg)].getValue() == 0) {
         state.registers[15].setValue(mem);
@@ -128,10 +152,12 @@ void InstructionSet::branchZero(ProgramState state, char reg, int mem) {
     }
 }
 
-// Method that changes the program counter to the specified memory index if the specified register is negative
-// @param state : A program state object
-// @param mem : The location of memory to point to
-// @param reg : The register to check
+/// <summary>
+/// Method that changes the program counter to the specified memory index if the specified register is negative
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg">The register to check</param>
+/// <param name="mem">The location of memory to point to</param>
 void InstructionSet::branchNeg(ProgramState state, char reg, int mem) {
     if (state.registers[Hex4digit::hexValue(reg)].getValue() < 0) {
         state.registers[15].setValue(mem);
@@ -141,10 +167,12 @@ void InstructionSet::branchNeg(ProgramState state, char reg, int mem) {
     }
 }
 
-// Method that changes the program counter to the specified memory index if the specified register is positive
-// @param state : A program state object
-// @param mem : The location of memory to point to
-// @param reg : The register to check
+/// <summary>
+/// Method that changes the program counter to the specified memory index if the specified register is positive
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg">The register to check</param>
+/// <param name="mem">The location of memory to point to</param>
 void InstructionSet::branchPos(ProgramState state, char reg, int mem) {
     if (state.registers[Hex4digit::hexValue(reg)].getValue() >= 0) {
         state.registers[15].setValue(mem);
@@ -154,24 +182,30 @@ void InstructionSet::branchPos(ProgramState state, char reg, int mem) {
     }
 }
 
-// Method that assigns the value of the input on program state to the specified register
-// @param state : A program state object
-// @param reg : The register to be read from
+/// <summary>
+/// Method that assigns the value of the input on program state to the specified register
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg">The register to be read from</param>
 void InstructionSet::readInt(ProgramState state, char reg) {
     state.registers[Hex4digit::hexValue(reg)].setValue(state.input.getValue());
     incrementProgramCounter(state);
 }
 
-// Method that writes the contents of the specified register to the program state's outout
-// @param state : A program state object
-// @param reg : The register to be read from
+/// <summary>
+/// Method that writes the contents of the specified register to the program state's outout
+/// </summary>
+/// <param name="state">A program state object</param>
+/// <param name="reg">The register to be read from</param>
 void InstructionSet::writeInt(ProgramState state, char reg) {
     state.output.setValue(&(state.registers[Hex4digit::hexValue(reg)].getHexChars())[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
-// Method that skips to the next instruction
-// @param state : A program state object
+/// <summary>
+/// Method that skips to the next instruction
+/// </summary>
+/// <param name="state">A program state object</param>
 void InstructionSet::skip(ProgramState state) {
     incrementProgramCounter(state);
 }
