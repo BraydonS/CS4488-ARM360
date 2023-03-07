@@ -1,13 +1,23 @@
 
-
-#include <vector>
-#include <string>
+#include "HexaDataClass.h"
 
 
 
-void setValue(int number);
-void setValue(std::string number);
-int getValue();
-std::vector<char> getHexChars;
-int getMiddle2Value();
-int getLast2Value();
+void HexDataClass::setValue(int number) {
+
+}
+void HexDataClass::setValue(std::string number) {
+
+}
+int HexDataClass::getValue() {
+
+}
+std::vector<char> HexDataClass::getHexChars() {
+
+}
+int HexDataClass::getMiddle2Value() {
+
+}
+int HexDataClass::getLast2Value() {
+
+}
