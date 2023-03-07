@@ -52,7 +52,7 @@ int HexadecimalConverter::hexToDecimal(char* hexArray) {
  * @param value
  * @return char[5] of the +/- & 4 hex digits
  */
-std::array<char, 5> decimalToHex(int value) {
+std::array<char, 5> HexadecimalConverter::decimalToHex(int value) {
     value = hex4digitValueWrap(value);
     std::array<char, 5> output = makeBlankChar5();
     int index = output.size() - 1;
@@ -82,7 +82,7 @@ std::array<char, 5> decimalToHex(int value) {
  * @param n 0-15
  * @return 0-9,a-f  otherwise 0;
  */
-char hexChar(int n) {
+char HexadecimalConverter::hexChar(int n) {
     char result = '0';
     switch (n) {
     case 0: result = '0';
@@ -140,7 +140,7 @@ char hexChar(int n) {
 
 
 
-int hexValue(char n) {
+int HexadecimalConverter::hexValue(char n) {
     int result = 0;
     switch (n) {
     case '0':
@@ -197,7 +197,7 @@ int hexValue(char n) {
 }
 
 // MAX and MIN needs to be defined
-int hex4digitValueWrap(int n) {
+int HexadecimalConverter::hex4digitValueWrap(int n) {
     if (n > LONG_MAX) {
         n = +(n - MAX);
     }
@@ -211,7 +211,7 @@ int hex4digitValueWrap(int n) {
 
 // required <regex> and <algorithm> library for std::transform() function
 
-char* cleanCharHex(char toClean[]) {
+char* HexadecimalConverter::cleanCharHex(char toClean[]) {
     // Set up the result.
     char* result = makeBlankChar5().data();
 
@@ -241,7 +241,7 @@ char* cleanCharHex(char toClean[]) {
 
 
 
-int signToInt(char c) {
+int HexadecimalConverter::signToInt(char c) {
     int result = 1;
     if (c == '-') {
         result = -1;
@@ -249,7 +249,7 @@ int signToInt(char c) {
     return result;
 }
 
-std::array<char, 5> makeBlankChar5() {
+std::array<char, 5> HexadecimalConverter::makeBlankChar5() {
     std::array<char, 5> array;
     array[0] = '+';
     for (int i = 1; i < 5; i++) {
@@ -258,7 +258,7 @@ std::array<char, 5> makeBlankChar5() {
     return array;
 }
 
-std::array<char, 5> cleanCharHex(std::array<char, 5> toClean) {
+std::array<char, 5> HexadecimalConverter::cleanCharHex(std::array<char, 5> toClean) {
     std::array<char, 5> result = makeBlankChar5();
     std::string input(toClean.begin(), toClean.end());
     input = std::string(toClean.begin(), toClean.end());

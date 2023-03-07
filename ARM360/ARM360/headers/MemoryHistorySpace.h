@@ -1,11 +1,11 @@
 
+#pragma once
+#include "Hex4digit.h"
 
 class MemoryHistorySpace {
-public:
+private:
     Hex4digit value;
     int memoryLocation;
-    MemoryHistorySpace() {
-        value = Hex4digit();
-        memoryLocation = 0;
-    }
+public:
+    MemoryHistorySpace();
 };

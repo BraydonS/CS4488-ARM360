@@ -70,10 +70,16 @@
     <ClCompile Include="src\InstructionParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HexadecimalConverter.cpp">
+    <ClCompile Include="src\FileManager\FileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Hex4Digit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HexadecimalConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HexDataClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\MemoryHistorySpace.cpp">
@@ -82,18 +88,9 @@
     <ClCompile Include="src\NumberConvertorAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HexDataClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FileManager\FileManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\ProgramState\Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\ExecutorAccess.h">
@@ -135,16 +132,16 @@
     <ClInclude Include="headers\Hex4digit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\HexaDataClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\HexadecimalConverter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\NumberConvertorAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\MemoryHistorySpace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\HexDataClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\HexadecimalConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

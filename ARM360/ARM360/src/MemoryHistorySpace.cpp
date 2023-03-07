@@ -1,13 +1,6 @@
 #include "stdafx.h"
-#include "Hex4Digit.h"
+#include "MemoryHistorySpace.h"
 
 
-class MemoryHistorySpace {
-public:
-    Hex4digit value;
-    int memoryLocation;
-    MemoryHistorySpace() {
-        value = Hex4digit();
-        memoryLocation = 0;
-    }
-};
+MemoryHistorySpace::MemoryHistorySpace() : value(Hex4digit()), memoryLocation(0) {}
+

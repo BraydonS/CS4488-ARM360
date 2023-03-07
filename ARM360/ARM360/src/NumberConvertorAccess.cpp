@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include "NumberConvertorAccess.h"
 
-class NumberConverterAccess {
-public:
-    char* convertToHexChars(short number);
-    int convertToInt(char* number);
-};
+
+char* NumberConverterAccess::convertToHexChars(short number) {
+	// Stop compile error
+	char temp[] = {'a','b','c'};
+	return temp;
+}
+int NumberConverterAccess::convertToInt(char* number) {
+	// Stop compile error
+	return -1;
+}
+

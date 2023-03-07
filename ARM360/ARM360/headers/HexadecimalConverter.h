@@ -73,7 +73,7 @@ public:
      return result;
      */
 
-    std::array<char, 5> makeBlankChar5();
+    static std::array<char, 5> makeBlankChar5();
 
 
     std::array<char, 5> cleanCharHex(std::array<char, 5> toClean);
