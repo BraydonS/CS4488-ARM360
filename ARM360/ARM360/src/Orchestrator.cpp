@@ -122,11 +122,9 @@ bool Orchestrator::translateAndLoad(std::string path) {
     std::vector<Hex4digit> code = translator.translateToMachine();
 
     // Create a temporary array of a fixed size, copy the contents of code into it, then pass the array to ProgramState
-    std::array<Hex4digit, 256> temp;
-    std::copy(begin(code), end(code), temp);
 
     // Set up the emulator
-    state.initializeState(temp);
+    state.initializeState(code);
     executor.setProgramState(state);
     translator.clearFile();
 

@@ -58,7 +58,7 @@ bool ExecutorFacade::hasNext(){
 
 // Function to Simply creates the current program state with an empty vector.
 void ExecutorFacade::setProgramState(ProgramState state){
-    std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> code;
+    std::vector<Hex4digit> code;
     state.initializeState(code);
 }
 
@@ -125,7 +125,7 @@ bool ExecutorFacade::next(){
     incrementMemoryIndex();
 
     // Copy over the memory vector to the next index in the list.
-    std::vector<std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES>> memState = ProgramState::getInstance()->memoryStateHistory;
+    std::vector<std::vector<Hex4digit>> memState = ProgramState::getInstance()->memoryStateHistory;
     memState.insert(memState.begin() + MEMORYSTATEINDEX, 
                     ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX - 1));
     
