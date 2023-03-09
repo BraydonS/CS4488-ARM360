@@ -157,7 +157,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClassTests\ARM360Test.cpp" />
+    <ClCompile Include="ClassTests\InstructionParserTest.cpp" />
     <ClCompile Include="ClassTests\InstructionSetTest.cpp" />
+    <ClCompile Include="ClassTests\OrchestratorTest.cpp" />
     <ClCompile Include="ClassTests\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -166,6 +168,8 @@
     </ClCompile>
     <ClCompile Include="ClassTests\MockDataGeneratorTest.cpp" />
     <ClCompile Include="ClassTests\ExecutorFacadeTest.cpp" />
+    <ClCompile Include="ClassTests\TranslatorFacadeTest.cpp" />
+    <ClCompile Include="ClassTests\TranslatorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassTests\pch.h" />
