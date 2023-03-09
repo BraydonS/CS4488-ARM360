@@ -20,23 +20,23 @@ InstructionParser::InstructionParser() {
 /// Method that loads instructions into the InstructionParser
 /// </summary>
 void InstructionParser::loadInstructions() {
-    this->parser.insert("hlt", "0");
-    this->parser.insert("ld", "1");
-    this->parser.insert("st", "2");
-    this->parser.insert("add", "3");
-    this->parser.insert("sub", "4");
-    this->parser.insert("mul", "5");
-    this->parser.insert("div", "6");
-    this->parser.insert("ldi", "7");
-    this->parser.insert("sti", "8");
-    this->parser.insert("br", "9");
-    this->parser.insert("brz", "a");
-    this->parser.insert("brn", "b");
-    this->parser.insert("brp", "c");
-    this->parser.insert("rd", "d");
-    this->parser.insert("wr", "e");
-    this->parser.insert("ldc", "f");
-    this->parser.insert("s", "f000");
+    this->parser.emplace("hlt", "0");
+    this->parser.emplace("ld", "1");
+    this->parser.emplace("st", "2");
+    this->parser.emplace("add", "3");
+    this->parser.emplace("sub", "4");
+    this->parser.emplace("mul", "5");
+    this->parser.emplace("div", "6");
+    this->parser.emplace("ldi", "7");
+    this->parser.emplace("sti", "8");
+    this->parser.emplace("br", "9");
+    this->parser.emplace("brz", "a");
+    this->parser.emplace("brn", "b");
+    this->parser.emplace("brp", "c");
+    this->parser.emplace("rd", "d");
+    this->parser.emplace("wr", "e");
+    this->parser.emplace("ldc", "f");
+    this->parser.emplace("s", "f000");
 }
 
 /// <summary>
@@ -47,17 +47,17 @@ void InstructionParser::loadRegisters() {
 
         // loads quick notation into map
         std::string hexI = convertToHexString(i);
-        this->parser.insert("r" + hexI, hexI);
+        this->parser.emplace("r" + hexI, hexI);
 
         // loads hex address notation to map
         // this.parser.put("r0x"+hexI, hexI);
     }
     // load special register address
-    this->parser.insert(std::string("fp"), convertToHexString(11));
-    this->parser.insert(std::string("ip"), convertToHexString(12));
-    this->parser.insert(std::string("sp"), convertToHexString(13));
-    this->parser.insert(std::string("lr"), convertToHexString(14));
-    this->parser.insert(std::string("pc"), convertToHexString(15));
+    this->parser.emplace(std::string("fp"), convertToHexString(11));
+    this->parser.emplace(std::string("ip"), convertToHexString(12));
+    this->parser.emplace(std::string("sp"), convertToHexString(13));
+    this->parser.emplace(std::string("lr"), convertToHexString(14));
+    this->parser.emplace(std::string("pc"), convertToHexString(15));
 }
 
 /// <summary>
@@ -72,7 +72,7 @@ void InstructionParser::loadMemory() {
             std::string hexJ = convertToHexString(j);
 
             // loads short address notation to map
-            this->parser.insert("m" + hexI + hexJ, hexI + hexJ);
+            this->parser.emplace("m" + hexI + hexJ, hexI + hexJ);
 
             // loads hex address notation to map
             // this.parser.put("m0x"+hexI+ hexJ, hexI+ hexJ);

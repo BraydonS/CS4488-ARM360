@@ -3,6 +3,7 @@
 #include "MemoryHistorySpace.h"
 #include "ProgramState/programstate.h"
 #include <sstream>
+#include <exception>
 
 /// <summary>
 /// The ProgramState singleton is a data class operated on by the executor, which stores the machine state in a vector of state arrays
@@ -33,7 +34,7 @@ ProgramState* ProgramState::getInstance() {
 /// <param name="code">An array of Hex4digits composed of user instuctions</param>
 /// <returns>If the instructions were successfully initialized</returns>
 
-bool ProgramState::initializeState(std::array<Hex4digit,TOTAL_MEMORY_SPACES> instructions) {
+bool ProgramState::initializeState(std::vector<Hex4digit> instructions) {
 	bool result = false;
 
 	if ((!instructions.empty()) && (instructions.size() > 0)) {
@@ -80,7 +81,7 @@ std::string ProgramState::printableProgramState() {
 
 	stateSummary << "Next: \n";
 		
-	std::array<Hex4digit,256> lastState = memoryStateHistory.back();
+	std::vector<Hex4digit> lastState = memoryStateHistory.back();
 	int numZeroHexDigits = 0;
 	bool seenZeroValue = false;
 
@@ -121,14 +122,14 @@ Hex4digit ProgramState::getMemoryStateValue(int n) {
 /// Fills out the remaining unused space of a user's instructions with zeroes 
 /// </summary>
 /// <param name="instructions">An array of Hex4digit instructions</param>
-void ProgramState::fillOutMemory(std::array<Hex4digit, TOTAL_MEMORY_SPACES> instructions) {
+void ProgramState::fillOutMemory(std::vector<Hex4digit> instructions) {
 	for (int i = instructions.size(); i < TOTAL_MEMORY_SPACES; i++) {
 		instructions[i] = Hex4digit(0);
 	}
 }
 
 ProgramState::ProgramState() :input(Hex4digit()), output(Hex4digit()), 
-pcHistory(std::vector<MemoryHistorySpace>()), memoryStateHistory(std::vector<std::array<Hex4digit, TOTAL_MEMORY_SPACES>>()) {
+pcHistory(std::vector<MemoryHistorySpace>()), memoryStateHistory(std::vector<std::vector<Hex4digit>>(256)) {
 
 	for (int i = 0; i < REGISTER_COUNT; i++) {
 		registers[i] = (Hex4digit());
