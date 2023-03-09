@@ -18,7 +18,7 @@
     <ClCompile Include="ClassTests\ARM360Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="ClassTests\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ClassTests\MockDataGeneratorTest.cpp">
@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="ClassTests\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

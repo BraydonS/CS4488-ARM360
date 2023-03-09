@@ -1,4 +1,3 @@
-// Main entry point for the test.
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/ProgramState/ProgramState.h"

@@ -158,7 +158,7 @@
   <ItemGroup>
     <ClCompile Include="ClassTests\ARM360Test.cpp" />
     <ClCompile Include="ClassTests\InstructionSetTest.cpp" />
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="ClassTests\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -168,7 +168,7 @@
     <ClCompile Include="ClassTests\ExecutorFacadeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="ClassTests\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ARM360\ARM360.vcxproj">
