@@ -15,7 +15,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace ARM360 {
+namespace ARM360Test {
 	TEST_CLASS(TranslatorTest) {
 
 		Translator tran;

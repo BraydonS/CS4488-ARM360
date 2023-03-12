@@ -14,7 +14,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace ARM360 {
+namespace ARM360Test {
 	TEST_CLASS(OrchestratorTest) {
 
 		Orchestrator obj;

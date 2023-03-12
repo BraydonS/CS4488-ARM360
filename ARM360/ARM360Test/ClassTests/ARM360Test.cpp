@@ -17,7 +17,7 @@ public:
     // Test initializeState() method with empty array of instructions
     TEST_METHOD(InitializeState_WithEmptyArray_ReturnsFalse) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> emptyInstructions;
+        std::vector<Hex4digit> emptyInstructions;
 
         bool result = programState->initializeState(emptyInstructions);
 
@@ -28,7 +28,7 @@ public:
     // Test initializeState() method with non-empty array of instructions
     TEST_METHOD(InitializeState_WithNonEmptyArray_ReturnsTrue) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> nonEmptyInstructions;
+        std::vector<Hex4digit> nonEmptyInstructions;
         nonEmptyInstructions[0] = Hex4digit(0x0001);
 
         bool result = programState->initializeState(nonEmptyInstructions);
@@ -40,7 +40,7 @@ public:
     // Test clearProgramState() method
     TEST_METHOD(ClearProgramState_RegistersAndHistoryCleared) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> nonEmptyInstructions;
+        std::vector<Hex4digit> nonEmptyInstructions;
         nonEmptyInstructions[0] = Hex4digit(0x0001);
         programState->initializeState(nonEmptyInstructions);
 
@@ -55,7 +55,7 @@ public:
     // Test printableProgramState() method with zero memory state
     TEST_METHOD(PrintableProgramState_WithZeroMemoryState) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> zeroInstructions;
+        std::vector<Hex4digit> zeroInstructions;
         programState->initializeState(zeroInstructions);
 
         std::string result = programState->printableProgramState();
@@ -67,7 +67,7 @@ public:
     // Test printableProgramState() method with non-zero memory state
     TEST_METHOD(PrintableProgramState_WithNonZeroMemoryState) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> nonEmptyInstructions;
+        std::vector<Hex4digit> nonEmptyInstructions;
         nonEmptyInstructions[0] = Hex4digit(0x0001);
         programState->initializeState(nonEmptyInstructions);
 
@@ -79,7 +79,7 @@ public:
 
     TEST_METHOD(getMemoryStateValue) {
         ProgramState* programState = ProgramState::getInstance();
-        std::array<Hex4digit, ProgramState::TOTAL_MEMORY_SPACES> nonEmptyInstructions;
+        std::vector<Hex4digit> nonEmptyInstructions;
         nonEmptyInstructions[0] = Hex4digit(0x0001);
         programState->initializeState(nonEmptyInstructions);
 
