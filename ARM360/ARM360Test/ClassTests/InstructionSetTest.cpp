@@ -1,18 +1,18 @@
 // Test file for class InstructionSet
 // Autumn Clark
 
-#include "../pch.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/stdafx.h"
 #include "../../ARM360/headers/InstructionSet.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace ARM360 {
+namespace ARM360Test {
 	TEST_CLASS(InstructionSetTest) {
 
 		InstructionSet set;
-		ProgramState state;
+		ProgramState state = *ProgramState::getInstance();
 
 		// Method that is run before every test
 		TEST_METHOD_INITIALIZE(InstructionSetInit) {

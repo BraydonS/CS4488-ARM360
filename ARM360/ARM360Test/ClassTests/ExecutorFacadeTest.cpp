@@ -1,4 +1,4 @@
-#include "../pch.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../../ARM360/headers/stdafx.h"
 #include "../../ARM360/headers/ExecutorFacade.h"
