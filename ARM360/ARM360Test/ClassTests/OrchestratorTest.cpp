@@ -17,7 +17,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace ARM360Test {
 	TEST_CLASS(OrchestratorTest) {
 
-		Orchestrator obj;
+		Orchestrator obj = Orchestrator::getInstance();
 
 		// Method that is run before every test
 		TEST_METHOD_INITIALIZE(TranslatorInit) {

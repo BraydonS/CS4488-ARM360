@@ -18,7 +18,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace ARM360Test {
 	TEST_CLASS(TranslatorTest) {
 
-		Translator tran;
+		Translator tran = Translator::getInstance("Fake File");
 
 		// Method that is run before every test
 		TEST_METHOD_INITIALIZE(TranslatorInit) {

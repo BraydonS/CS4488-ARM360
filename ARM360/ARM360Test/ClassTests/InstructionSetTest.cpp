@@ -12,7 +12,7 @@ namespace ARM360Test {
 	TEST_CLASS(InstructionSetTest) {
 
 		InstructionSet set;
-		ProgramState state;
+		ProgramState state = *ProgramState::getInstance();
 
 		// Method that is run before every test
 		TEST_METHOD_INITIALIZE(InstructionSetInit) {
