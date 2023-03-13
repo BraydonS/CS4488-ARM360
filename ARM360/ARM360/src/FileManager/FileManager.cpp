@@ -12,6 +12,10 @@
 /// Traae Bloxham, transpiled and updated by Braydon Spaulding
 /// </author>
 
+//Instance variables
+
+FileManager* FileManager::instance;
+
 FileManager* FileManager::getInstance() {
 	if (instance == nullptr) {
 		FileManager::instance = new FileManager;

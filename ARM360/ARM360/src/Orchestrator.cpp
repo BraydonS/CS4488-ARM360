@@ -5,6 +5,10 @@
 #include "stdafx.h"
 #include "Orchestrator.h"
 
+// Instance variables
+
+Orchestrator* Orchestrator::instancePtr;
+
 /// <summary>
 /// Private constructor to enforce Singleton pattern
 /// </summary>

@@ -135,3 +135,7 @@ int Hex4digit::getLast2Value() {
 char Hex4digit::hexChar(int n) {
     return HexadecimalConverter::hexChar(n);
 }
+
+int Hex4digit::hexValue(char n) {
+    return HexadecimalConverter::hexValue(n);
+}

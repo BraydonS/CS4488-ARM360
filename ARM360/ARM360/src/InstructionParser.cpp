@@ -5,6 +5,9 @@
 #include "stdafx.h"
 #include "InstructionParser.h"
 
+//Instance variables
+InstructionParser* InstructionParser::instancePtr;
+
 // Private methods
 
 /// <summary>
@@ -86,7 +89,7 @@ void InstructionParser::loadMemory() {
 /// </summary>
 /// <param name="number">The number to convert, in base 10</param>
 /// <returns>The number in base 16</returns>
-std::string convertToHexString(int number) {
+std::string InstructionParser::convertToHexString(int number) {
     // Create an iostream to write to
     std::ostringstream ss;
     // Change output base to hex, write number to stream, then change output base back to decmial
