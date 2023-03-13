@@ -5,6 +5,9 @@
 #include "stdafx.h"
 #include "Translator.h"
 
+// Instance Variables
+
+Translator* Translator::instancePtr;
 
 /// <summary>
 /// Private constructor for Singleton

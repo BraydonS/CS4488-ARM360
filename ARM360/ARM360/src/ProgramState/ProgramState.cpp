@@ -15,6 +15,10 @@
 /// Traae Bloxham, transpiled and updated by Braydon Spaulding
 /// </author>
 
+// Instance Variables
+
+ProgramState* ProgramState::instance;
+
 // Public Methods
 
 /// <summary>

@@ -125,7 +125,7 @@ public:
 
 	// Supporting method to initalize the program state with some data.
 	ProgramState initalizeProgramState(char instruction) {
-		std::array<Hex4digit, 256> instructions;
+		std::vector<Hex4digit> instructions((ProgramState::TOTAL_MEMORY_SPACES));
 		for (int i = 0; i < 3; i++) {
 			instructions[i] = instruction;
 		}
