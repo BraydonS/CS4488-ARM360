@@ -32,7 +32,7 @@ public:
 
 private:
 
-	static ProgramState* emulationState;
+	static ProgramState* instance;
 
 	void fillOutMemory(std::vector<Hex4digit> toFillOut);
 

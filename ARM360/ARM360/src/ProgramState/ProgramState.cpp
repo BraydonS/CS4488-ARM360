@@ -20,12 +20,12 @@
 /// <summary>
 /// Memory size is currently static, could be potentially be passed into constructor in future
 /// </summary>
-	
+
 ProgramState* ProgramState::getInstance() {
-	if (emulationState == nullptr) {
-		ProgramState::emulationState = new ProgramState();
+	if (instance == nullptr) {
+		ProgramState::instance = new ProgramState();
 	}
-	return emulationState;
+	return instance;
 }
 
 /// <summary>
