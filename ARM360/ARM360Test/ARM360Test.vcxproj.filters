@@ -48,6 +48,9 @@
     <ClCompile Include="ClassTests\ProgramStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClassTests\Hex4DigitTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassTests\pch.h">
