@@ -17,7 +17,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace ARM360Test {
 	TEST_CLASS(OrchestratorTest) {
 
-		Orchestrator obj = Orchestrator::getInstance();
+		Orchestrator* obj = Orchestrator::getInstance();
 
 		// Method that is run before every test
 		TEST_METHOD_INITIALIZE(TranslatorInit) {
@@ -26,30 +26,31 @@ namespace ARM360Test {
 
 		// Method that is run after every test
 		TEST_METHOD_CLEANUP(TranslatorCleanup) {
-			obj.clearProgram();
+			obj->clearProgram();
 			delete& obj;
 		}
 
 		TEST_METHOD(getInstance) {
-			Orchestrator result1 = Orchestrator::getInstance();
-			Orchestrator result2 = Orchestrator::getInstance();
+			Orchestrator* result1 = Orchestrator::getInstance();
+			Orchestrator* result2 = Orchestrator::getInstance();
 
-			Assert::AreSame(result1, result2);
+			Assert::AreEqual(*result1, *result2);
 		}
 		TEST_METHOD(getError) {
 			std::string expectedResult = "Orchestrator: No Error.";
-			std::string result = obj.getError();
+			std::string result = obj->getError();
 
+			//Assert::IsTrue(expectedResult == result);
 			Assert::AreEqual(expectedResult, result);
 		}
 		TEST_METHOD(next) {
 			bool expectedResult = false;
-			bool result = obj.next();
+			bool result = obj->next();
 
 			Assert::AreEqual(expectedResult, result);
 		}
 		TEST_METHOD(clearProgram) {
-			obj.clearProgram();
+			obj->clearProgram();
 			int expectedResult = 0;
 			int result = ProgramState::getInstance()->registers[15].getValue();
 
@@ -57,9 +58,9 @@ namespace ARM360Test {
 		}
 		TEST_METHOD(getProgramState) {
 			ProgramState expectedResult = *ProgramState::getInstance();
-			ProgramState result = obj.getProgramState();
+			ProgramState result = obj->getProgramState();
 
-			Assert::AreSame(expectedResult, result);
+			Assert::AreEqual(expectedResult, result);
 		}
 		TEST_METHOD(sendInput) {
 			int expectedValue = -1;
@@ -68,7 +69,7 @@ namespace ARM360Test {
 		}
 		TEST_METHOD(getOutput) {
 			std::array<char, 5> expectedResult = { 0 };
-			std::array<char, 5> result = obj.getOutput();
+			std::array<char, 5> result = obj->getOutput();
 
 			Assert::AreEqual(expectedResult, result);
 		}
