@@ -44,7 +44,7 @@ namespace ARM360Test {
 			Translator* result1 = Translator::getInstance("Fake File");
 			Translator* result2 = Translator::getInstance("Fake File");
 
-			Assert::AreEqual(*result1, *result2);
+			Assert::IsTrue(&result1 == &result2);
 		}
 		TEST_METHOD(setArmFile) {
 			std::string expectedResult = "New Fake File";
