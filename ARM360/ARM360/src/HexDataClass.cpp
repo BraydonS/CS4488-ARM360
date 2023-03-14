@@ -1,5 +1,5 @@
 #include "stdafx.h"
-//#include <iostream>
+#include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -23,9 +23,14 @@ void HexDataClass::setValue(std::string number) {
 	// Read the integer value in hexadecimal format from the stringstream into the value_ member variable.
 	ss >> std::hex >> value_;
 }
+
+
+/// <summary>
+/// returns integer value that was set using setValue(std::string)
+/// </summary>
+/// <returns></returns>
 int HexDataClass::getValue() const{
-	// Stop compile error
-	return -1;
+	return value_;
 }
 std::vector<char> HexDataClass::getHexChars() const {
 	// Create a stringstream and output the current value in hexadecimal format to it.
