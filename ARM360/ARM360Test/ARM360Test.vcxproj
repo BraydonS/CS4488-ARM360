@@ -100,8 +100,8 @@
     </QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>6.4.2_msvc2019_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
+    <QtInstall>6.4.2_msvc2019_64</QtInstall>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <QtInstall>6.4.2_msvc2019_64</QtInstall>
@@ -121,7 +121,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.;$(QMake_QT_INSTALL_HEADERS_)/QtWidgets;$(QMake_QT_INSTALL_HEADERS_);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$$(SolutionDir)ARM360/headers;$(SolutionDir)ARM360/src;.;$(QMake_QT_INSTALL_HEADERS_)/QtWidgets;$(QMake_QT_INSTALL_HEADERS_);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -133,6 +133,7 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458</AdditionalOptions>
+      <AdditionalDependencies>$(SolutionDir)ARM360\$(IntDir)*.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -194,6 +195,7 @@
   <ItemGroup>
     <ClCompile Include="ClassTests\ARM360Test.cpp" />
     <ClCompile Include="ClassTests\FileManagerTest.cpp" />
+    <ClCompile Include="ClassTests\Hex4DigitTest.cpp" />
     <ClCompile Include="ClassTests\InstructionParserTest.cpp" />
     <ClCompile Include="ClassTests\InstructionSetTest.cpp" />
     <ClCompile Include="ClassTests\OrchestratorTest.cpp" />

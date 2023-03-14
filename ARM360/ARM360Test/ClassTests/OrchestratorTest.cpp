@@ -16,7 +16,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ARM360Test {
 	TEST_CLASS(OrchestratorTest) {
-
+		
 		Orchestrator* obj = Orchestrator::getInstance();
 
 		// Method that is run before every test
@@ -34,13 +34,12 @@ namespace ARM360Test {
 			Orchestrator* result1 = Orchestrator::getInstance();
 			Orchestrator* result2 = Orchestrator::getInstance();
 
-			Assert::AreEqual(*result1, *result2);
+			Assert::IsTrue(&result1 == &result2);
 		}
 		TEST_METHOD(getError) {
 			std::string expectedResult = "Orchestrator: No Error.";
 			std::string result = obj->getError();
 
-			//Assert::IsTrue(expectedResult == result);
 			Assert::AreEqual(expectedResult, result);
 		}
 		TEST_METHOD(next) {
@@ -60,7 +59,7 @@ namespace ARM360Test {
 			ProgramState expectedResult = *ProgramState::getInstance();
 			ProgramState result = obj->getProgramState();
 
-			Assert::AreEqual(expectedResult, result);
+			Assert::IsTrue(&expectedResult == &result);
 		}
 		TEST_METHOD(sendInput) {
 			int expectedValue = -1;
@@ -71,7 +70,7 @@ namespace ARM360Test {
 			std::array<char, 5> expectedResult = { 0 };
 			std::array<char, 5> result = obj->getOutput();
 
-			Assert::AreEqual(expectedResult, result);
+			Assert::IsTrue(expectedResult == result);
 		}
 		TEST_METHOD(translateAndLoad) {
 			int expectedValue = -1;
