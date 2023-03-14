@@ -30,11 +30,11 @@ void Orchestrator::resetError() {
 /// Method that gets the Singleton instance of Orchestrator
 /// </summary>
 /// <returns>The only instance of Orchestrator</returns>
-Orchestrator Orchestrator::getInstance() {
+Orchestrator* Orchestrator::getInstance() {
         if (instancePtr == nullptr) {
             instancePtr = new Orchestrator();
         }
-        return *instancePtr;
+        return instancePtr;
 }
 
 /// <summary>

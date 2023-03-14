@@ -57,7 +57,7 @@ public:
     // Public methods
     bool isTranslatable();
     void setTranslatable(bool translatable);
-    static Translator getInstance(std::string armFile);
+    static Translator* getInstance(std::string armFile);
     void setArmFile(std::string armFile);
     void setTranslatedCode(std::vector<Hex4digit> translatedCode);
     std::string getArmFile();

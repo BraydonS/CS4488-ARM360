@@ -30,7 +30,7 @@ private:
 
 public:
 	// Public methods
-	static Orchestrator getInstance();
+	static Orchestrator* getInstance();
 	std::string getError();
 	bool next();
 	void clearProgram();

@@ -12,7 +12,7 @@ Translator* Translator::instancePtr;
 /// <summary>
 /// Private constructor for Singleton
 /// </summary>
-/// <param name="getInstance">The path to the ARM file to be loaded</param>
+/// <param name="armFile">The path to the ARM file to be loaded</param>
 Translator::Translator(std::string armFile) : fileMan(*(FileManager::getInstance())) {
     setTranslatable(this->translate(armFile));
 }
@@ -322,11 +322,11 @@ void Translator::setTranslatable(bool translatable) {
 /// Method that gets returns a reference to the the Singleton instance of the Translator
 /// </summary>
 /// <returns>The Translator object</returns>
-Translator Translator::getInstance(std::string armFile) {
+Translator* Translator::getInstance(std::string armFile) {
     if (instancePtr == nullptr) {
         instancePtr = new Translator(armFile); // initialize translator
     }
-    return *instancePtr;
+    return instancePtr;
 }
 
 /// <summary>

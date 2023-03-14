@@ -19,14 +19,14 @@ TranslatorFacade::TranslatorFacade() : translator(Translator::getInstance(nullpt
 /// <returns>True if successfully loaded; false otherwise</returns>
 bool TranslatorFacade::loadFile(std::string armFile) {
 	TranslatorFacade::translator = Translator::getInstance(armFile);
-	return TranslatorFacade::translator.isLoaded();
+	return TranslatorFacade::translator->isLoaded();
 }
 
 /// <summary>
 /// Method that clears the file currently loaded in the translator
 /// </summary>
 void TranslatorFacade::clearFile() {
-	TranslatorFacade::translator.clearFile();
+	TranslatorFacade::translator->clearFile();
 }
 
 /// <summary>
@@ -34,7 +34,7 @@ void TranslatorFacade::clearFile() {
 /// </summary>
 /// <returns>True if translated successfully; false otherwise</returns>
 bool TranslatorFacade::isTranslatable() {
-	return TranslatorFacade::translator.isTranslatable();
+	return TranslatorFacade::translator->isTranslatable();
 }
 
 /// <summary>
@@ -42,7 +42,7 @@ bool TranslatorFacade::isTranslatable() {
 /// </summary>
 /// <returns>The translated machine code</returns>
 std::vector<Hex4digit> TranslatorFacade::translateToMachine() {
-	return TranslatorFacade::translator.getTranslatedCode();
+	return TranslatorFacade::translator->getTranslatedCode();
 }
 
 /// <summary>
@@ -50,5 +50,5 @@ std::vector<Hex4digit> TranslatorFacade::translateToMachine() {
 /// </summary>
 /// <returns>The message of the exception</returns>
 std::string TranslatorFacade::getLastExceptionMessage() {
-	return TranslatorFacade::translator.getExceptionMessage();
+	return TranslatorFacade::translator->getExceptionMessage();
 }

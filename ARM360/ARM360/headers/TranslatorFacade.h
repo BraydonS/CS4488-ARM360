@@ -10,7 +10,7 @@
 class TranslatorFacade {
 private:
 	// Instance variables
-	Translator translator;
+	Translator* translator;
 public:
 	// Constructor
 	TranslatorFacade();
