@@ -43,9 +43,11 @@ public:
 
         programState->clearProgramState();
 
-        Assert::AreEqual((Hex4digit)0, programState->getMemoryStateValue(0));
-        Assert::AreEqual((Hex4digit)0, programState->registers[0]);
-        Assert::AreEqual((Hex4digit)0, programState->registers.back());
+        Hex4digit zeroHex = Hex4digit(0);
+
+        Assert::AreEqual(zeroHex.getValue(), programState->getMemoryStateValue(0).getValue());
+        Assert::AreEqual(zeroHex.getValue(), programState->registers[0].getValue());
+        Assert::AreEqual(zeroHex.getValue(), programState->registers.back().getValue());
         programState->clearProgramState();
     }
 
@@ -82,7 +84,7 @@ public:
 
         Hex4digit testVal = Hex4digit(0x0001);
 
-        Assert::AreEqual(programState->getMemoryStateValue(0), testVal);
+        Assert::AreEqual(programState->getMemoryStateValue(0).getValue(), testVal.getValue());
 
         programState->clearProgramState();
     }

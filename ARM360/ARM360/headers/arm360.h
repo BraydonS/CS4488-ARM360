@@ -13,4 +13,7 @@ public:
 
 private:
     Ui::ARM360Class ui;
+
+private slots:
+    void onLoadClicked();
 };
