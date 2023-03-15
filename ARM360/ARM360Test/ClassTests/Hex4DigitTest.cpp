@@ -38,7 +38,7 @@ namespace ARM360Test {
 			TEST_METHOD(setValueCharArrayTest) {
 				std::array<char, 5> charArray = { "0" };
 				hex4Digit.setValue(charArray);
-				Assert::AreEqual(hexConv.decimalToHex(0), hex4Digit.getHexChars());
+				Assert::IsTrue(hexConv.decimalToHex(0) == hex4Digit.getHexChars());
 			}
 
 			TEST_METHOD(setFirstTest) {
@@ -68,18 +68,18 @@ namespace ARM360Test {
 			TEST_METHOD(getValueTest) {
 				std::array<char, 5> charArray = { "3" };
 				hex4Digit.setValue(charArray);
-				Assert::AreEqual(3, hex4Digit.getValue());
+				Assert::IsTrue(3 == hex4Digit.getValue());
 			}
 
 			TEST_METHOD(getHexCharsTest) {
 				std::array<char, 5> array = {};
-				Assert::AreEqual(array, hex4Digit.getHexChars());
+				Assert::IsTrue(array == hex4Digit.getHexChars());
 			}
 
 			TEST_METHOD(getSingedHexCharsTest) {
 				std::array<char, 5> array = { '1' };
 				hex4Digit.setValue(array);
-				Assert::AreEqual(array, hex4Digit.getSignedHexChars());
+				Assert::IsTrue(array == hex4Digit.getSignedHexChars());
 			}
 
 			TEST_METHOD(getStringTest) {
