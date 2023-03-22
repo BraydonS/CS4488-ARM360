@@ -17,4 +17,5 @@ private:
 private slots:
     void onLoadClicked();
     void onDecimalToHexClicked();
+    void onHexToDecimalClicked();
 };

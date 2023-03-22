@@ -14,6 +14,7 @@ ARM360::ARM360(QWidget *parent)
     // orchestrator = Orchestrator::getInstance();
     connect(ui.btnLoad, &QPushButton::clicked, this, &ARM360::onLoadClicked);
     connect(ui.btnDTH, &QPushButton::clicked, this, &ARM360::onDecimalToHexClicked);
+    connect(ui.btnHTD, &QPushButton::clicked, this, &ARM360::onHexToDecimalClicked);
 }
 
 void ARM360::onLoadClicked() {
@@ -36,14 +37,6 @@ void ARM360::onLoadClicked() {
     }
 }
 
-//void ARM360::onBuildClicked() {
-//    QString fileToBuild = ui.txtInput->toPlainText();
-//    if (fileToBuild.length() == 0) {
-//        QMessageBox::warning(this, tr("Warning"), tr("No file selected to run program."));
-//        return;
-//    }
-//}
-
 void ARM360::onDecimalToHexClicked() {
     QString userDecimalInput = ui.txtDecimal->toPlainText();
 
@@ -63,10 +56,42 @@ void ARM360::onDecimalToHexClicked() {
 
     int decimal = userDecimalInput.toInt();
     std::string hexOutput(HexadecimalConverter::decimalToHex(decimal).data());
-    QString intAsQString = QString::fromStdString(hexOutput);
+    QString hexAsQString = QString::fromStdString(hexOutput);
 
     ui.txtDTHOutput->clear();
-    ui.txtDTHOutput->insertPlainText(intAsQString);
+    ui.txtDTHOutput->insertPlainText(hexAsQString);
+}
+
+
+void ARM360::onHexToDecimalClicked() {
+    QString userHexInput = ui.txtHex->toPlainText();
+
+    // Empty input
+    if (userHexInput.length() == 0) {
+        QMessageBox::warning(this, tr("Warning"), tr("Hex to Decimal convertion input is empty."));
+        return;
+    }
+
+    // Error handling for non-digit & non-[a-f] inputs
+    QRegularExpression reg("[^a-f\\d]");
+    QRegularExpressionMatch match = reg.match(userHexInput);
+    if (match.hasMatch()) {
+        QMessageBox::warning(this, tr("Warning"), tr("The input contains non-hex inputs. Please only use digits & a-f for Decimal to Hex conversion."));
+        return;
+    }
+
+    // Convert QString to a char[]
+    QByteArray array = userHexInput.toLocal8Bit();
+    char* buffer = array.data();
+
+    int decimal = HexadecimalConverter::hexToDecimal(buffer);
+
+    // Convert int back into a QString
+    std::string decimalAsString = std::to_string(decimal);
+    QString decimalAsQString = QString::fromStdString(decimalAsString);
+
+    ui.txtHTDOutput->clear();
+    ui.txtHTDOutput->insertPlainText(decimalAsQString);
 }
 
 ARM360::~ARM360()
