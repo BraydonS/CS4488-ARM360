@@ -219,7 +219,7 @@ char* HexadecimalConverter::cleanCharHex(char toClean[]) {
     std::string input(toClean);
     input = std::regex_replace(input, std::regex("^ +| +$|( ) +"), "$1");
     std::transform(input.begin(), input.end(), input.begin(), ::tolower);
-    input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
+    input = std::regex_replace(input, std::regex("[^a-f+-\d]"), "");
 
     // check for negative (result will be set to positive by default)
     if (input[0] == '-') { result[0] = '-'; }

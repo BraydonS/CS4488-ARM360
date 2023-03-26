@@ -53,10 +53,10 @@ void ARM360::onDecimalToHexClicked() {
         QMessageBox::warning(this, tr("Warning"), tr("The input contains non-digit inputs. Please only use digits for Decimal to Hex conversion."));
         return;
     }
-
     int decimal = userDecimalInput.toInt();
     std::string hexOutput(HexadecimalConverter::decimalToHex(decimal).data());
     QString hexAsQString = QString::fromStdString(hexOutput);
+    hexAsQString = hexAsQString.remove(5, 3); // Removing weird ??? after the conversion(last 3 characters)
 
     ui.txtDTHOutput->clear();
     ui.txtDTHOutput->insertPlainText(hexAsQString);
@@ -81,7 +81,7 @@ void ARM360::onHexToDecimalClicked() {
     }
 
     // Convert QString to a char[]
-    QByteArray array = userHexInput.toLocal8Bit();
+    QByteArray array = userHexInput.toLocal8Bit().constData();
     char* buffer = array.data();
 
     int decimal = HexadecimalConverter::hexToDecimal(buffer);
