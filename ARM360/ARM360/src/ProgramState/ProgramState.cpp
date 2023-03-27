@@ -133,9 +133,5 @@ void ProgramState::fillOutMemory(std::vector<Hex4digit> instructions) {
 }
 
 ProgramState::ProgramState() :input(Hex4digit()), output(Hex4digit()), 
-pcHistory(std::vector<MemoryHistorySpace>()), memoryStateHistory(std::vector<std::vector<Hex4digit>>(256)) {
-
-	for (int i = 0; i < REGISTER_COUNT; i++) {
-		registers[i] = (Hex4digit());
-	}
+pcHistory(std::vector<MemoryHistorySpace>()), memoryStateHistory(std::vector<std::vector<Hex4digit>>(256)),registers(std::vector<Hex4digit>(REGISTER_COUNT)) {
 }
