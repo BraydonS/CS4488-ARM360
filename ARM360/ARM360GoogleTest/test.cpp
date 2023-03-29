@@ -10,6 +10,8 @@ TEST(TestCaseName, TestName) {
 
 ProgramState* programState = programState->getInstance();
 
+
+
 TEST(ProgramState, ProgramStateTest) {
         std::vector<Hex4digit> emptyInstructions(ProgramState::TOTAL_MEMORY_SPACES);
 

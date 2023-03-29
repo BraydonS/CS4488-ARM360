@@ -11,11 +11,11 @@ Hex4digit::Hex4digit() : hex(0) {}
 Hex4digit::Hex4digit(std::array<char, 5> value) : hex(HexadecimalConverter::hexToDecimal(value.data())) {}
 
 Hex4digit::Hex4digit(std::string value) : hex(HexadecimalConverter::hexToDecimal(value.data())) {
-    /*std::array<char, 5> temp;
-    for (int i = 0; i < value.size(); i++) {
-        temp[i] = value[i];
-    }
-    this->hex = HexadecimalConverter::hexToDecimal(temp);*/
+    //std::array<char, 5> temp;
+    //for (int i = 0; i < value.size(); i++) {
+    //    temp[i] = value[i];
+    //}
+    //this->hex = HexadecimalConverter::hexToDecimal(temp);
 }
 
 Hex4digit::Hex4digit(int value) : hex(value) {}
@@ -25,11 +25,11 @@ void Hex4digit::setValue(int number) {
 }
 
 void Hex4digit::setValue(std::string number) {
-    /*hex = HexadecimalConverter::hexToDecimal(number.data());
-
-    std::array<char, 5> arr{};
-    std::copy(number.begin(), number.end(), arr.begin());
-    hex = HexadecimalConverter::hexToDecimal(arr);*/
+    //hex = HexadecimalConverter::hexToDecimal(number.data());
+    //
+    //std::array<char, 5> arr{};
+    //std::copy(number.begin(), number.end(), arr.begin());
+    //hex = HexadecimalConverter::hexToDecimal(arr);
 }
 
 void Hex4digit::setValue(std::array<char, 5> number) {
