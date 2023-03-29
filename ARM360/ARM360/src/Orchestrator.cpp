@@ -108,7 +108,7 @@ std::array<char,5> Orchestrator::getOutput() {
 /// <returns>True if the file was translated successfully; false otherwise</returns>
 bool Orchestrator::translateAndLoad(std::string path) {
     resetError();
-    boolean result;
+    bool result;
 
     result = translator.loadFile(path);
     if (result == false) {

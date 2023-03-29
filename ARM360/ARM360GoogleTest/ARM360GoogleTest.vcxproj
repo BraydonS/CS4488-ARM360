@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{38e06e20-1d57-4b1e-b05a-6a079bffb61b}</ProjectGuid>
+    <ProjectGuid>{c3c6f7db-a279-450b-bf8c-4e7d0fd14917}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.20348.0</WindowsTargetPlatformVersion>
     <ConfigurationType>Application</ConfigurationType>
@@ -33,12 +33,26 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Tests</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Tests\</OutDir>
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ARM360\src\ExecutorFacade.cpp" />
+    <ClCompile Include="..\ARM360\src\FileManager\FileManager.cpp" />
+    <ClCompile Include="..\ARM360\src\Hex4Digit.cpp" />
+    <ClCompile Include="..\ARM360\src\HexadecimalConverter.cpp" />
+    <ClCompile Include="..\ARM360\src\HexDataClass.cpp" />
+    <ClCompile Include="..\ARM360\src\InstructionParser.cpp" />
+    <ClCompile Include="..\ARM360\src\InstructionSet.cpp" />
+    <ClCompile Include="..\ARM360\src\MemoryHistorySpace.cpp" />
+    <ClCompile Include="..\ARM360\src\MockDataGenerator.cpp" />
+    <ClCompile Include="..\ARM360\src\NumberConvertorAccess.cpp" />
+    <ClCompile Include="..\ARM360\src\Orchestrator.cpp" />
+    <ClCompile Include="..\ARM360\src\ProgramState\ProgramState.cpp" />
+    <ClCompile Include="..\ARM360\src\Translator.cpp" />
+    <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -77,22 +91,27 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>X64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)ARM360\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ARM360\headers;C:\Qt\6.4.2\msvc2019_64\include\QtWidgets;$(QMake_QT_INSTALL_HEADERS_)\QtWidgets;C:\Qt\6.4.2\msvc2019_64\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/Zc:__cplusplus /permissive- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)ARM360\$(IntDir)*.obj;C:\Qt\6.4.2\msvc2019_64\lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\6.4.2\msvc2019_64\lib;%(AdditionalDependencies)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);C:\Qt\6.4.2\msvc2019_64\lib\*.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
