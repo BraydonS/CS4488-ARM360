@@ -25,8 +25,8 @@ void Hex4digit::setValue(int number) {
 }
 
 void Hex4digit::setValue(std::string number) {
-    hex = HexadecimalConverter::hexToDecimal(number.data());
-
+    //hex = HexadecimalConverter::hexToDecimal(number.data());
+    //
     //std::array<char, 5> arr{};
     //std::copy(number.begin(), number.end(), arr.begin());
     //hex = HexadecimalConverter::hexToDecimal(arr);

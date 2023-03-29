@@ -11,13 +11,14 @@ ARM360::ARM360(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    // orchestrator = Orchestrator::getInstance();
     connect(ui.btnLoad, &QPushButton::clicked, this, &ARM360::onLoadClicked);
     connect(ui.btnDTH, &QPushButton::clicked, this, &ARM360::onDecimalToHexClicked);
     connect(ui.btnHTD, &QPushButton::clicked, this, &ARM360::onHexToDecimalClicked);
 }
 
 void ARM360::onLoadClicked() {
+
+    // orchestrator = Orchestrator::getInstance();
     // Just sets the text field to the contents of a txt file for now
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt)"));
 
