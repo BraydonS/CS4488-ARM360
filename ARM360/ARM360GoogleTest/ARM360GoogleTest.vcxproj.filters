@@ -17,6 +17,15 @@
     <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="InstructionParserTest.cpp" />
+    <ClCompile Include="InstructionSetTest.cpp" />
+    <ClCompile Include="OrchestratorTest.cpp" />
+    <ClCompile Include="TranslatorFacadeTest.cpp" />
+    <ClCompile Include="TranslatorTest.cpp" />
+    <ClCompile Include="ExecutorFacadeTest.cpp" />
+    <ClCompile Include="Hex4DigitTest.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MockDataGeneratorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

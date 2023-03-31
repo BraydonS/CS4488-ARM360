@@ -53,8 +53,12 @@
     <ClCompile Include="..\ARM360\src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="..\ARM360\src\Translator.cpp" />
     <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
+    <ClCompile Include="ExecutorFacadeTest.cpp" />
+    <ClCompile Include="Hex4DigitTest.cpp" />
     <ClCompile Include="InstructionParserTest.cpp" />
     <ClCompile Include="InstructionSetTest.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MockDataGeneratorTest.cpp" />
     <ClCompile Include="OrchestratorTest.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">

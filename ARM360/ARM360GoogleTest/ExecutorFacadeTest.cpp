@@ -11,17 +11,27 @@ ProgramState* PS = ProgramState::getInstance();
 MockDataGenerator mockData;
 
 // Object initalizaton before every test
-TEST_METHOD_INITIALIZE(ExecutorFacadeInit) {
-	ExecutorFacade EF;
-	ProgramState* ps = ProgramState::getInstance();
-	MockDataGenerator mockData;
-}
+//TEST_METHOD_INITIALIZE(ExecutorFacadeInit) {
+//	ExecutorFacade EF;
+//	ProgramState* ps = ProgramState::getInstance();
+//	MockDataGenerator mockData;
+//}
 
 // Object deletion after every test
-TEST_METHOD_CLEANUP(ExecutorFacadeCleanup) {
-	delete& EF;
-	delete PS;
-	delete& mockData;
+//TEST_METHOD_CLEANUP(ExecutorFacadeCleanup) {
+//	delete& EF;
+//	delete PS;
+//	delete& mockData;
+//}
+
+// Supporting method to initalize the program state with some data.
+ProgramState initalizeProgramState(char instruction) {
+	std::vector<Hex4digit> instructions((ProgramState::TOTAL_MEMORY_SPACES));
+	for (int i = 0; i < 3; i++) {
+		instructions[i] = instruction;
+	}
+	PS->initializeState(instructions);
+	return *PS;
 }
 
 // Test MemoryStateIndex is incremented by 1
@@ -113,15 +123,4 @@ TEST(ExecutorFacade, clearStateTest) {
 // Test to check if a new Program State will return a "No Error" exeption message.
 TEST(ExecutorFacade, getLastExceptionMessageTest) {
 	EXPECT_TRUE(EF.getLastExceptionMessage().compare("No Error"));
-}
-
-
-// Supporting method to initalize the program state with some data.
-ProgramState initalizeProgramState(char instruction) {
-	std::vector<Hex4digit> instructions((ProgramState::TOTAL_MEMORY_SPACES));
-	for (int i = 0; i < 3; i++) {
-		instructions[i] = instruction;
-	}
-	PS->initializeState(instructions);
-	return *PS;
 }

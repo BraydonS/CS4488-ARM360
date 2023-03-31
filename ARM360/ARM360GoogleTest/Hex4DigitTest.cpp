@@ -6,19 +6,18 @@
 
 Hex4digit hex4Digit;
 HexadecimalConverter hexConv;
-public:
 
-// Object initalizaton before every test
-TEST_METHOD_INITIALIZE(Hex4DigitInit) {
-	Hex4digit hex4Digit;
-	HexadecimalConverter hexConv;
-}
-
-// Object deletion after every test
-TEST_METHOD_CLEANUP(Hex4DigitCleanup) {
-	delete& hex4Digit;
-	delete& hexConv;
-}
+//// Object initalizaton before every test
+//TEST_METHOD_INITIALIZE(Hex4DigitInit) {
+//	Hex4digit hex4Digit;
+//	HexadecimalConverter hexConv;
+//}
+//
+//// Object deletion after every test
+//TEST_METHOD_CLEANUP(Hex4DigitCleanup) {
+//	delete& hex4Digit;
+//	delete& hexConv;
+//}
 
 TEST(Hex4Digit, setValueIntTest) {
 	hex4Digit.setValue(int(3));

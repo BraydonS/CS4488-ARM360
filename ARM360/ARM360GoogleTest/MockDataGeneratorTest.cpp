@@ -3,6 +3,11 @@
 #include <regex>
 
 
+// Function to check if a given string is a valid hex value. regex_match requires a string not a char.
+bool checkValidHexValue(std::string hexValue) {
+	std::regex hexCheckerRegex("([a-f]|[0-9])*"); // 0-9 & a-f should be the only valid chars.
+	return std::regex_match(hexValue, hexCheckerRegex);
+}
 
 // Test to check whether or not getRandomHexChar() returns a valid hex char.
 TEST(MockDataGenerator, getRandomHexCharTest) {
@@ -52,12 +57,4 @@ TEST(MockDataGenerator, getJunkChar4Test) {
 		bool invalidHexCheck = checkValidHexValue(currentInvalidHexValueAsString);
 		EXPECT_FALSE(invalidHexCheck);
 	}
-}
-
-// Function to support the tests
-
-// Function to check if a given string is a valid hex value. regex_match requires a string not a char.
-bool checkValidHexValue(std::string hexValue) {
-	std::regex hexCheckerRegex("([a-f]|[0-9])*"); // 0-9 & a-f should be the only valid chars.
-	return std::regex_match(hexValue, hexCheckerRegex);
 }
