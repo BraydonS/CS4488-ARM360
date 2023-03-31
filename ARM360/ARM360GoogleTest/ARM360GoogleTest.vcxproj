@@ -53,6 +53,8 @@
     <ClCompile Include="..\ARM360\src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="..\ARM360\src\Translator.cpp" />
     <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
+    <ClCompile Include="FileManagerTest.cpp" />
+    <ClCompile Include="ProgramStateTest.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -105,12 +107,12 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Qt\6.4.2\msvc2019_64\lib;%(AdditionalDependencies)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies);C:\Qt\6.4.2\msvc2019_64\lib\*.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy "C:\Qt\6.4.2\msvc2019_64\bin\*.dll" "$(SolutionDir)$(Platform)\$(Configuration)\Tests\" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

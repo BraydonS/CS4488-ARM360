@@ -193,7 +193,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClassTests\ARM360Test.cpp" />
-    <ClCompile Include="ClassTests\FileManagerTest.cpp" />
     <ClCompile Include="ClassTests\Hex4DigitTest.cpp" />
     <ClCompile Include="ClassTests\InstructionParserTest.cpp" />
     <ClCompile Include="ClassTests\InstructionSetTest.cpp" />
@@ -206,7 +205,6 @@
     </ClCompile>
     <ClCompile Include="ClassTests\MockDataGeneratorTest.cpp" />
     <ClCompile Include="ClassTests\ExecutorFacadeTest.cpp" />
-    <ClCompile Include="ClassTests\ProgramStateTest.cpp" />
     <ClCompile Include="ClassTests\TranslatorFacadeTest.cpp" />
     <ClCompile Include="ClassTests\TranslatorTest.cpp" />
   </ItemGroup>
