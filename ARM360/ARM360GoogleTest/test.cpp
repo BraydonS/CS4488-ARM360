@@ -3,7 +3,7 @@
 #include "Hex4digit.h"
 #include "MemoryHistorySpace.h"
 
-TEST(TestCaseName, TestName) {
+TEST(TestCaseNameTest, TestName) {
   EXPECT_EQ(1, 1);
   EXPECT_TRUE(true);
 }
@@ -12,7 +12,7 @@ ProgramState* programState = programState->getInstance();
 
 
 
-TEST(ProgramState, ProgramStateTest) {
+TEST(ProgramStateTest, ProgramStateTest) {
         std::vector<Hex4digit> emptyInstructions(ProgramState::TOTAL_MEMORY_SPACES);
 
         bool result = programState->initializeState(emptyInstructions);
