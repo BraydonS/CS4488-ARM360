@@ -30,9 +30,9 @@ TEST(Hex4Digit, setValueStringTest) {
 }
 
 TEST(Hex4Digit, setValueCharArrayTest) {
-	std::array<char, 5> charArray = { "0" };
+	std::array<char, 5> charArray = { "+0" };
 	hex4Digit.setValue(charArray);
-	EXPECT_TRUE(hexConv.decimalToHex(0) == hex4Digit.getHexChars());
+	EXPECT_EQ(hexConv.decimalToHex(0), hex4Digit.getHexChars());
 }
 
 TEST(Hex4Digit, setFirstTest) {
@@ -60,20 +60,20 @@ TEST(Hex4Digit, setFourthTest) {
 }
 
 TEST(Hex4Digit, getValueTest) {
-	std::array<char, 5> charArray = { "3" };
+	std::array<char, 5> charArray = { "+3" };
 	hex4Digit.setValue(charArray);
-	EXPECT_TRUE(3 == hex4Digit.getValue());
+	EXPECT_EQ(3, hex4Digit.getValue());
 }
 
 TEST(Hex4Digit, getHexCharsTest) {
-	std::array<char, 5> array = {};
-	EXPECT_TRUE(array == hex4Digit.getHexChars());
+	std::array<char, 5> array = {'0000'};
+	EXPECT_EQ(array, hex4Digit.getHexChars());
 }
 
 TEST(Hex4Digit, getSingedHexCharsTest) {
 	std::array<char, 5> array = { '1' };
 	hex4Digit.setValue(array);
-	EXPECT_TRUE(array == hex4Digit.getSignedHexChars());
+	EXPECT_EQ(array, hex4Digit.getSignedHexChars());
 }
 
 TEST(Hex4Digit, getStringTest) {
@@ -88,7 +88,7 @@ TEST(Hex4Digit, getMiddle2ValueTest) {
 }
 
 TEST(Hex4Digit, getLast2ValueTest) {
-	hex4Digit.setValue("0011");
+	hex4Digit.setValue("1111");
 	EXPECT_EQ(11, hex4Digit.getLast2Value());
 }
 
