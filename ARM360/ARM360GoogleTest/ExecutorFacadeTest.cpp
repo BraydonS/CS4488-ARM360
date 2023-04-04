@@ -52,6 +52,7 @@ TEST(ExecutorFacade, getMemoryStateIndexTest) {
 
 TEST(ExecutorFacade, hasNextTestFalse) {
 	PS->registers[15] = 999; // Large value to force execption.
+	EF.next();
 	EXPECT_EQ(EF.getLastExceptionMessage(), "Program Counter tried to access memory out of bounds"); 
 }
 
