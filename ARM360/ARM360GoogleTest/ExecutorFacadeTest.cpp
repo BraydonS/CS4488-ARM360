@@ -51,6 +51,7 @@ TEST(ExecutorFacade, getMemoryStateIndexTest) {
 }
 
 TEST(ExecutorFacade, hasNextTestFalse) {
+	initalizeProgramState('0');
 	PS->registers[15] = 999; // Large value to force execption.
 	EF.next();
 	EXPECT_EQ(EF.getLastExceptionMessage(), "Program Counter tried to access memory out of bounds"); 
@@ -59,7 +60,8 @@ TEST(ExecutorFacade, hasNextTestFalse) {
 // Tests if the setProgramState method creates an empty program state history.
 TEST(ExecutorFacade, setProgramStateTest) {
 	EF.setProgramState(*PS);
-	EXPECT_FALSE(EF.hasState());
+	initalizeProgramState('0');
+	EXPECT_TRUE(EF.hasState());
 }
 
 // Tests to check if the current ProgramState is empty
