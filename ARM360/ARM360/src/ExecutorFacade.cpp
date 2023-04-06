@@ -76,7 +76,7 @@ bool ExecutorFacade::hasState() {
 // @param : The current programState
 void ExecutorFacade::unrecognizedInstruction(ProgramState state) {
     EXCEPTIONMESSAGE = "The given instruction was not recognized!";
-    InstructionSet::halt(state);
+    InstructionSet::halt(&state);
 }
 
 // Takes a hex instruction based on the first value and executes the corresponding instruction.
@@ -84,22 +84,22 @@ void ExecutorFacade::unrecognizedInstruction(ProgramState state) {
 void ExecutorFacade::determineInstruction(Hex4digit instance){
     ProgramState *state = ProgramState::getInstance();
     switch(instance.getHexChars()[1]){
-        case '0': InstructionSet::halt(*state); break;
-        case '1': InstructionSet::load(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '2': InstructionSet::store(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '3': InstructionSet::add(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '4': InstructionSet::subt(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '5': InstructionSet::mult(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '6': InstructionSet::intDivide(*state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
-        case '7': InstructionSet::loadIndirect(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '8': InstructionSet::storeIndirect(*state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
-        case '9': InstructionSet::branch(*state, instance.getMiddle2Value()); break;
-        case 'a': InstructionSet::branchZero(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'b': InstructionSet::branchNeg(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'c': InstructionSet::branchPos(*state, instance.getHexChars()[2], instance.getLast2Value()); break;
-        case 'd': InstructionSet::readInt(*state, instance.getHexChars()[2]); break;
-        case 'e': InstructionSet::writeInt(*state, instance.getHexChars()[2]); break;
-        case 'f': InstructionSet::skip(*state); break;
+        case '0': InstructionSet::halt(state); break;
+        case '1': InstructionSet::load(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '2': InstructionSet::store(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '3': InstructionSet::add(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '4': InstructionSet::subt(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '5': InstructionSet::mult(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '6': InstructionSet::intDivide(state, instance.getHexChars()[2], instance.getHexChars()[3], instance.getHexChars()[4]); break;
+        case '7': InstructionSet::loadIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '8': InstructionSet::storeIndirect(state, instance.getMiddle2Value(), instance.getHexChars()[4], MEMORYSTATEINDEX); break;
+        case '9': InstructionSet::branch(state, instance.getMiddle2Value()); break;
+        case 'a': InstructionSet::branchZero(state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'b': InstructionSet::branchNeg(state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'c': InstructionSet::branchPos(state, instance.getHexChars()[2], instance.getLast2Value()); break;
+        case 'd': InstructionSet::readInt(state, instance.getHexChars()[2]); break;
+        case 'e': InstructionSet::writeInt(state, instance.getHexChars()[2]); break;
+        case 'f': InstructionSet::skip(state); break;
         default:  unrecognizedInstruction(*state);
         }
 }
