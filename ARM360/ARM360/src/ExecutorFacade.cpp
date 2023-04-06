@@ -36,19 +36,28 @@ bool ExecutorFacade::hasNext(){
     int programStateSize = ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX).size();
 
     // If the Counter Count is >= to the length of memory list,then it's gone past the program memory.
-    if(programStateValue >= programStateSize) {
+    try {
+        if (programStateValue >= programStateSize) { throw 1;} 
+    }
+    catch (int error) {
         EXCEPTIONMESSAGE = "Program Counter tried to access memory out of bounds";
         return false;
     }
 
-    // Program Counter contains an error, -1, halt.
-    if(programStateValue == -1) {
+        // Program Counter contains an error, -1, halt.
+    try {
+        if (programStateValue == -1) { throw (-1); }
+    }
+    catch (int error) {
         EXCEPTIONMESSAGE = "A halt command was executed and the program has stopped";
         return false;
     }
 
-    // Program Counter tries to access negative memory.
-    if(programStateValue < -1) {
+    try {
+        // Program Counter tries to access negative memory.
+        if (programStateValue < -1) { throw (-2); }
+    }
+    catch (int error) {
         EXCEPTIONMESSAGE = "Program Counter tried to index negative memory";
         return false;
     }
