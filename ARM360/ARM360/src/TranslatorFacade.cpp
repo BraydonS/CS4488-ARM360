@@ -9,7 +9,7 @@
 /// Default constructor
 /// Load field 'translator' with the Translator instance, given a null pointer -- given file later
 /// </summary>
-TranslatorFacade::TranslatorFacade() : translator(Translator::getInstance(nullptr)) 
+TranslatorFacade::TranslatorFacade() : translator(Translator::getInstance(""))
 {}
 
 /// <summary>
