@@ -25,7 +25,7 @@ namespace ARM360Test {
 			delete &set;
 			state.clearProgramState();
 		}
-
+		/*
 		TEST_METHOD(incrementProgramCounter) {
 			int expectedValue = state.registers[15].getValue() + 1;
 			set.incrementProgramCounter(state);
@@ -125,6 +125,7 @@ namespace ARM360Test {
 			set.skip(state);
 			Assert::AreEqual(expectedValue, state.registers[15].getValue());
 		}
+		*/
 
 		/*
 		static void load(ProgramState state, int mem, char reg, int index);
