@@ -9,16 +9,16 @@
 /// Method that increments the program counter by one
 /// </summary>
 /// <param name="state">A program state object</param>
-void InstructionSet::incrementProgramCounter(ProgramState state) {
-	state.registers[15].setValue((state.registers[15].getValue() + 1));
+void InstructionSet::incrementProgramCounter(ProgramState* state) {
+	state->registers[15].setValue((state->registers[15].getValue() + 1));
 }
 
 /// <summary>
 /// Method that halts the program
 /// </summary>
 /// <param name="state">A program state object</param>
-void InstructionSet::halt(ProgramState state) {
-    state.registers[15].setValue(-1);
+void InstructionSet::halt(ProgramState* state) {
+    state->registers[15].setValue(-1);
 }
 
 /// <summary>
@@ -28,9 +28,9 @@ void InstructionSet::halt(ProgramState state) {
 /// <param name="mem">The location of memory</param>
 /// <param name="reg">The register to be loaded into</param>
 /// <param name="index">An integer representation of the current index</param>
-void InstructionSet::load(ProgramState state, int mem, char reg, int index) {
-    Hex4digit value = state.memoryStateHistory[(index)][(mem)];
-    state.registers[Hex4digit::hexValue(reg)].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
+void InstructionSet::load(ProgramState* state, int mem, char reg, int index) {
+    Hex4digit value = state->memoryStateHistory[(index)][(mem)];
+    state->registers[Hex4digit::hexValue(reg)].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
 
     incrementProgramCounter(state);
 }
@@ -42,9 +42,9 @@ void InstructionSet::load(ProgramState state, int mem, char reg, int index) {
 /// <param name="mem">The location of memory</param>
 /// <param name="reg">The register to be loaded into</param>
 /// <param name="index">An integer representation of the current index</param>
-void InstructionSet::store(ProgramState state, int mem, char reg, int index) {
-    Hex4digit value = state.registers[Hex4digit::hexValue(reg)];
-    state.memoryStateHistory[index][mem].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
+void InstructionSet::store(ProgramState* state, int mem, char reg, int index) {
+    Hex4digit value = state->registers[Hex4digit::hexValue(reg)];
+    state->memoryStateHistory[index][mem].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
@@ -55,9 +55,9 @@ void InstructionSet::store(ProgramState state, int mem, char reg, int index) {
 /// <param name="reg1">The register containing the first value</param>
 /// <param name="reg2">The register containing the second value</param>
 /// <param name="reg3">The register to store the result in</param>
-void InstructionSet::add(ProgramState state, char reg1, char reg2, char reg3) {
-    int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() + state.registers[Hex4digit::hexValue(reg2)].getValue());
-    state.registers[Hex4digit::hexValue(reg3)].setValue(result);
+void InstructionSet::add(ProgramState* state, char reg1, char reg2, char reg3) {
+    int result = (state->registers[Hex4digit::hexValue(reg1)].getValue() + state->registers[Hex4digit::hexValue(reg2)].getValue());
+    state->registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
  
@@ -68,9 +68,9 @@ void InstructionSet::add(ProgramState state, char reg1, char reg2, char reg3) {
 /// <param name="reg1">The register containing the first value</param>
 /// <param name="reg2">The register containing the second value</param>
 /// <param name="reg3">The register to store the result in</param>
-void InstructionSet::subt(ProgramState state, char reg1, char reg2, char reg3) {
-    int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() - state.registers[Hex4digit::hexValue(reg2)].getValue());
-    state.registers[Hex4digit::hexValue(reg3)].setValue(result);
+void InstructionSet::subt(ProgramState* state, char reg1, char reg2, char reg3) {
+    int result = (state->registers[Hex4digit::hexValue(reg1)].getValue() - state->registers[Hex4digit::hexValue(reg2)].getValue());
+    state->registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
  
@@ -81,9 +81,9 @@ void InstructionSet::subt(ProgramState state, char reg1, char reg2, char reg3) {
 /// <param name="reg1">The register containing the first value</param>
 /// <param name="reg2">The register containing the second value</param>
 /// <param name="reg3">The register to store the result in</param>
-void InstructionSet::mult(ProgramState state, char reg1, char reg2, char reg3) {
-    int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() * state.registers[Hex4digit::hexValue(reg2)].getValue());
-    state.registers[Hex4digit::hexValue(reg3)].setValue(result);
+void InstructionSet::mult(ProgramState* state, char reg1, char reg2, char reg3) {
+    int result = (state->registers[Hex4digit::hexValue(reg1)].getValue() * state->registers[Hex4digit::hexValue(reg2)].getValue());
+    state->registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
  
@@ -94,9 +94,9 @@ void InstructionSet::mult(ProgramState state, char reg1, char reg2, char reg3) {
 /// <param name="reg1">The register containing the first value</param>
 /// <param name="reg2">The register containing the second value</param>
 /// <param name="reg3">The register to store the result in</param>
-void InstructionSet::intDivide(ProgramState state, char reg1, char reg2, char reg3) {
-    int result = (state.registers[Hex4digit::hexValue(reg1)].getValue() / state.registers[Hex4digit::hexValue(reg2)].getValue());
-    state.registers[Hex4digit::hexValue(reg3)].setValue(result);
+void InstructionSet::intDivide(ProgramState* state, char reg1, char reg2, char reg3) {
+    int result = (state->registers[Hex4digit::hexValue(reg1)].getValue() / state->registers[Hex4digit::hexValue(reg2)].getValue());
+    state->registers[Hex4digit::hexValue(reg3)].setValue(result);
     incrementProgramCounter(state);
 }
 
@@ -107,10 +107,10 @@ void InstructionSet::intDivide(ProgramState state, char reg1, char reg2, char re
 /// <param name="mem">The location of memory</param>
 /// <param name="reg">The register to be loaded into</param>
 /// <param name="index">An integer representation of the current index</param>
-void InstructionSet::loadIndirect(ProgramState state, int mem, char reg, int index) {
-    Hex4digit address = state.memoryStateHistory[index][mem];
-    Hex4digit value = state.memoryStateHistory[index][address.getValue()];
-    state.registers[Hex4digit::hexValue(reg)].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
+void InstructionSet::loadIndirect(ProgramState* state, int mem, char reg, int index) {
+    Hex4digit address = state->memoryStateHistory[index][mem];
+    Hex4digit value = state->memoryStateHistory[index][address.getValue()];
+    state->registers[Hex4digit::hexValue(reg)].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
@@ -121,10 +121,10 @@ void InstructionSet::loadIndirect(ProgramState state, int mem, char reg, int ind
 /// <param name="mem">The location of memory</param>
 /// <param name="reg">The register to be loaded into</param>
 /// <param name="index">An integer representation of the current index</param>
-void InstructionSet::storeIndirect(ProgramState state, int mem, char reg, int index) {
-    Hex4digit value = state.registers[Hex4digit::hexValue(reg)];
-    Hex4digit address = state.memoryStateHistory[index][mem];
-    state.memoryStateHistory[index][address.getValue()].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
+void InstructionSet::storeIndirect(ProgramState* state, int mem, char reg, int index) {
+    Hex4digit value = state->registers[Hex4digit::hexValue(reg)];
+    Hex4digit address = state->memoryStateHistory[index][mem];
+    state->memoryStateHistory[index][address.getValue()].setValue(&value.getHexChars()[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
@@ -133,8 +133,8 @@ void InstructionSet::storeIndirect(ProgramState state, int mem, char reg, int in
 /// </summary>
 /// <param name="state">A program state object</param>
 /// <param name="mem">The location of memory to point to</param>
-void InstructionSet::branch(ProgramState state, int mem) {
-    state.registers[15].setValue(mem);
+void InstructionSet::branch(ProgramState* state, int mem) {
+    state->registers[15].setValue(mem);
 }
 
 /// <summary>
@@ -143,9 +143,9 @@ void InstructionSet::branch(ProgramState state, int mem) {
 /// <param name="state">A program state object</param>
 /// <param name="reg">The register to check</param>
 /// <param name="mem">The location of memory to point to</param>
-void InstructionSet::branchZero(ProgramState state, char reg, int mem) {
-    if (state.registers[Hex4digit::hexValue(reg)].getValue() == 0) {
-        state.registers[15].setValue(mem);
+void InstructionSet::branchZero(ProgramState* state, char reg, int mem) {
+    if (state->registers[Hex4digit::hexValue(reg)].getValue() == 0) {
+        state->registers[15].setValue(mem);
     }
     else {
         incrementProgramCounter(state);
@@ -158,9 +158,9 @@ void InstructionSet::branchZero(ProgramState state, char reg, int mem) {
 /// <param name="state">A program state object</param>
 /// <param name="reg">The register to check</param>
 /// <param name="mem">The location of memory to point to</param>
-void InstructionSet::branchNeg(ProgramState state, char reg, int mem) {
-    if (state.registers[Hex4digit::hexValue(reg)].getValue() < 0) {
-        state.registers[15].setValue(mem);
+void InstructionSet::branchNeg(ProgramState* state, char reg, int mem) {
+    if (state->registers[Hex4digit::hexValue(reg)].getValue() < 0) {
+        state->registers[15].setValue(mem);
     }
     else {
         incrementProgramCounter(state);
@@ -173,9 +173,9 @@ void InstructionSet::branchNeg(ProgramState state, char reg, int mem) {
 /// <param name="state">A program state object</param>
 /// <param name="reg">The register to check</param>
 /// <param name="mem">The location of memory to point to</param>
-void InstructionSet::branchPos(ProgramState state, char reg, int mem) {
-    if (state.registers[Hex4digit::hexValue(reg)].getValue() >= 0) {
-        state.registers[15].setValue(mem);
+void InstructionSet::branchPos(ProgramState* state, char reg, int mem) {
+    if (state->registers[Hex4digit::hexValue(reg)].getValue() >= 0) {
+        state->registers[15].setValue(mem);
     }
     else {
         incrementProgramCounter(state);
@@ -187,8 +187,8 @@ void InstructionSet::branchPos(ProgramState state, char reg, int mem) {
 /// </summary>
 /// <param name="state">A program state object</param>
 /// <param name="reg">The register to be read from</param>
-void InstructionSet::readInt(ProgramState state, char reg) {
-    state.registers[Hex4digit::hexValue(reg)].setValue(state.input.getValue());
+void InstructionSet::readInt(ProgramState* state, char reg) {
+    state->registers[Hex4digit::hexValue(reg)].setValue(state->input.getValue());
     incrementProgramCounter(state);
 }
 
@@ -197,8 +197,8 @@ void InstructionSet::readInt(ProgramState state, char reg) {
 /// </summary>
 /// <param name="state">A program state object</param>
 /// <param name="reg">The register to be read from</param>
-void InstructionSet::writeInt(ProgramState state, char reg) {
-    state.output.setValue(&(state.registers[Hex4digit::hexValue(reg)].getHexChars())[0]); // Get pointer vector is using and pass that
+void InstructionSet::writeInt(ProgramState* state, char reg) {
+    state->output.setValue(&(state->registers[Hex4digit::hexValue(reg)].getHexChars())[0]); // Get pointer vector is using and pass that
     incrementProgramCounter(state);
 }
 
@@ -206,6 +206,6 @@ void InstructionSet::writeInt(ProgramState state, char reg) {
 /// Method that skips to the next instruction
 /// </summary>
 /// <param name="state">A program state object</param>
-void InstructionSet::skip(ProgramState state) {
+void InstructionSet::skip(ProgramState* state) {
     incrementProgramCounter(state);
 }

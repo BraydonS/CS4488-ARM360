@@ -28,6 +28,7 @@ TEST(Translator, setArmFile) {
 }
 TEST(Translator, getArmFile) {
 	Translator* tran = Translator::getInstance("Fake File");
+	tran->setArmFile("Fake File");
 
 	std::string expectedResult = "Fake File";
 	std::string result = tran->getArmFile();
