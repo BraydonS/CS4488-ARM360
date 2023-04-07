@@ -15,7 +15,7 @@ TEST(Translator, getInstance) {
 	Translator* result1 = Translator::getInstance("Fake File");
 	Translator* result2 = Translator::getInstance("Fake File");
 
-	EXPECT_EQ(&result1, &result2);
+	EXPECT_EQ(result1, result2);
 }
 TEST(Translator, setArmFile) {
 	Translator* tran = Translator::getInstance("Fake File");

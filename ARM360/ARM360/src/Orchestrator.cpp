@@ -12,7 +12,7 @@ Orchestrator* Orchestrator::instancePtr;
 /// <summary>
 /// Private constructor to enforce Singleton pattern
 /// </summary>
-Orchestrator::Orchestrator() : state(*(ProgramState::getInstance())), translator(), executor(), fileManager(*(FileManager::getInstance())) {
+Orchestrator::Orchestrator() : state( (ProgramState::getInstance())), translator(), executor(), fileManager(*(FileManager::getInstance())) {
     resetError();
 }
 
@@ -81,7 +81,7 @@ void Orchestrator::clearProgram() {
 /// Method that gets the ProgramState
 /// </summary>
 /// <returns>the current ProgramState</returns>
-ProgramState Orchestrator::getProgramState() {
+ProgramState* Orchestrator::getProgramState() {
     return state;
 }
 
@@ -90,7 +90,7 @@ ProgramState Orchestrator::getProgramState() {
 /// </summary>
 /// <param name="input">an array of char</param>
 void Orchestrator::sendInput(char input[]) {
-    state.input.setValue(input);
+    state->input.setValue(input);
 }
 
 /// <summary>
@@ -98,7 +98,7 @@ void Orchestrator::sendInput(char input[]) {
 /// </summary>
 /// <returns>The output of the input</returns>
 std::array<char,5> Orchestrator::getOutput() {
-    return state.output.getHexChars();
+    return state->output.getHexChars();
 }
 
 /// <summary>
@@ -122,14 +122,14 @@ bool Orchestrator::translateAndLoad(std::string path) {
         error = "Translator" + translator.getLastExceptionMessage();
     }
 
-    state.clearProgramState();
+    state->clearProgramState();
     std::vector<Hex4digit> code = translator.translateToMachine();
 
     // Create a temporary array of a fixed size, copy the contents of code into it, then pass the array to ProgramState
 
     // Set up the emulator
-    state.initializeState(code);
-    executor.setProgramState(state);
+    state->initializeState(code);
+    executor.setProgramState(*state);
     translator.clearFile();
 
     return result;

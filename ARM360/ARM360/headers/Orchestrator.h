@@ -16,7 +16,7 @@ class Orchestrator {
 private:
 	//Instance variables
 	static Orchestrator* instancePtr;
-	ProgramState state;
+	ProgramState* state;
 	TranslatorFacade translator;
 	ExecutorFacade executor;
 	FileManager fileManager;
@@ -34,7 +34,7 @@ public:
 	std::string getError();
 	bool next();
 	void clearProgram();
-	ProgramState getProgramState();
+	ProgramState* getProgramState();
 	void sendInput(char input[]);
 	std::array<char,5> getOutput();
 	bool translateAndLoad(std::string path);

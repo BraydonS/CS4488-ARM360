@@ -26,6 +26,8 @@
     <ClCompile Include="Hex4DigitTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MockDataGeneratorTest.cpp" />
+    <ClCompile Include="FileManagerTest.cpp" />
+    <ClCompile Include="ProgramStateTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

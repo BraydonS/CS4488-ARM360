@@ -16,7 +16,7 @@ TEST(Orchestrator, getInstance) {
 	Orchestrator* result1 = Orchestrator::getInstance();
 	Orchestrator* result2 = Orchestrator::getInstance();
 
-	EXPECT_EQ(&result1, &result2);
+	EXPECT_EQ(result1, result2);
 }
 
 TEST(Orchestrator, getError) {
@@ -47,10 +47,10 @@ TEST(Orchestrator, clearProgram) {
 TEST(Orchestrator, getProgramState) {
 	Orchestrator* obj = Orchestrator::getInstance();
 
-	ProgramState expectedResult = *ProgramState::getInstance();
-	ProgramState result = obj->getProgramState();
+	ProgramState* expectedResult = ProgramState::getInstance();
+	ProgramState* result = obj->getProgramState();
 
-	EXPECT_EQ(&expectedResult, &result);
+	EXPECT_EQ(expectedResult, result);
 }
 TEST(Orchestrator, getOutput) {
 	Orchestrator* obj = Orchestrator::getInstance();
