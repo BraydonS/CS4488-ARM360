@@ -82,17 +82,13 @@ TEST(Hex4Digit, getStringTest) {
 // See getLast2ValueTest for strange behaivor.
 // With the indexing issue this effectly gets the last 2 values.
 TEST(Hex4Digit, getMiddle2ValueTest) {
-	hex4Digit.setValue(17);
-	EXPECT_EQ(17, hex4Digit.getMiddle2Value());
+	hex4Digit.setValue(3456); // 3456(dec) = D80(Hex)
+	EXPECT_EQ(216, hex4Digit.getMiddle2Value()); // D8(Hex) = 216(dec)
 }
 
-// These function don't behave how I think they should.
-// Right now it's multiplying the last number by 16. [3] because [4] will always be the null terminator.
-// We might want to reindex this to be [2] and [3] respecivly.
-// Right now, this function effectly gets the last decimal number and mutliplies it by 16.
 TEST(Hex4Digit, getLast2ValueTest) {
-	hex4Digit.setValue(5);
-	EXPECT_EQ(80, hex4Digit.getLast2Value ());
+	hex4Digit.setValue(5674); // 5674(dec) = 162A(Hex)
+	EXPECT_EQ(42, hex4Digit.getLast2Value()); // 2A(Hex) = 42(dec)
 }
 
 TEST(Hex4Digit, hexCharTest) {

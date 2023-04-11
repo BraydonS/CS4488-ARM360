@@ -118,17 +118,31 @@ std::string Hex4digit::getString() {
     return str;
 }
 
+/**
+ * Return the integer sum of the middle digits.
+ * For determining a memory space value from inside an instruction, when the memory space is first
+ * Given a decimal number, convert to hex. Take the middle 2 digits of the hex and convert back to decimal
+ *
+ * @return the integer sum of the 2nd and 3rd digit
+ */
 int Hex4digit::getMiddle2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConverter::hexValue(hexChars[2]) * 16) +
-        HexadecimalConverter::hexValue(hexChars[3]);
+    int result = (HexadecimalConverter::hexValue(hexChars[1]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[2]);
     return result;
 }
 
+/**
+ * Return the integer sum of the last 2 digits.
+ * For determining a memory space value from inside an instruction, when the memory space is LAST
+ * Given a decimal number, convert to hex. Take the last 2 digits of the hex and convert back to decimal
+ * 
+ @return the integer sum of the 3rd and 4th digit
+ */
 int Hex4digit::getLast2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConverter::hexValue(hexChars[3]) * 16) +
-        HexadecimalConverter::hexValue(hexChars[4]);
+    int result = (HexadecimalConverter::hexValue(hexChars[2]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[3]);
     return result;
 }
 
