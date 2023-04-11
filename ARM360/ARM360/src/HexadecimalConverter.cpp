@@ -20,7 +20,9 @@
      */
 int HexadecimalConverter::hexToDecimal(char* hexArray) {
     hexArray = HexadecimalConverter::cleanCharHex(hexArray); // input scrub
-    int index = strlen(hexArray) - 1;
+    // Was 1, 2 in c++ since the char has a null terminator so +001b in Java is +001b\0
+    // So final index is strlen - 2 due to the null terminator.
+    int index = strlen(hexArray) - 2;
     int power = 1;
     int result = 0;
 
