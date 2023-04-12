@@ -18,59 +18,34 @@
      * @param hexArray  any char[] will be accepted and cleaned to work.
      * @return the integer value
      */
-//int HexadecimalConverter::hexToDecimal(char* hexArray) {
-//    hexArray = HexadecimalConverter::cleanCharHex(hexArray); // input scrub
-//    int index = strlen(hexArray) - 1;
-//    int power = 1;
-//    int result = 0;
-//
-//    // check for the negative sign.
-//    bool isNegative = (hexArray[0] == '-');
-//
-//    // Hexadecimal conversion algorithm
-//    while (index >= 0) {
-//        result = result + (hexValue(hexArray[index]) * power);
-//        index = index - 1;
-//        power = power * 16;
-//    }
-//
-//    // If negative flip
-//    if (isNegative) {
-//        result = result * -1;
-//
-//        // Special case for the min, due to 2's compliment trickery and Java number types.
-//        if (result == 0) {
-//            result = MIN;
-//        }
-//    }
-//
-//    return result;
-//}
-
 int HexadecimalConverter::hexToDecimal(char* hexArray) {
-    int len = strlen(hexArray);
+    hexArray = HexadecimalConverter::cleanCharHex(hexArray); // input scrub
+    // Was 1, 2 in c++ since the char has a null terminator so +001b in Java is +001b\0
+    // So final index is strlen - 2 due to the null terminator.
+    int index = strlen(hexArray) - 2;
     int power = 1;
     int result = 0;
 
+    // check for the negative sign.
+    bool isNegative = (hexArray[0] == '-');
+
     // Hexadecimal conversion algorithm
-    for (int i = len - 1; i >= 0; i--) {
-        int digit = 0;
-        if (hexArray[i] >= '0' && hexArray[i] <= '9') {
-            digit = hexArray[i] - '0';
-        }
-        else if (hexArray[i] >= 'a' && hexArray[i] <= 'f') {
-            digit = hexArray[i] - 'a' + 10;
-        }
-        else if (hexArray[i] >= 'A' && hexArray[i] <= 'F') {
-            digit = hexArray[i] - 'A' + 10;
-        }
-        else {
-            // Invalid character found
-            return 0;
-        }
-        result += digit * power;
-        power *= 16;
+    while (index > 0) {
+        result = result + (hexValue(hexArray[index]) * power);
+        index = index - 1;
+        power = power * 16;
     }
+
+    // If negative flip
+    if (isNegative) {
+        result = result * -1;
+
+        // Special case for the min, due to 2's compliment trickery and Java number types.
+        if (result == 0) {
+            result = MIN;
+        }
+    }
+
     return result;
 }
 

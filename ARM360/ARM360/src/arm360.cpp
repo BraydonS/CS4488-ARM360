@@ -5,6 +5,7 @@
 #include <qfile.h>
 #include <qmessagebox.h>
 #include <QRegularExpression.h> 
+#include "Hex4Digit.h"
 Orchestrator * orchestrator;
 
 ARM360::ARM360(QWidget *parent)
@@ -55,10 +56,11 @@ void ARM360::onDecimalToHexClicked() {
         QMessageBox::warning(this, tr("Warning"), tr("The input contains non-digit inputs. Please only use digits for Decimal to Hex conversion."));
         return;
     }
+
     int decimal = userDecimalInput.toInt();
     std::string hexOutput(HexadecimalConverter::decimalToHex(decimal).data());
     QString hexAsQString = QString::fromStdString(hexOutput);
-    hexAsQString = hexAsQString.remove(5, 3); // Removing weird ??? after the conversion(last 3 characters)
+    hexAsQString = hexAsQString.remove(5, 3); // Removing weird '???' after the conversion(last 3 characters)
 
     ui.txtDTHOutput->clear();
     ui.txtDTHOutput->insertPlainText(hexAsQString);
@@ -94,6 +96,40 @@ void ARM360::onHexToDecimalClicked() {
 
     ui.txtHTDOutput->clear();
     ui.txtHTDOutput->insertPlainText(decimalAsQString);
+}
+
+// Function to convert a std::array<char> to a QString.
+QString arrayToQString(std::array<char, 5> input) {
+    QString string;
+    for (int i = 0; i < input.size(); i++) {
+        QString str = QString::number(input[i]);
+        string = string + str;
+    }
+    return string;
+}
+
+// Populates registers 0 - e with memory register character. This should be called whenever next is called.
+void ARM360::getRegisters() {
+    Orchestrator* orc = Orchestrator::getInstance();
+    ProgramState* program = orc->getProgramState();
+    //QString test = arrayToQString(program->registers[0].getHexChars());
+    ui.txtR0->insertPlainText(arrayToQString(program->registers[0].getHexChars()));
+    ui.txtR1->insertPlainText(arrayToQString(program->registers[1].getHexChars()));
+    ui.txtR2->insertPlainText(arrayToQString(program->registers[2].getHexChars()));
+    ui.txtR3->insertPlainText(arrayToQString(program->registers[3].getHexChars()));
+    ui.txtR4->insertPlainText(arrayToQString(program->registers[4].getHexChars()));
+    ui.txtR5->insertPlainText(arrayToQString(program->registers[5].getHexChars()));
+    ui.txtR6->insertPlainText(arrayToQString(program->registers[6].getHexChars()));
+    ui.txtR7->insertPlainText(arrayToQString(program->registers[7].getHexChars()));
+    ui.txtR8->insertPlainText(arrayToQString(program->registers[8].getHexChars()));
+    ui.txtR9->insertPlainText(arrayToQString(program->registers[9].getHexChars()));
+    ui.txtRa->insertPlainText(arrayToQString(program->registers[10].getHexChars()));
+    ui.txtRb->insertPlainText(arrayToQString(program->registers[11].getHexChars()));
+    ui.txtRc->insertPlainText(arrayToQString(program->registers[12].getHexChars()));
+    ui.txtRd->insertPlainText(arrayToQString(program->registers[13].getHexChars()));
+    ui.txtRe->insertPlainText(arrayToQString(program->registers[14].getHexChars()));
+
+    ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
 }
 
 ARM360::~ARM360()
