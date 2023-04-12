@@ -21,6 +21,7 @@ void ARM360::onLoadClicked() {
     // orchestrator = Orchestrator::getInstance();
     // Just sets the text field to the contents of a txt file for now
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt)"));
+    Orchestrator * orchestrator = Orchestrator::getInstance();
 
     if (fileName != "")
     {

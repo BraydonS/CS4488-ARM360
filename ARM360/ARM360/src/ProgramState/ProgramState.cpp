@@ -41,14 +41,13 @@ ProgramState* ProgramState::getInstance() {
 bool ProgramState::initializeState(std::vector<Hex4digit> instructions) {
 	bool result = false;
 
-	if ((!instructions.empty()) && (instructions.size() > 0)) {
+	if (instructions.size() > 0) {
 		MemoryHistorySpace pc = MemoryHistorySpace();
 		pc.setMemoryLocation(0);
 		//TODO this is probably a bit of a hack, might fix
 		pc.getValue().setValue(&instructions[0].getHexChars()[0]);
 		pcHistory.push_back(pc);
 
-		fillOutMemory(instructions);
 		memoryStateHistory.push_back(instructions);
 
 		result = true;
@@ -75,8 +74,12 @@ std::string ProgramState::printableProgramState() {
 	stateSummary << "Input: " << input.getString() << "\n";
 	stateSummary << "Output: " << output.getString() << "\n";
 	stateSummary << "PC: " << registers.back().getString() << "\n";
-	stateSummary << "Registers: ";
 
+	if (!registers.empty()) {
+		stateSummary << "PC: " << registers.back().getString() << "\n";
+	}
+
+	stateSummary << "Registers: ";
 	for (int i = 0; i < registers.size(); i++) {
 		stateSummary << registers[i].getString() << ", ";
 	}
@@ -84,28 +87,30 @@ std::string ProgramState::printableProgramState() {
 	stateSummary << "\n\n";
 
 	stateSummary << "Next: \n";
-		
-	std::vector<Hex4digit> lastState = memoryStateHistory.back();
-	int numZeroHexDigits = 0;
-	bool seenZeroValue = false;
+	
+	if (!memoryStateHistory.empty()) {
+		std::vector<Hex4digit> lastState = memoryStateHistory.back();
+		int numZeroHexDigits = 0;
+		bool seenZeroValue = false;
 
-	// This loop appends information about the next state to the report, ommiting zero blocks for readability
-	for (int i = 0; lastState.size(); i++) {
-		Hex4digit nextStateHex = lastState[i];
-		if (nextStateHex.getValue() == 0) {
-			numZeroHexDigits++;
-			if (!seenZeroValue) {
-				stateSummary <<"\nZero block starts at: " << i << "\n";
-				seenZeroValue = true;
+		// This loop appends information about the next state to the report, ommiting zero blocks for readability
+		for (int i = 0; i < lastState.size(); i++) {
+			Hex4digit nextStateHex = lastState[i];
+			if (nextStateHex.getValue() == 0) {
+				numZeroHexDigits++;
+				if (!seenZeroValue) {
+					stateSummary <<"\nZero block starts at: " << i << "\n";
+					seenZeroValue = true;
+				}
+				continue;
 			}
-			continue;
-		}
-		else if (seenZeroValue) {
-			stateSummary << "\nZero block ends at: " << i-1 << "\n";
-			seenZeroValue = false;
-		}
+			else if (seenZeroValue) {
+				stateSummary << "\nZero block ends at: " << i-1 << "\n";
+				seenZeroValue = false;
+			}
 
-		stateSummary << nextStateHex.getString() << " ";
+			stateSummary << nextStateHex.getString() << " ";
+		}
 	}
 
 	return stateSummary.str();

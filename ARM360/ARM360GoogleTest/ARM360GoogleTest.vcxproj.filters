@@ -15,7 +15,6 @@
     <ClCompile Include="..\ARM360\src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="..\ARM360\src\Translator.cpp" />
     <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
-    <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="InstructionParserTest.cpp" />
     <ClCompile Include="InstructionSetTest.cpp" />
