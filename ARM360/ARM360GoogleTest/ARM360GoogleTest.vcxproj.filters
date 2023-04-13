@@ -27,6 +27,10 @@
     <ClCompile Include="MockDataGeneratorTest.cpp" />
     <ClCompile Include="FileManagerTest.cpp" />
     <ClCompile Include="ProgramStateTest.cpp" />
+    <ClCompile Include="HexadecimalConverterTest.cpp" />
+    <ClCompile Include="HexDataClassTest.cpp" />
+    <ClCompile Include="MemoryHistorySpaceTest.cpp" />
+    <ClCompile Include="NumberConvertorAccessTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

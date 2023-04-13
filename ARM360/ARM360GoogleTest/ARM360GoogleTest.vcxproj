@@ -54,6 +54,10 @@
     <ClCompile Include="..\ARM360\src\Translator.cpp" />
     <ClCompile Include="..\ARM360\src\TranslatorFacade.cpp" />
     <ClCompile Include="FileManagerTest.cpp" />
+    <ClCompile Include="HexadecimalConverterTest.cpp" />
+    <ClCompile Include="HexDataClassTest.cpp" />
+    <ClCompile Include="MemoryHistorySpaceTest.cpp" />
+    <ClCompile Include="NumberConvertorAccessTest.cpp" />
     <ClCompile Include="ProgramStateTest.cpp" />
     <ClCompile Include="ExecutorFacadeTest.cpp" />
     <ClCompile Include="Hex4DigitTest.cpp" />

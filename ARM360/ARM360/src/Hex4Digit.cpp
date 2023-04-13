@@ -25,12 +25,18 @@ void Hex4digit::setValue(int number) {
 }
 
 void Hex4digit::setValue(std::string number) {
-    //hex = HexadecimalConverter::hexToDecimal(number.data());
-    //
-    //std::array<char, 5> arr{};
-    //std::copy(number.begin(), number.end(), arr.begin());
-    //hex = HexadecimalConverter::hexToDecimal(arr);
+    // Convert the input string to decimal and store in hex
+    hex = HexadecimalConverter::hexToDecimal(const_cast<char*>(number.c_str()));
+
+    // Convert the input string to a fixed-size char array
+    std::array<char, 5> arr{};
+    std::copy_n(number.begin(), std::min(number.size(), arr.size()), arr.begin());
+
+    // Convert the char array to decimal and store in hex
+    hex = HexadecimalConverter::hexToDecimal(arr.data());
 }
+
+
 
 void Hex4digit::setValue(std::array<char, 5> number) {
     hex = HexadecimalConverter::hexToDecimal(number.data());
