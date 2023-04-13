@@ -406,7 +406,7 @@ void Translator::setExceptionMessage(std::string exceptionMessage) {
 /// <returns>A vector of converted Hex4digit objects</returns>
 std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
     this->parseOutLabels(parsedFile);
-    InstructionParser instructionParser = InstructionParser::getInstance();
+    InstructionParser* instructionParser = InstructionParser::getInstance();
     parsedFile = this->parseInLineHexNumbers(parsedFile);
 
     std::vector<Hex4digit> translatedFile = initializeHexMemory();
@@ -440,7 +440,7 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
         for (std::string elem : instructions) {
             std::string instruction = "";
             if (!elem.empty()) {
-                instruction = instructionParser.getParser().at(elem);
+                instruction = instructionParser->getParser().at(elem);
             }
 
             // adds instruction code to string if it is valid
