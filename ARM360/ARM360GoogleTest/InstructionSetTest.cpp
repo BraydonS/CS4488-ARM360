@@ -25,8 +25,8 @@ TEST(InstructionSet, add) {
 	InstructionSet* set = new InstructionSet();
 	ProgramState* state = ProgramState::getInstance();
 
-	state->registers[1].setValue('10');
-	state->registers[2].setValue('2');
+	state->registers[1].setValue(10);
+	state->registers[2].setValue(2);
 	char reg1 = '1';
 	char reg2 = '2';
 	char reg3 = '3';
@@ -39,8 +39,8 @@ TEST(InstructionSet, subt) {
 	InstructionSet* set = new InstructionSet();
 	ProgramState* state = ProgramState::getInstance();
 
-	state->registers[1].setValue('10');
-	state->registers[2].setValue('2');
+	state->registers[1].setValue(10);
+	state->registers[2].setValue(2);
 	char reg1 = '1';
 	char reg2 = '2';
 	char reg3 = '3';
@@ -53,8 +53,8 @@ TEST(InstructionSet, mult) {
 	InstructionSet* set = new InstructionSet();
 	ProgramState* state = ProgramState::getInstance();
 
-	state->registers[1].setValue('10');
-	state->registers[2].setValue('2');
+	state->registers[1].setValue(10);
+	state->registers[2].setValue(2);
 	char reg1 = '1';
 	char reg2 = '2';
 	char reg3 = '3';
@@ -67,8 +67,8 @@ TEST(InstructionSet, intDivide) {
 	InstructionSet* set = new InstructionSet();
 	ProgramState* state = ProgramState::getInstance();
 
-	state->registers[1].setValue('10');
-	state->registers[2].setValue('2');
+	state->registers[1].setValue(10);
+	state->registers[2].setValue(2);
 	char reg1 = '1';
 	char reg2 = '2';
 	char reg3 = '3';
