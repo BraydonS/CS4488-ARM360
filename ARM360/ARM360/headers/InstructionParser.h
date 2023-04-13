@@ -23,7 +23,7 @@ private:
 
 public:
 	// Public Methods
-	static InstructionParser getInstance();
+	static InstructionParser* getInstance();
 	std::unordered_map<std::string, std::string> getParser();
 
 };

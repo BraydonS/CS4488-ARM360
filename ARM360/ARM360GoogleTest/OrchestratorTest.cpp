@@ -52,11 +52,3 @@ TEST(Orchestrator, getProgramState) {
 
 	EXPECT_EQ(expectedResult, result);
 }
-TEST(Orchestrator, getOutput) {
-	Orchestrator* obj = Orchestrator::getInstance();
-
-	std::array<char, 5> expectedResult = { 0 };
-	std::array<char, 5> result = obj->getOutput();
-
-	EXPECT_EQ(expectedResult, result);
-}

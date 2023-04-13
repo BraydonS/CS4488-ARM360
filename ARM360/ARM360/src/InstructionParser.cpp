@@ -104,11 +104,11 @@ std::string InstructionParser::convertToHexString(int number) {
 /// Method that gets the Singleton instance of InstructionParser
 /// </summary>
 /// <returns>The only instance of InstructionParser</returns>
-InstructionParser InstructionParser::getInstance() {
+InstructionParser* InstructionParser::getInstance() {
     if (instancePtr == nullptr) {
         instancePtr = new InstructionParser();
     }
-    return *instancePtr;
+    return instancePtr;
 }
 
 /// <summary>
