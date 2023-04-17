@@ -48,9 +48,6 @@ void ARM360::onLoadClicked() {
         QTextStream in(&file);
         QString fileContents = in.readAll();
         ui.txtInput->setText(fileContents);
-        
-        setCurrentProgram(fileContents.toLocal8Bit().constData()); // Setting this file as the currently running program.
-
         file.close();
     }
 }
@@ -151,6 +148,9 @@ void ARM360::getRegisters() {
 void ARM360::onBuildClicked() {
     orc->clearProgram();
     totalStates = 0;
+    QString textInInput = ui.txtInput->toPlainText();
+    setCurrentProgram(textInInput.toLocal8Bit().constData()); // Setting the text in the text box as the currently running program.
+
     if (programFile.empty()) {
         QMessageBox::warning(this, tr("Warning"), tr("There is no program to build. Please load a program before building."));
         return;
