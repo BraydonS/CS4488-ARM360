@@ -6,7 +6,13 @@
 #include <qmessagebox.h>
 #include <QRegularExpression.h> 
 #include "Hex4Digit.h"
-Orchestrator * orchestrator;
+
+//Orchestrator * orchestrator;
+// Global Variables
+Orchestrator* orc = Orchestrator::getInstance();
+int totalStates = 0;
+bool badBool = false;
+std::string programFile;
 
 ARM360::ARM360(QWidget *parent)
     : QMainWindow(parent)
@@ -15,6 +21,11 @@ ARM360::ARM360(QWidget *parent)
     connect(ui.btnLoad, &QPushButton::clicked, this, &ARM360::onLoadClicked);
     connect(ui.btnDTH, &QPushButton::clicked, this, &ARM360::onDecimalToHexClicked);
     connect(ui.btnHTD, &QPushButton::clicked, this, &ARM360::onHexToDecimalClicked);
+    connect(ui.btnBuild, &QPushButton::clicked, this, &ARM360::onBuildClicked);
+}
+
+void ARM360::setCurrentProgram(std::string program) {
+    programFile = program;
 }
 
 void ARM360::onLoadClicked() {
@@ -22,7 +33,7 @@ void ARM360::onLoadClicked() {
     // orchestrator = Orchestrator::getInstance();
     // Just sets the text field to the contents of a txt file for now
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt)"));
-    Orchestrator * orchestrator = Orchestrator::getInstance();
+    //Orchestrator * orchestrator = Orchestrator::getInstance();
 
     if (fileName != "")
     {
@@ -35,7 +46,11 @@ void ARM360::onLoadClicked() {
         }
 
         QTextStream in(&file);
-        ui.txtInput->setText(in.readAll());
+        QString fileContents = in.readAll();
+        ui.txtInput->setText(fileContents);
+        
+        setCurrentProgram(fileContents.toLocal8Bit().constData()); // Setting this file as the currently running program.
+
         file.close();
     }
 }
@@ -110,7 +125,7 @@ QString arrayToQString(std::array<char, 5> input) {
 
 // Populates registers 0 - e with memory register character. This should be called whenever next is called.
 void ARM360::getRegisters() {
-    Orchestrator* orc = Orchestrator::getInstance();
+    //Orchestrator* orc = Orchestrator::getInstance();
     ProgramState* program = orc->getProgramState();
     //QString test = arrayToQString(program->registers[0].getHexChars());
     ui.txtR0->insertPlainText(arrayToQString(program->registers[0].getHexChars()));
@@ -130,6 +145,30 @@ void ARM360::getRegisters() {
     ui.txtRe->insertPlainText(arrayToQString(program->registers[14].getHexChars()));
 
     ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
+}
+
+// Builds the program once you load in a program via "load".
+void ARM360::onBuildClicked() {
+    orc->clearProgram();
+    totalStates = 0;
+    if (programFile.empty()) {
+        QMessageBox::warning(this, tr("Warning"), tr("There is no program to build. Please load a program before building."));
+        return;
+    }
+
+    orc->translateAndLoad(programFile);
+    ui.txtMemory->clear();
+
+    totalStates = 0;
+    badBool = false;
+    //initializeMemoryTable(); 
+
+    getRegisters();
+}
+
+// UI connection to display the memory table in the UI.
+void ARM360::initializeMemoryTable() {
+
 }
 
 ARM360::~ARM360()

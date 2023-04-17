@@ -19,4 +19,7 @@ private slots:
     void onDecimalToHexClicked();
     void onHexToDecimalClicked();
     void getRegisters();
+    void onBuildClicked();
+    void initializeMemoryTable();
+    void setCurrentProgram(std::string program);
 };
