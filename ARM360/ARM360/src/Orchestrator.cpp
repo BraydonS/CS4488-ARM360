@@ -53,19 +53,19 @@ bool Orchestrator::next() {
     resetError();
     bool result = executor.hasState();
     if (result == false) {
-        error = "Executor" + executor.getLastExceptionMessage();
+        error = "Executor " + executor.getLastExceptionMessage();
         return result;
     }
 
     result = executor.hasNext();
     if (result == false) {
-        error = "Executor" + executor.getLastExceptionMessage();
+        error = "Executor " + executor.getLastExceptionMessage();
         return result;
     }
 
     result = executor.next();
     if (result == false) {
-        error = "Executor" + executor.getLastExceptionMessage();
+        error = "Executor " + executor.getLastExceptionMessage();
     }
     return result;
 }
@@ -112,14 +112,14 @@ bool Orchestrator::translateAndLoad(std::string path) {
 
     result = translator.loadFile(path);
     if (result == false) {
-        error = "Translator" + translator.getLastExceptionMessage();
+        error = "Translator " + translator.getLastExceptionMessage();
         return result;
     }
 
     result = translator.isTranslatable();
 
     if (result == false) {
-        error = "Translator" + translator.getLastExceptionMessage();
+        error = "Translator " + translator.getLastExceptionMessage();
     }
 
     state->clearProgramState();
@@ -161,5 +161,6 @@ int Orchestrator::convertToInt(char number[]) {
 /// <param name="path">A string containing the path to a file</param>
 /// <returns>The file as a single string</returns>
 std::string Orchestrator::loadFile(std::string path) {
+    //return path;
     return fileManager.readFile(path);
 }

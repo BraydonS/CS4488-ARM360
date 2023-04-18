@@ -102,7 +102,7 @@ std::array<char, 5> Hex4digit::getHexChars() {
         str += temp[i];
     }
     // Use regex
-    str = std::regex_replace(str, std::regex("[^0-9a-f]"), "");
+    str = std::regex_replace(str, std::regex("[^0-9a-f+]"), "");
     // Copy into an std::array
     std::array<char, 5> arr = {};
     for (int i = 0; i < str.size(); i++) {

@@ -326,6 +326,9 @@ Translator* Translator::getInstance(std::string armFile) {
     if (instancePtr == nullptr) {
         instancePtr = new Translator(armFile); // initialize translator
     }
+    else { // This updates the armFile if there is already a Translator instance. Otherwise, the armFile is never updated.
+        instancePtr->translate(armFile);
+    }
     return instancePtr;
 }
 
