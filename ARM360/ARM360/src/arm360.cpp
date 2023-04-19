@@ -27,6 +27,7 @@ ARM360::ARM360(QWidget *parent)
     connect(ui.btnBuild, &QPushButton::clicked, this, &ARM360::onBuildClicked);
     connect(ui.btnAbort, &QPushButton::clicked, this, &ARM360::abortProgram);
     connect(ui.btnRun, &QPushButton::clicked, this, &ARM360::runProgram);
+    connect(ui.btnNext, &QPushButton::clicked, this, &ARM360::executeStep);
 
     orc = Orchestrator::getInstance();
     totalStates = 0;
