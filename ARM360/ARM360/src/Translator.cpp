@@ -207,6 +207,7 @@ std::string* Translator::parseFile(std::string armFile) {
     //    i++;
     //}
 
+    // Modified algorithm here
     std::string delimitter = ";";
     std::string* array = new std::string[256];
     size_t pos = 0;
@@ -218,7 +219,7 @@ std::string* Translator::parseFile(std::string armFile) {
         noComments = noComments.substr(pos + delimitter.length());
         i++;
     }
-
+    // End Modified algorithm
     return array;
 }
 
