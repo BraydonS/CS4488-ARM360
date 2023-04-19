@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include "stdafx.h"
 #include "../../ARM360/headers/stdafx.h"
 #include "../../ARM360/headers/NumberConvertorAccess.h"
 #include "../../ARM360/headers/Hex4digit.h"
