@@ -156,9 +156,7 @@ QString arrayToQString(std::array<char, 5> input) {
 /// </summary>
 void ARM360::getRegisters() {
     clearRegisters();
-    //Orchestrator* orc = Orchestrator::getInstance();
     ProgramState* program = orc->getProgramState();
-    //QString test = arrayToQString(program->registers[0].getHexChars());
     ui.txtR0->insertPlainText(arrayToQString(program->registers[0].getHexChars()));
     ui.txtR1->insertPlainText(arrayToQString(program->registers[1].getHexChars()));
     ui.txtR2->insertPlainText(arrayToQString(program->registers[2].getHexChars()));
@@ -176,6 +174,7 @@ void ARM360::getRegisters() {
     ui.txtRe->insertPlainText(arrayToQString(program->registers[14].getHexChars()));
 
     ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
+    ui.txtOut->insertPlainText(QString::fromStdString((program->output.getString())));
 }
 
 void ARM360::clearRegisters() {
@@ -183,6 +182,7 @@ void ARM360::clearRegisters() {
     ui.txtR4->clear();ui.txtR5->clear();ui.txtR6->clear();ui.txtR7->clear();
     ui.txtR8->clear();ui.txtR9->clear();ui.txtRa->clear();ui.txtRb->clear();
     ui.txtRc->clear();ui.txtRd->clear();ui.txtRe->clear();ui.txtPC->clear();
+    ui.txtOut->clear();
 }
 
 /// <summary>
