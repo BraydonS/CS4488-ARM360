@@ -5,13 +5,15 @@
 #include <fstream>
 
 #include <gtest/gtest.h>
-#include "HexadecimalConverter.h"
-#include "Hex4digit.h"
-#include "HexDataClass.h"
+#include "../../ARM360/headers/Hex4digit.h"
+#include "../../ARM360/headers/HexDataClass.h"
 #include "gtest/gtest.h"
-#include "HexadecimalConverter.h"
+#include "../../ARM360/headers/HexadecimalConverter.h"
 #include <string>
 #include <array>
+
+#include "../../ARM360/headers/stdafx.h"
+
 
 
 
