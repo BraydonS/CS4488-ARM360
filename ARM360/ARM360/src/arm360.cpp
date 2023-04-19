@@ -19,7 +19,6 @@ ARM360::ARM360(QWidget *parent)
 
 void ARM360::onLoadClicked() {
 
-    // orchestrator = Orchestrator::getInstance();
     // Just sets the text field to the contents of a txt file for now
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt)"));
     Orchestrator * orchestrator = Orchestrator::getInstance();
@@ -34,6 +33,8 @@ void ARM360::onLoadClicked() {
             return;
         }
 
+        orchestrator->clearProgram();
+        orchestrator->loadFile(file.fileName().toStdString());
         QTextStream in(&file);
         ui.txtInput->setText(in.readAll());
         file.close();

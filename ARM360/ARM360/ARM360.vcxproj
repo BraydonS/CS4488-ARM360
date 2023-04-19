@@ -31,7 +31,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.4.3_msvc2019_64</QtInstall>
+    <QtInstall>6.4.2_msvc2019_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -145,6 +145,7 @@
     <QtMoc Include="headers\arm360.h" />
     <QtRcc Include="arm360.qrc" />
     <QtUic Include="arm360.ui" />
+    <QtUic Include="arm360_old.ui" />
     <None Include="ARM360.ico" />
     <ResourceCompile Include="ARM360.rc" />
     <ClCompile Include="src\arm360.cpp" />

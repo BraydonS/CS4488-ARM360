@@ -26,7 +26,7 @@
     <QtRcc Include="arm360.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="arm360.ui">
+    <QtUic Include="arm360_old.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <None Include="ARM360.ico">
@@ -149,5 +149,10 @@
     <QtMoc Include="headers\arm360.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="arm360.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>
