@@ -193,17 +193,33 @@ std::string* Translator::parseFile(std::string armFile) {
     if (noComments.empty()) {
         return  nullptr;
     }
-    char delimitter = ';';
+
     size_t start = 0;
-    size_t end = noComments.find(delimitter);
-    std::string array[256];
+    //char delimitter = ';';
+    //size_t end = noComments.find(delimitter);
+    //td::string array[255];
+
+    //int i = 0;
+    //while (end >= 0) {
+    //    array[i] = noComments.substr(start, end);
+    //    start = end + 1;
+    //    end = noComments.find(delimitter);
+    //    i++;
+    //}
+
+    // Modified algorithm here
+    std::string delimitter = ";";
+    std::string* array = new std::string[256];
+    size_t pos = 0;
+    std::string token;
     int i = 0;
-    while (end >= 0) {
-        array[i] = noComments.substr(start, end);
-        start = end + 1;
-        end = noComments.find(delimitter);
+    while ((pos = noComments.find(delimitter)) != std::string::npos) {
+        token = noComments.substr(0, pos);
+        array[i] = token + '\n';
+        noComments = noComments.substr(pos + delimitter.length());
         i++;
     }
+    // End Modified algorithm
     return array;
 }
 
