@@ -5,8 +5,17 @@
 #include <qfile.h>
 #include <qmessagebox.h>
 #include <QRegularExpression.h> 
+#include <array>
+#include <iostream>
+#include <fstream>
 #include "Hex4Digit.h"
-Orchestrator * orchestrator;
+
+//Orchestrator * orchestrator;
+// Global Variables
+//Orchestrator* orc;// = Orchestrator::getInstance();
+//int totalStates;// = 0;
+//bool badBool;// = false;
+//std::string programFile;
 
 ARM360::ARM360(QWidget *parent)
     : QMainWindow(parent)
@@ -15,13 +24,42 @@ ARM360::ARM360(QWidget *parent)
     connect(ui.btnLoad, &QPushButton::clicked, this, &ARM360::onLoadClicked);
     connect(ui.btnDTH, &QPushButton::clicked, this, &ARM360::onDecimalToHexClicked);
     connect(ui.btnHTD, &QPushButton::clicked, this, &ARM360::onHexToDecimalClicked);
+    connect(ui.btnBuild, &QPushButton::clicked, this, &ARM360::onBuildClicked);
+    connect(ui.btnAbort, &QPushButton::clicked, this, &ARM360::abortProgram);
+    connect(ui.btnRun, &QPushButton::clicked, this, &ARM360::runProgram);
+    connect(ui.btnNext, &QPushButton::clicked, this, &ARM360::executeStep);
+
+    orc = Orchestrator::getInstance();
+    totalStates = 0;
+    badBool = false;
 }
 
+/// <summary>
+/// Sets the current file name of the program to run.
+/// </summary>
+void ARM360::setCurrentProgram(std::string file){
+    programFile = file;
+}
+
+/// <summary>
+/// Updates the file contents with what is currently in the text box.
+/// </summary>
+void ARM360::updateFileWithInput() {
+    std::ofstream fileToWrite;
+    fileToWrite.open(programFile);
+    fileToWrite << ui.txtInput->toPlainText().toStdString();
+    fileToWrite.close();
+    programFileContents = ui.txtInput->toPlainText().toStdString();
+}
+
+/// <summary>
+/// Loads the contents of the chosen file into the text box and sets that file as the program to run.
+/// </summary>
 void ARM360::onLoadClicked() {
 
     // Just sets the text field to the contents of a txt file for now
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt)"));
-    Orchestrator * orchestrator = Orchestrator::getInstance();
+    //Orchestrator * orchestrator = Orchestrator::getInstance();
 
     if (fileName != "")
     {
@@ -32,15 +70,17 @@ void ARM360::onLoadClicked() {
             QMessageBox::warning(this, tr("Warning"), tr("Cannot open file: %1").arg(file.errorString()));
             return;
         }
-
-        orchestrator->clearProgram();
-        orchestrator->loadFile(file.fileName().toStdString());
+        setCurrentProgram(fileName.toStdString());
         QTextStream in(&file);
-        ui.txtInput->setText(in.readAll());
+        QString fileContents = in.readAll();
+        ui.txtInput->setText(fileContents);
         file.close();
     }
 }
 
+/// <summary>
+/// Converts a given decimal number to hex
+/// </summary>
 void ARM360::onDecimalToHexClicked() {
     QString userDecimalInput = ui.txtDecimal->toPlainText();
 
@@ -67,7 +107,9 @@ void ARM360::onDecimalToHexClicked() {
     ui.txtDTHOutput->insertPlainText(hexAsQString);
 }
 
-
+/// <summary>
+/// Converts a given hex number to decimal
+/// </summary>
 void ARM360::onHexToDecimalClicked() {
     QString userHexInput = ui.txtHex->toPlainText();
 
@@ -101,17 +143,19 @@ void ARM360::onHexToDecimalClicked() {
 
 // Function to convert a std::array<char> to a QString.
 QString arrayToQString(std::array<char, 5> input) {
-    QString string;
+    QString string = "";
     for (int i = 0; i < input.size(); i++) {
-        QString str = QString::number(input[i]);
-        string = string + str;
+        QString str = QChar(input[i]);
+        string += str;
     }
     return string;
 }
-
-// Populates registers 0 - e with memory register character. This should be called whenever next is called.
+/// <summary>
+/// Populates registers 0 - e with memory register character. This should be called whenever next is called.
+/// </summary>
 void ARM360::getRegisters() {
-    Orchestrator* orc = Orchestrator::getInstance();
+    clearRegisters();
+    //Orchestrator* orc = Orchestrator::getInstance();
     ProgramState* program = orc->getProgramState();
     //QString test = arrayToQString(program->registers[0].getHexChars());
     ui.txtR0->insertPlainText(arrayToQString(program->registers[0].getHexChars()));
@@ -131,6 +175,124 @@ void ARM360::getRegisters() {
     ui.txtRe->insertPlainText(arrayToQString(program->registers[14].getHexChars()));
 
     ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
+}
+
+void ARM360::clearRegisters() {
+    ui.txtR0->clear();ui.txtR1->clear();ui.txtR2->clear();ui.txtR3->clear();
+    ui.txtR4->clear();ui.txtR5->clear();ui.txtR6->clear();ui.txtR7->clear();
+    ui.txtR8->clear();ui.txtR9->clear();ui.txtRa->clear();ui.txtRb->clear();
+    ui.txtRc->clear();ui.txtRd->clear();ui.txtRe->clear();ui.txtPC->clear();
+}
+
+/// <summary>
+/// Builds the program once you load in a program via "load".
+/// </summary>
+void ARM360::onBuildClicked() {
+    orc->clearProgram();
+    totalStates = 0;
+    setCurrentProgram(programFile);
+    updateFileWithInput();
+
+    if (programFile.empty()) {
+        QMessageBox::warning(this, tr("Warning"), tr("There is no program to build. Please load a program before building."));
+        return;
+    }
+
+    orc->translateAndLoad(programFile);
+    ui.txtMemory->clear();
+
+    totalStates = 0;
+    badBool = false;
+    //initializeMemoryTable(); 
+
+    getRegisters();
+}
+
+// UI connection to display the memory table in the UI.
+void ARM360::initializeMemoryTable() {}
+
+// Stops the currently running program and clears the register states from the UI.
+void ARM360::abortProgram() {
+    orc->clearProgram();
+    clearRegisters();
+}
+
+// Run the whole program until the end of file is reached or an error occures.
+void ARM360::runProgram() {
+    //onBuildClicked();
+
+    while (true) {
+        if (orc->getProgramState()->registers[15].getValue() == -1) {
+            QMessageBox::warning(this, tr("Warning"), tr("The end of the file has been reached."));
+            break;
+        }
+
+        if (orc->getError() == "Orchestrator: No Error.") {
+            executeStep();
+            //QMessageBox::warning(this, tr("Warning"), tr("successfully ran"));
+        }
+
+        else {
+            std::string orcError = ("An error has occured when running the program: " + orc->getError());
+            QMessageBox::warning(this, tr("Warning"), tr(orcError.c_str()));
+            break;
+        }
+    }
+}
+
+// Executes the next line of the program.
+void ARM360::executeStep() {
+    bool displayEndMessage = false;
+    incrimententTotalStates();
+
+    getRegisters();
+
+    try {
+        // There was an error in building or running.
+        if (orc->getError() != "Orchestrator: No Error.") {
+            std::string orcError = ("An error has occured when executing the next step: " + orc->getError());
+            QMessageBox::warning(this, tr("Warning"), tr(orcError.c_str()));
+
+            abortProgram();
+            orc->translateAndLoad(programFile);
+        }
+
+        // There are more instrucitons past this step.
+        else if (orc->getProgramState()->registers[15].getValue() != -1) {
+            if (programFile.size() > 0) {
+                orc->sendInput(vectorToCharArray(orc->convertToHexChars(stringToShort(programFile))));
+            }
+            orc->next();
+        }
+
+        else {
+            displayEndMessage = true;
+        }
+    }
+    catch (const std::exception&) {
+        std::string orcError = ("An unknown error has occured");
+    }
+
+    // Update RAM Values
+}
+
+char* ARM360::vectorToCharArray(std::vector<char> vec) {
+    char array[5];
+    for (int i = 0; i < vec.size() && i < 5; i++) {
+        array[i] = vec[i];
+    }
+    return array;
+}
+
+// Quick funtion to convert a string to a short, because c++ doesn't have a conversion itself for some reason.
+// Not proper since it doesn't check the bound of the int vs short. (use std::numeric_limits<short>).
+short ARM360::stringToShort(std::string str) {
+    int stringAsInt = std::stoi(str);
+    return (short) stringAsInt;
+}
+
+void ARM360::incrimententTotalStates() {
+    totalStates += 1;
 }
 
 ARM360::~ARM360()
