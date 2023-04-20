@@ -1,7 +1,6 @@
 // ExecutorFacade source file
 // Show Pratoomratana
 // 02/01/2023
-#include <string>
 #include "stdafx.h"
 #include "ExecutorFacade.h"
 
@@ -11,11 +10,16 @@ std::string EXCEPTIONMESSAGE = "No Error";
 
 // Private methods
 
-// Updates index of current memory is being accessed.
+/// <summary>
+/// Updates index of current memory is being accessed.
+/// </summary>
 void ExecutorFacade::incrementMemoryIndex() {
     MEMORYSTATEINDEX++;
 }
-// Updates the program counter with the last memory location.
+
+/// <summary>
+/// Updates the program counter with the last memory location.
+/// </summary>
 void ExecutorFacade::updatePCHistory(){                                             
     MemoryHistorySpace pc = MemoryHistorySpace();
     pc.setMemoryLocation(MEMORYSTATEINDEX);
@@ -23,12 +27,19 @@ void ExecutorFacade::updatePCHistory(){
 }
 
 //Public methods
+
+/// <summary>
+/// Getter for the MemoryStateIndex
+/// </summary>
+/// <returns>MemoryStateIndex</returns>
 int ExecutorFacade::getMemoryStateIndex(){
     return MEMORYSTATEINDEX;
 }
 
-// Function to check if the next instruction goes out of bounds.
-// @return bool : whether or not the next instruction is valid.
+/// <summary>
+/// Function to check if the next instruction goes out of bounds.
+/// </summary>
+/// <returns>bool : whether or not the next instruction is valid.</returns>
 bool ExecutorFacade::hasNext(){
 
     // The current value and size of the Program Counter respecivly. 
@@ -65,14 +76,19 @@ bool ExecutorFacade::hasNext(){
     return true;
 }
 
-// Function to Simply creates the current program state with an empty vector.
+/// <summary>
+/// Function that simply creates the current program state with an empty vector.
+/// </summary>
+/// <param name="state">The ProgramState being initilized</param>
 void ExecutorFacade::setProgramState(ProgramState state){
     std::vector<Hex4digit> code;
     state.initializeState(code);
 }
 
-// Simply checks if the state of the program is empty or not.
-// @return bool: whether or not a memorystatehistory currently exists.
+/// <summary>
+/// Simply checks if the state of the program is empty or not.
+/// </summary>
+/// <returns>bool: whether or not a memorystatehistory currently exists.</returns>
 bool ExecutorFacade::hasState() {
     if (ProgramState::getInstance()->memoryStateHistory.empty()){
         EXCEPTIONMESSAGE = "No state has been created";
@@ -81,15 +97,19 @@ bool ExecutorFacade::hasState() {
     return true;
 }
 
-// If the given programState is unknown update the exceptionMessage.
-// @param : The current programState
+/// <summary>
+/// If the given programState is unknown update the exceptionMessage.
+/// </summary>
+/// <param name="state">The current programState</param>
 void ExecutorFacade::unrecognizedInstruction(ProgramState state) {
     EXCEPTIONMESSAGE = "The given instruction was not recognized!";
     InstructionSet::halt(&state);
 }
 
-// Takes a hex instruction based on the first value and executes the corresponding instruction.
-// @param : The current object instance of the Hex4digit class.
+/// <summary>
+/// Takes a hex instruction based on the first value and executes the corresponding instruction.
+/// </summary>
+/// <param name="instance">The current object instance of the Hex4digit class.</param>
 void ExecutorFacade::determineInstruction(Hex4digit instance){
     ProgramState *state = ProgramState::getInstance();
     switch(instance.getHexChars()[1]){
@@ -113,8 +133,10 @@ void ExecutorFacade::determineInstruction(Hex4digit instance){
         }
 }
 
-// Function to execute the next instruction and update the memory index.
-// @return bool : Whether or not the execution was successfull.
+/// <summary>
+/// Function to execute the next instruction and update the memory index.
+/// </summary>
+/// <returns>bool : Whether or not the execution was successfull.</returns>
 bool ExecutorFacade::next(){
     // Check if the programState is instantiated. 
     // and check if there's already a instruction in the program counter.
@@ -141,14 +163,18 @@ bool ExecutorFacade::next(){
     return true;
 }
 
-// Clears the current state of the programState.
+/// <summary>
+/// Clears the current state of the programState.
+/// </summary>
 void ExecutorFacade::clearState(){
     MEMORYSTATEINDEX = 0;
     ProgramState::getInstance()->clearProgramState();
 }
 
-// Simply gets the last exceptionMessage from the program.
-// @return string: string of last exception message.
+/// <summary>
+/// Simply gets the last exceptionMessage from the program.
+/// </summary>
+/// <returns>string: string of last exception message.</returns>
 std::string ExecutorFacade::getLastExceptionMessage(){
     return EXCEPTIONMESSAGE;
 }
