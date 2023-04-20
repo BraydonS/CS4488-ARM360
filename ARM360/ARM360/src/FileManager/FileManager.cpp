@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "FileManager/FileManager.h"
-#include <regex>
 
 /// <summary>
 /// The FileManager is used to read/write user code to from/to a file
@@ -16,6 +15,10 @@
 
 FileManager* FileManager::instance;
 
+/// <summary>
+/// Method that returns the Singleton instance of the FileManager
+/// </summary>
+/// <returns>FileManager</returns>
 FileManager* FileManager::getInstance() {
 	if (instance == nullptr) {
 		FileManager::instance = new FileManager;
