@@ -32,11 +32,11 @@ bool Translator::translate(std::string armFile) {
     // Translate if loaded
     if (this->isLoaded()) {
         // Parse Arm-file for hex conversion
-        std::string parsedFile = *this->parseFile(this->getArmFile());
+        std::string *parsedFile = this->parseFile(this->getArmFile());
         // convert to hex code
         std::vector<Hex4digit> hex4dCode;
-        if (parsedFile.size() > 0) {
-            hex4dCode = this->convertToHex(&parsedFile);
+        if (parsedFile->size() > 0) {
+            hex4dCode = this->convertToHex(parsedFile);
         }
 
 
@@ -230,7 +230,7 @@ std::string* Translator::parseFile(std::string armFile) {
 void Translator::parseOutLabels(std::string file[]) {
     for (int i = 0; i < (*file).length(); i++) {
         std::string line = file[i];
-        if (line.find(":") >= 0) {
+        if (line.find(":") != std::string::npos) {
             // replace all label occurrence
             this->setLabels(std::regex_replace(line, std::regex("\\s"), ""), file, i);
         }
