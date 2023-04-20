@@ -115,7 +115,7 @@
     <ClCompile Include="src\FileManager\FileManager.cpp" />
     <ClCompile Include="src\MemoryHistorySpace.cpp" />
     <ClCompile Include="src\MockDataGenerator.cpp" />
-    <ClCompile Include="src\NumberConvertorAccess.cpp" />
+    <ClCompile Include="src\NumberConverterAccess.cpp" />
     <ClCompile Include="src\Orchestrator.cpp" />
     <ClCompile Include="src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="src\stdafx.cpp">
@@ -135,7 +135,7 @@
     <ClInclude Include="headers\InstructionSet.h" />
     <ClInclude Include="headers\MemoryHistorySpace.h" />
     <ClInclude Include="headers\MockDataGenerator.h" />
-    <ClInclude Include="headers\NumberConvertorAccess.h" />
+    <ClInclude Include="headers\NumberConverterAccess.h" />
     <ClInclude Include="headers\Orchestrator.h" />
     <ClInclude Include="headers\ProgramState\ProgramState.h" />
     <ClInclude Include="headers\stdafx.h" />

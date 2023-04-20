@@ -85,7 +85,7 @@
     <ClCompile Include="src\MemoryHistorySpace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\NumberConvertorAccess.cpp">
+    <ClCompile Include="src\NumberConverterAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,7 +132,7 @@
     <ClInclude Include="headers\Hex4digit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\NumberConvertorAccess.h">
+    <ClInclude Include="headers\NumberConverterAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\MemoryHistorySpace.h">

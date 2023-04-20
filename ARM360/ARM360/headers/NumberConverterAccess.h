@@ -1,6 +1,9 @@
 
 #pragma once
 #include <string>
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 #include "Hex4digit.h"
 // Define the NumberConverterAccess class
 class NumberConverterAccess {

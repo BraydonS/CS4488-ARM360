@@ -10,7 +10,7 @@
     <ClCompile Include="..\ARM360\src\InstructionSet.cpp" />
     <ClCompile Include="..\ARM360\src\MemoryHistorySpace.cpp" />
     <ClCompile Include="..\ARM360\src\MockDataGenerator.cpp" />
-    <ClCompile Include="..\ARM360\src\NumberConvertorAccess.cpp" />
+    <ClCompile Include="..\ARM360\src\NumberConverterAccess.cpp" />
     <ClCompile Include="..\ARM360\src\Orchestrator.cpp" />
     <ClCompile Include="..\ARM360\src\ProgramState\ProgramState.cpp" />
     <ClCompile Include="..\ARM360\src\Translator.cpp" />
@@ -30,7 +30,7 @@
     <ClCompile Include="HexadecimalConverterTest.cpp" />
     <ClCompile Include="HexDataClassTest.cpp" />
     <ClCompile Include="MemoryHistorySpaceTest.cpp" />
-    <ClCompile Include="NumberConvertorAccessTest.cpp" />
+    <ClCompile Include="NumberConverterAccessTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
