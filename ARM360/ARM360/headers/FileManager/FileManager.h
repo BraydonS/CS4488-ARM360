@@ -4,6 +4,7 @@
 
 #include <string>
 #include <fstream>
+#include <regex>
 
 class FileManager {
 public:

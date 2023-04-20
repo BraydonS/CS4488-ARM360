@@ -2,6 +2,9 @@
 #pragma once
 #include <string>
 #include <regex>
+#include <cstring>
+#include <array>
+#include <algorithm>
 #include "HexadecimalConverter.h"
 
 class Hex4digit {
