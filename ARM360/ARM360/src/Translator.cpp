@@ -327,14 +327,6 @@ bool Translator::isTranslatable() {
 }
 
 /// <summary>
-/// Method that updates the bool isFileTranalatable
-/// </summary>
-/// <param name="translatable">bool value to be set as the value for isFileTranslatable</param>
-void Translator::setTranslatable(bool translatable) {
-    this->isFileTranslatable = translatable;
-}
-
-/// <summary>
 /// Method that gets returns a reference to the the Singleton instance of the Translator
 /// </summary>
 /// <returns>The Translator object</returns>
@@ -343,9 +335,18 @@ Translator* Translator::getInstance(std::string armFile) {
         instancePtr = new Translator(armFile); // initialize translator
     }
     else { // This updates the armFile if there is already a Translator instance. Otherwise, the armFile is never updated.
-        instancePtr->translate(armFile);
+        //instancePtr->translate(armFile);
+        instancePtr->setTranslatable(instancePtr->translate(armFile));
     }
     return instancePtr;
+}
+
+/// <summary>
+/// Method that updates the bool isFileTranalatable
+/// </summary>
+/// <param name="translatable">bool value to be set as the value for isFileTranslatable</param>
+void Translator::setTranslatable(bool translatable) {
+    this->isFileTranslatable = translatable;
 }
 
 /// <summary>

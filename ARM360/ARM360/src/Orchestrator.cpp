@@ -117,7 +117,7 @@ bool Orchestrator::translateAndLoad(std::string path) {
     }
 
     result = translator.isTranslatable();
-
+    
     if (result == false) {
         error = "Translator " + translator.getLastExceptionMessage();
     }

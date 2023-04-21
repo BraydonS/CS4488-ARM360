@@ -223,7 +223,7 @@ void ARM360::runProgram() {
 
     while (true) {
         if (orc->getProgramState()->registers[15].getValue() == -1) {
-            QMessageBox::warning(this, tr("Warning"), tr("The end of the file has been reached."));
+            QMessageBox::warning(this, tr("Complete"), tr("The end of the file has been reached."));
             break;
         }
 
@@ -259,8 +259,8 @@ void ARM360::executeStep() {
 
         // There are more instrucitons past this step.
         else if (orc->getProgramState()->registers[15].getValue() != -1) {
-            if (programFile.size() > 0) {
-                orc->sendInput(vectorToCharArray(orc->convertToHexChars(stringToShort(programFile))));
+            if (ui.txtIn->toPlainText().toStdString().size() > 0) {
+                orc->sendInput(vectorToCharArray(orc->convertToHexChars(stringToShort(ui.txtIn->toPlainText().toStdString()))));
             }
             orc->next();
         }
@@ -271,9 +271,14 @@ void ARM360::executeStep() {
     }
     catch (const std::exception&) {
         std::string orcError = ("An unknown error has occured");
+        QMessageBox::warning(this, tr("Warning"), tr(orcError.c_str()));
+        return;
     }
 
-    // Update RAM Values
+    // Update RAM Values here if we get to implementing it.
+        if (displayEndMessage) {
+            QMessageBox::warning(this, tr("Complete"), tr("The end of the file has been reached."));
+        }
 }
 
 char* ARM360::vectorToCharArray(std::vector<char> vec) {
