@@ -265,7 +265,7 @@ void ARM360::executeStep() {
             orc->next();
         }
 
-        else {
+        else if (orc->getProgramState()->registers[15].getValue() == -1) {
             displayEndMessage = true;
         }
     }

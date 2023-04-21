@@ -141,7 +141,7 @@ std::string* Translator::parseInLineHexNumbers(std::string file[]) {
     int start = 256; // max memory space
 
     if (end < 256) {
-        std::string memory[256] = { "" };
+        std::string *memory = new std::string[255];
         std::regex pattern("[0-9]{4}");
 
         for (int i = 0; i < (*file).length(); i++) {
@@ -446,16 +446,26 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
 
         // split on each instruction
         std::string instructions[256];
-        char delimitter = ' ';
+        //char delimitter = ' ';
+        std::string delimitter = " ";
         size_t start = 0;
-        size_t end = line.find(delimitter);
+        //size_t end = line.find(delimitter);
         int i = 0;
-        while (end >= 0) {
-            instructions[i] = line.substr(start, end);
-            start = end + 1;
-            end = line.find(delimitter);
+        //while (end >= 0) { // Doesn't parse correctly
+        //    instructions[i] = line.substr(start, end);
+        //    start = end + 1;
+        //    end = line.find(delimitter);
+        //    i++;
+        //}
+        size_t pos = 0;
+        std::string token;
+        while ((pos = line.find(delimitter)) != std::string::npos) {
+            token = line.substr(0, pos);
+            instructions[i] = token + '\n';
+            line = line.substr(pos + delimitter.length());
             i++;
         }
+
 
         for (std::string elem : instructions) {
             std::string instruction = "";
