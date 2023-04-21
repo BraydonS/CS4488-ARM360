@@ -1,9 +1,5 @@
-#include <cstring>
-#include <cstdio>
 #include "stdafx.h"
 #include "HexadecimalConverter.h"
-#include <array>
-#include <string>
 
 
 // MAX and MIN are defined using LONG_MAX and LONG_MIN respectively
@@ -13,11 +9,12 @@
 
     // Public Static Procedural Functions- Conversion Decimal<->Hexadecimal
 
-    /**
-     * Hexidecimal Char[] to int Decimal value
-     * @param hexArray  any char[] will be accepted and cleaned to work.
-     * @return the integer value
-     */
+
+/// <summary>
+/// Hexidecimal Char[] to int Decimal value
+/// </summary>
+/// <param name="hexArray">any char[] will be accepted and cleaned to work.</param>
+/// <returns>the integer value</returns>
 int HexadecimalConverter::hexToDecimal(char* hexArray) {
     hexArray = HexadecimalConverter::cleanCharHex(hexArray); // input scrub
     // Was 1, 2 in c++ since the char has a null terminator so +001b in Java is +001b\0
@@ -49,11 +46,12 @@ int HexadecimalConverter::hexToDecimal(char* hexArray) {
     return result;
 }
 
-/**
- * int Decimal value to Hexidecimal Char[]
- * @param value
- * @return char[5] of the +/- & 4 hex digits
- */
+
+/// <summary>
+/// int Decimal value to Hexidecimal Char[]
+/// </summary>
+/// <param name="value">The value to convert</param>
+/// <returns>char[5] of the +/- & 4 hex digits</returns>
 std::array<char, 5> HexadecimalConverter::decimalToHex(int value) {
     value = hex4digitValueWrap(value);
     std::array<char, 5> output = makeBlankChar5();
@@ -79,11 +77,11 @@ std::array<char, 5> HexadecimalConverter::decimalToHex(int value) {
 }
 
 
-/**
- * Get a char of an int value
- * @param n 0-15
- * @return 0-9,a-f  otherwise 0;
- */
+/// <summary>
+/// Get a char of an int value
+/// </summary>
+/// <param name="n">0-15</param>
+/// <returns>0-9,a-f  otherwise 0;</returns>
 char HexadecimalConverter::hexChar(int n) {
     char result = '0';
     switch (n) {
@@ -140,8 +138,11 @@ char HexadecimalConverter::hexChar(int n) {
 }
 
 
-
-
+/// <summary>
+/// Get the integer value of a char value
+/// </summary>
+/// <param name="n">0-9,a-f</param>
+/// <returns>0-15</returns>
 int HexadecimalConverter::hexValue(char n) {
     int result = 0;
     switch (n) {
@@ -197,6 +198,7 @@ int HexadecimalConverter::hexValue(char n) {
     }
     return result;
 }
+
 
 // MAX and MIN needs to be defined
 int HexadecimalConverter::hex4digitValueWrap(int n) {

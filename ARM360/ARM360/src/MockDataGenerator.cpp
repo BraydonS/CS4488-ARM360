@@ -1,7 +1,6 @@
 // MockDataGenerator source file
 // Show Pratoomratana
 // 02/05/23
-#include <stdlib.h>
 #include "stdafx.h"
 #include "MockDataGenerator.h"
 

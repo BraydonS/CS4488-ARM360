@@ -141,7 +141,7 @@ std::string* Translator::parseInLineHexNumbers(std::string file[]) {
     int start = 256; // max memory space
 
     if (end < 256) {
-        std::string memory[256] = { "" };
+        std::string* memory = new std::string[256];
         std::regex pattern("[0-9]{4}");
 
         for (int i = 0; i < (*file).length(); i++) {
