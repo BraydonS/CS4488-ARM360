@@ -5,6 +5,7 @@
 #pragma once
 #include "Hex4digit.h"
 #include <vector>
+#include <stdlib.h>
 
 class MockDataGenerator{
     

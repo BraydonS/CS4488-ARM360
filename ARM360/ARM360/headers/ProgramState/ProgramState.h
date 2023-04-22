@@ -6,6 +6,8 @@
 #include <memory>
 #include <string>
 #include <array>
+#include <sstream>
+#include <exception>
 #include "../Hex4digit.h"
 #include "../MemoryHistorySpace.h"
 

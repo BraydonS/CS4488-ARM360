@@ -1,9 +1,6 @@
 #include "stdafx.h"
-#include "Hex4Digit.h"
-#include "MemoryHistorySpace.h"
 #include "ProgramState/programstate.h"
-#include <sstream>
-#include <exception>
+
 
 /// <summary>
 /// The ProgramState singleton is a data class operated on by the executor, which stores the machine state in a vector of state arrays

@@ -4,6 +4,8 @@
 #include <array>
 #include <string>
 #include <regex>
+#include <cstring>
+#include <cstdio>
 // required <regex> and <algorithm> library for std::transform() function
 
 class HexadecimalConverter {
