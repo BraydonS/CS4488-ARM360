@@ -247,7 +247,7 @@ void ARM360::executeStep() {
 
     getRegisters();
 
-    try {
+    //try {
         // There was an error in building or running.
         if (orc->getError() != "Orchestrator: No Error.") {
             std::string orcError = ("An error has occured when executing the next step: " + orc->getError());
@@ -268,12 +268,12 @@ void ARM360::executeStep() {
         else if (orc->getProgramState()->registers[15].getValue() == -1) {
             displayEndMessage = true;
         }
-    }
-    catch (const std::exception&) {
-        std::string orcError = ("An unknown error has occured");
-        QMessageBox::warning(this, tr("Warning"), tr(orcError.c_str()));
-        return;
-    }
+    //}
+    //catch (const std::exception&) {
+    //    std::string orcError = ("An unknown error has occured");
+    //    QMessageBox::warning(this, tr("Warning"), tr(orcError.c_str()));
+    //    return;
+    //}
 
     // Update RAM Values here if we get to implementing it.
         if (displayEndMessage) {

@@ -187,8 +187,9 @@ std::string Translator::readFile(std::string file) {
 /// <returns>A string* to the string[] of the file split of ";"</returns>
 std::string* Translator::parseFile(std::string armFile) {
     std::string noComments = Translator::removeComments(armFile);
-    noComments = std::regex_replace(noComments, std::regex("0x"), "");
-    noComments = std::regex_replace(noComments, std::regex("#"), "");
+    // Stripping everything in the line past a # and surrounded by @s E.G @this will be stripped@
+    noComments = std::regex_replace(noComments, std::regex("\@[^@]*\@"), "");
+    noComments = std::regex_replace(noComments, std::regex("#(.+)"), "");
 
     if (noComments.empty()) {
         return  nullptr;
@@ -448,7 +449,7 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
         std::string instructions[256];
         //char delimitter = ' ';
         std::string delimitter = " ";
-        size_t start = 0;
+        //size_t start = 0;
         //size_t end = line.find(delimitter);
         int i = 0;
         //while (end >= 0) { // Doesn't parse correctly
@@ -459,9 +460,10 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
         //}
         size_t pos = 0;
         std::string token;
+        line = line + " "; // Adding another space after the string so the splitting gets the last item in the string.
         while ((pos = line.find(delimitter)) != std::string::npos) {
             token = line.substr(0, pos);
-            instructions[i] = token + '\n';
+            instructions[i] = token;
             line = line.substr(pos + delimitter.length());
             i++;
         }
