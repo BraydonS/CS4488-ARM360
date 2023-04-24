@@ -41,7 +41,6 @@ int ExecutorFacade::getMemoryStateIndex(){
 /// </summary>
 /// <returns>bool : whether or not the next instruction is valid.</returns>
 bool ExecutorFacade::hasNext(){
-    int MEMORYSTATEINDEX;
     // The current value and size of the Program Counter respecivly. 
     int programStateValue = ProgramState::getInstance()->registers[15].getValue();
     int programStateSize = ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX).size();
