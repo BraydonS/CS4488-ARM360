@@ -278,8 +278,7 @@ void Translator::setLabels(std::string lineOfCode, std::string parsedFile[], int
 /// </summary>
 /// <returns>A vector representing the memory</returns>
 std::vector<Hex4digit> Translator::initializeHexMemory() {
-    std::vector<Hex4digit> memory(256, Hex4digit());
-
+    std::vector<Hex4digit> memory = {};
     return memory;
 }
 
@@ -520,7 +519,7 @@ std::vector<Hex4digit> Translator::convertToHex(std::string parsedFile[]) {
             // create hex digit
             Hex4digit hex;
             hex.setValue(lineOfCode);
-            translatedFile[lineIndex] = hex; // adds hex code to list
+            translatedFile.push_back(hex);// = hex; // adds hex code to list
         }
         else {
             std::string exception = "Line " + std::to_string(lineIndex) + " contains unknown instructions.";

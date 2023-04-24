@@ -41,37 +41,26 @@ int ExecutorFacade::getMemoryStateIndex(){
 /// </summary>
 /// <returns>bool : whether or not the next instruction is valid.</returns>
 bool ExecutorFacade::hasNext(){
-    int MEMORYSTATEINDEX;
-    // The current value and size of the Program Counter respecivly. 
+    // The current value and size of the Program Counter respectivly. 
     int programStateValue = ProgramState::getInstance()->registers[15].getValue();
     int programStateSize = ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX).size();
 
     // If the Counter Count is >= to the length of memory list,then it's gone past the program memory.
-    try {
-        if (programStateValue >= programStateSize) { throw 1;} 
-    }
-    catch (int error) {
-        EXCEPTIONMESSAGE = "Program Counter tried to access memory out of bounds";
-        return false;
-    }
+        if (programStateValue >= programStateSize){
+            EXCEPTIONMESSAGE = "Program Counter tried to access memory out of bounds";
+            return false;
+        }
 
         // Program Counter contains an error, -1, halt.
-    try {
-        if (programStateValue == -1) { throw (-1); }
-    }
-    catch (int error) {
-        EXCEPTIONMESSAGE = "A halt command was executed and the program has stopped";
-        return false;
-    }
+        if (programStateValue == -1) {
+            EXCEPTIONMESSAGE = "A halt command was executed and the program has stopped";
+            return false;
+        }
 
-    try {
-        // Program Counter tries to access negative memory.
-        if (programStateValue < -1) { throw (-2); }
-    }
-    catch (int error) {
-        EXCEPTIONMESSAGE = "Program Counter tried to index negative memory";
-        return false;
-    }
+        if (programStateValue < -1) {
+            EXCEPTIONMESSAGE = "Program Counter tried to index negative memory";
+            return false;
+        }
 
     return true;
 }
@@ -156,9 +145,9 @@ bool ExecutorFacade::next(){
     incrementMemoryIndex();
 
     // Copy over the memory vector to the next index in the list.
-    std::vector<std::vector<Hex4digit>> memState = ProgramState::getInstance()->memoryStateHistory;
-    memState.insert(memState.begin() + MEMORYSTATEINDEX, 
-                    ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX - 1));
+    //std::vector<std::vector<Hex4digit>> memState = ProgramState::getInstance()->memoryStateHistory;
+    ProgramState::getInstance()->memoryStateHistory.push_back(
+        ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX - 1));
     
     return true;
 }

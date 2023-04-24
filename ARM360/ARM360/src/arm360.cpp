@@ -223,7 +223,7 @@ void ARM360::runProgram() {
 
     while (true) {
         if (orc->getProgramState()->registers[15].getValue() == -1) {
-            QMessageBox::warning(this, tr("Complete"), tr("The end of the file has been reached."));
+            QMessageBox::information(this, tr("Complete"), tr("The end of the file has been reached."));
             break;
         }
 
@@ -277,7 +277,7 @@ void ARM360::executeStep() {
 
     // Update RAM Values here if we get to implementing it.
         if (displayEndMessage) {
-            QMessageBox::warning(this, tr("Complete"), tr("The end of the file has been reached."));
+            QMessageBox::information(this, tr("Complete"), tr("The end of the file has been reached."));
         }
 }
 

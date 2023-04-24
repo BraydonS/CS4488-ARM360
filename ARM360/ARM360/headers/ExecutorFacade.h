@@ -8,6 +8,8 @@
 class ExecutorFacade{
 
     public: 
+        int MEMORYSTATEINDEX;
+        std::string EXCEPTIONMESSAGE;
 
         int getMemoryStateIndex();
 
