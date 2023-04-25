@@ -2,11 +2,6 @@
 #include "HexadecimalConverter.h"
 
 
-// MAX and MIN are defined using LONG_MAX and LONG_MIN respectively
-#define MAX LONG_MAX
-#define MIN LONG_MIN
-
-
     // Public Static Procedural Functions- Conversion Decimal<->Hexadecimal
 
 
@@ -28,7 +23,7 @@ int HexadecimalConverter::hexToDecimal(char* hexArray) {
 
     // Hexadecimal conversion algorithm
     while (index > 0) {
-        result = result + (hexValue(hexArray[index]) * power);
+        result = result + (HexadecimalConverter::hexValue(hexArray[index]) * power);
         index = index - 1;
         power = power * 16;
     }
@@ -53,10 +48,10 @@ int HexadecimalConverter::hexToDecimal(char* hexArray) {
 /// <param name="value">The value to convert</param>
 /// <returns>char[5] of the +/- & 4 hex digits</returns>
 std::array<char, 5> HexadecimalConverter::decimalToHex(int value) {
-    value = hex4digitValueWrap(value);
-    std::array<char, 5> output = makeBlankChar5();
+    value = HexadecimalConverter::hex4digitValueWrap(value);
+    std::array<char, 5> output = HexadecimalConverter::makeBlankChar5();
     int index = output.size() - 1;
-    int remainder;
+    int remainder = 0;
     bool isNegative = (value < 0);
 
 
@@ -85,7 +80,8 @@ std::array<char, 5> HexadecimalConverter::decimalToHex(int value) {
 char HexadecimalConverter::hexChar(int n) {
     char result = '0';
     switch (n) {
-    case 0: result = '0';
+    case 0: 
+        result = '0';
         break;
     case 1:
         result = '1';
@@ -200,10 +196,9 @@ int HexadecimalConverter::hexValue(char n) {
 }
 
 
-// MAX and MIN needs to be defined
 int HexadecimalConverter::hex4digitValueWrap(int n) {
-    if (n > LONG_MAX) {
-        n = +(n - MAX);
+    if (n > MAX) {
+        n = MIN + (n - MAX);
     }
     else if (n < MIN) {
         n = MAX + (n - MIN);
@@ -211,13 +206,11 @@ int HexadecimalConverter::hex4digitValueWrap(int n) {
     return n;
 }
 
-
-
 // required <regex> and <algorithm> library for std::transform() function
 
 char* HexadecimalConverter::cleanCharHex(char toClean[]) {
     // Set up the result.
-    char* result = makeBlankChar5().data();
+    char* result = HexadecimalConverter::makeBlankChar5().data();
 
     // Convert toClean to a string for use of some functions.
     std::string input(toClean);
@@ -243,8 +236,6 @@ char* HexadecimalConverter::cleanCharHex(char toClean[]) {
     return result;
 }
 
-
-
 int HexadecimalConverter::signToInt(char c) {
     int result = 1;
     if (c == '-') {
@@ -254,7 +245,7 @@ int HexadecimalConverter::signToInt(char c) {
 }
 
 std::array<char, 5> HexadecimalConverter::makeBlankChar5() {
-    std::array<char, 5> array;
+    std::array<char, 5> array = std::array<char, 5>();
     array[0] = '+';
     for (int i = 1; i < 5; i++) {
         array[i] = '0';
