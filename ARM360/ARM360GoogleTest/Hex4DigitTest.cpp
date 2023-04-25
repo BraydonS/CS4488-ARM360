@@ -65,7 +65,6 @@ TEST(Hex4Digit, getValueTest) {
 	EXPECT_EQ(15, hex4Digit.getValue());
 }
 
-// Converts a integer to hex value.
 TEST(Hex4Digit, getHexCharsTest) {
 	std::array<char, 5> array = {'000b'};
 	hex4Digit.setValue(11);
@@ -79,8 +78,6 @@ TEST(Hex4Digit, getStringTest) {
 	EXPECT_EQ(testString, hex4Digit.getString());
 }
 
-// See getLast2ValueTest for strange behaivor.
-// With the indexing issue this effectly gets the last 2 values.
 TEST(Hex4Digit, getMiddle2ValueTest) {
 	hex4Digit.setValue(3456); // 3456(dec) = D80(Hex)
 	EXPECT_EQ(216, hex4Digit.getMiddle2Value()); // D8(Hex) = 216(dec)

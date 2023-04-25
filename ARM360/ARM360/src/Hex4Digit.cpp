@@ -202,8 +202,8 @@ std::string Hex4digit::getString() {
 /// <returns>the integer sum of the 2nd and 3rd digit</returns>
 int Hex4digit::getMiddle2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConverter::hexValue(hexChars[1]) * 16) +
-        HexadecimalConverter::hexValue(hexChars[2]);
+    int result = (HexadecimalConverter::hexValue(hexChars[2]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[3]);
     return result;
 }
 
@@ -215,8 +215,8 @@ int Hex4digit::getMiddle2Value() {
 /// <returns>the integer sum of the 3rd and 4th digit</returns>
 int Hex4digit::getLast2Value() {
     std::array<char, 5> hexChars = getHexChars();
-    int result = (HexadecimalConverter::hexValue(hexChars[2]) * 16) +
-        HexadecimalConverter::hexValue(hexChars[3]);
+    int result = (HexadecimalConverter::hexValue(hexChars[3]) * 16) +
+        HexadecimalConverter::hexValue(hexChars[4]);
     return result;
 }
 
