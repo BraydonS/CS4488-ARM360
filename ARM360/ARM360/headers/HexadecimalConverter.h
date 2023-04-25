@@ -24,5 +24,4 @@ public:
     static char* cleanCharHex(char toClean[]);
     int signToInt(char c);
     static std::array<char, 5> makeBlankChar5();
-    static std::array<char, 5> cleanCharHex(std::array<char, 5> toClean);
 };

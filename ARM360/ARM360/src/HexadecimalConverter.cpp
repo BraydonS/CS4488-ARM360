@@ -253,24 +253,3 @@ std::array<char, 5> HexadecimalConverter::makeBlankChar5() {
     return array;
 }
 
-std::array<char, 5> HexadecimalConverter::cleanCharHex(std::array<char, 5> toClean) {
-    std::array<char, 5> result = makeBlankChar5();
-    std::string input(toClean.begin(), toClean.end());
-    input = std::string(toClean.begin(), toClean.end());
-    input = std::regex_replace(input, std::regex("[^+-0-9a-f]"), "");
-    input = std::regex_replace(input, std::regex("[+-]"), "");
-
-    if (input[0] == '-') {
-        result[0] = '-';
-    }
-
-    int toCleanIndex = input.length() - 1;
-    int resultIndex = 4;
-    while ((resultIndex > -1) && (toCleanIndex > -1)) {
-        result[resultIndex] = input[toCleanIndex];
-        resultIndex--;
-        toCleanIndex--;
-    }
-    return result;
-}
-
