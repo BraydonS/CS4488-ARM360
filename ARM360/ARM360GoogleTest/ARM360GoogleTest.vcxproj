@@ -112,7 +112,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)ARM360\headers;C:\Qt\6.4.2\msvc2019_64\include\QtWidgets;C:\Qt\6.4.2\msvc2019_64\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ARM360\headers;C:\Qt\6.4.2\msvc2019_64\include\QtWidgets;C:\Qt\6.4.2\msvc2019_64\include\;$(SolutionDir)ARM360\$(IntDir)uic\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus /permissive- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
