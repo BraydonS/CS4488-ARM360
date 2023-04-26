@@ -43,24 +43,6 @@ int ExecutorFacade::getMemoryStateIndex(){
 bool ExecutorFacade::hasNext(){
     // The current value and size of the Program Counter respectivly. 
     int programStateValue = ProgramState::getInstance()->registers[15].getValue();
-    int test0 = ProgramState::getInstance()->registers[0].getValue();
-    int test1 = ProgramState::getInstance()->registers[1].getValue();
-    int test2 = ProgramState::getInstance()->registers[2].getValue();
-    int test3 = ProgramState::getInstance()->registers[3].getValue();
-    int test4 = ProgramState::getInstance()->registers[4].getValue();
-    int test5 = ProgramState::getInstance()->registers[5].getValue();
-    int test6 = ProgramState::getInstance()->registers[6].getValue();
-    int test7 = ProgramState::getInstance()->registers[7].getValue();
-    int test8 = ProgramState::getInstance()->registers[8].getValue();
-    int test9 = ProgramState::getInstance()->registers[9].getValue();
-    int test10 = ProgramState::getInstance()->registers[10].getValue();
-    int test11 = ProgramState::getInstance()->registers[11].getValue();
-    int test12 = ProgramState::getInstance()->registers[12].getValue();
-    int test13 = ProgramState::getInstance()->registers[13].getValue();
-    int test14 = ProgramState::getInstance()->registers[14].getValue();
-    int test15 = ProgramState::getInstance()->registers[15].getValue();
-
-
     int programStateSize = ProgramState::getInstance()->memoryStateHistory.at(MEMORYSTATEINDEX).size();
 
     // If the Counter Count is >= to the length of memory list,then it's gone past the program memory.
