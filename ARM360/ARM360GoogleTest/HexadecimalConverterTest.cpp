@@ -4,22 +4,24 @@
 #include <iostream>
 #include <fstream>
 
-#include <gtest/gtest.h>
+//#include <gtest/gtest.h>
 #include "../../ARM360/headers/Hex4digit.h"
 #include "../../ARM360/headers/HexDataClass.h"
-#include "gtest/gtest.h"
+//#include "gtest/gtest.h"
 #include "../../ARM360/headers/HexadecimalConverter.h"
 #include <string>
 #include <array>
 
 #include "../../ARM360/headers/stdafx.h"
 
-
-
-
+// Test class for HexadecimalConverter
+class HexadecimalConverterTest : public testing::Test {
+protected:
+    HexadecimalConverter hexConverter; // create an instance of HexadecimalConverter
+};
 
 // Test the HexadecimalConverter::hexToDecimal() function.
-TEST(HexadecimalConverterTest, hexToDecimalTest) {
+TEST_F(HexadecimalConverterTest, hexToDecimalTest) {
     char hex1[] = "7b";
     char hex2[] = "-7b";
     char hex3[] = "0";
@@ -34,7 +36,7 @@ TEST(HexadecimalConverterTest, hexToDecimalTest) {
 }
 
 // Test the HexadecimalConverter::decimalToHex() function.
-TEST(HexadecimalConverterTest, decimalToHexTest) {
+TEST_F(HexadecimalConverterTest, decimalToHexTest) {
     int dec1 = 123;
     int dec2 = -123;
     int dec3 = 0;
@@ -57,7 +59,7 @@ TEST(HexadecimalConverterTest, decimalToHexTest) {
 
 
 // Test the HexadecimalConverter::hexChar() function.
-TEST(HexadecimalConverterTest, hexCharTest) {
+TEST_F(HexadecimalConverterTest, hexCharTest) {
     ASSERT_EQ(HexadecimalConverter::hexChar(0), '0');
     ASSERT_EQ(HexadecimalConverter::hexChar(1), '1');
     ASSERT_EQ(HexadecimalConverter::hexChar(2), '2');
@@ -76,11 +78,7 @@ TEST(HexadecimalConverterTest, hexCharTest) {
     ASSERT_EQ(HexadecimalConverter::hexChar(15), 'f');
 }
 
-
-
-
-
-TEST(HexadecimalConverterTest, HexValue) {
+TEST_F(HexadecimalConverterTest, HexValue) {
     // Test all possible input characters
     EXPECT_EQ(HexadecimalConverter::hexValue('0'), 0);
     EXPECT_EQ(HexadecimalConverter::hexValue('1'), 1);
@@ -99,14 +97,6 @@ TEST(HexadecimalConverterTest, HexValue) {
     EXPECT_EQ(HexadecimalConverter::hexValue('e'), 14);
     EXPECT_EQ(HexadecimalConverter::hexValue('f'), 15);
 }
-
-
-
-// Test class for HexadecimalConverter
-class HexadecimalConverterTest : public testing::Test {
-protected:
-    HexadecimalConverter hexConverter; // create an instance of HexadecimalConverter
-};
 
 // Test hexToDecimal() method
 TEST_F(HexadecimalConverterTest, hexToDecimal) {
