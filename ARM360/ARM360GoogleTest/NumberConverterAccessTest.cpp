@@ -13,19 +13,21 @@ TEST_F(NumberConverterAccessTest, convertToHexChars_version1) {
     char* result = numberConverter.convertToHexChars(255);
     ASSERT_STREQ("00FF", result);
     delete[] result;
-
+}
+TEST_F(NumberConverterAccessTest, convertToHexChars_version2) {
     // Test a negative number
-    result = numberConverter.convertToHexChars(-255);
+    char* result = numberConverter.convertToHexChars(-255);
     ASSERT_STREQ("FF01", result);
     delete[] result;
-
+}
+TEST_F(NumberConverterAccessTest, convertToHexChars_version3) {
     // Test zero
-    result = numberConverter.convertToHexChars(0);
+    char* result = numberConverter.convertToHexChars(0);
     ASSERT_STREQ("0000", result);
     delete[] result;
 }
 
-TEST_F(NumberConverterAccessTest, convertToHexChars_version2) {
+TEST_F(NumberConverterAccessTest, convertToHexChars_version4) {
     // Test a positive number
     short number = 255;
     char* hexString = numberConverter.convertToHexChars(number);
@@ -33,17 +35,25 @@ TEST_F(NumberConverterAccessTest, convertToHexChars_version2) {
     ASSERT_EQ(4, hexStringStr.length());
     ASSERT_EQ("00FF", hexStringStr);
 
+    // Clean up the allocated memory
+    delete[] hexString;
+}
+TEST_F(NumberConverterAccessTest, convertToHexChars_version5) {
     // Test a negative number
-    number = -255;
-    hexString = numberConverter.convertToHexChars(number);
-    hexStringStr = std::string(hexString);
+    short number = -255;
+    char* hexString = numberConverter.convertToHexChars(number);
+    std::string hexStringStr = std::string(hexString);
     ASSERT_EQ(4, hexStringStr.length());
     ASSERT_EQ("FF01", hexStringStr);
 
+    // Clean up the allocated memory
+    delete[] hexString;
+}
+TEST_F(NumberConverterAccessTest, convertToHexChars_version6) {
     // Test zero
-    number = 0;
-    hexString = numberConverter.convertToHexChars(number);
-    hexStringStr = std::string(hexString);
+    short number = 0;
+    char* hexString = numberConverter.convertToHexChars(number);
+    std::string hexStringStr = std::string(hexString);
     ASSERT_EQ(4, hexStringStr.length());
     ASSERT_EQ("0000", hexStringStr);
 

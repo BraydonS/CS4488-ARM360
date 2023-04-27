@@ -14,8 +14,16 @@ char* NumberConverterAccess::convertToHexChars(short number) {
     char* hexString = new char[5];
     // Use sprintf to convert the number to hexadecimal and store the result in hexString
     sprintf(hexString, "%04X", number);
+
+    // sprintf specifies the minimum number of digits to use, but will make it longer if more digits are present
+    // This causes an issue with negative numbers, as they end up with undesired leading information
+    // So, we only keep the right-most 4 digits
+    short size = std::strlen(hexString);
+    char* temp = new char[5] {hexString[size - 4], hexString[size - 3], hexString[size - 2], hexString[size-1], '\0'};
+    return temp;
+
     // Return the pointer to the char array
-    return hexString;
+    //return hexString;
 }
 
 /// <summary>
