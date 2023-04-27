@@ -16,6 +16,7 @@ private:
     Ui::ARM360Class ui;
     void incrimententTotalStates();
     void executeStep();
+    void highlightRegisters();
     void clearRegisters();
     void initializeMemoryTable();
     void getRegisters();

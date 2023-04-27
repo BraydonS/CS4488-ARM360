@@ -156,6 +156,7 @@ QString arrayToQString(std::array<char, 5> input) {
 void ARM360::getRegisters() {
     clearRegisters();
     ProgramState* program = orc->getProgramState();
+    highlightRegisters();
     ui.txtR0->insertPlainText(arrayToQString(program->registers[0].getHexChars()));
     ui.txtR1->insertPlainText(arrayToQString(program->registers[1].getHexChars()));
     ui.txtR2->insertPlainText(arrayToQString(program->registers[2].getHexChars()));
@@ -176,7 +177,77 @@ void ARM360::getRegisters() {
     ui.txtOut->insertPlainText(QString::fromStdString((program->output.getString())));
 }
 
+void ARM360::highlightRegisters() {
+    ProgramState* program = orc->getProgramState();
+
+    // Set the text background color to yellow if the value of the register is not the default
+
+    if (program->registers[0].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR0->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[1].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR1->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[2].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR2->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[3].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR3->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[4].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR4->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[5].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR5->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[6].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR6->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[7].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR7->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[8].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR8->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[9].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR9->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[10].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRa->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[11].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRb->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[12].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRc->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[13].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRd->setTextBackgroundColor(Qt::yellow);
+    }
+    if (program->registers[14].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRe->setTextBackgroundColor(Qt::yellow);
+    }
+}
+
 void ARM360::clearRegisters() {
+    // Set the text background color to white for all registers
+    ui.txtR0->setTextBackgroundColor(Qt::white);
+    ui.txtR1->setTextBackgroundColor(Qt::white);
+    ui.txtR2->setTextBackgroundColor(Qt::white);
+    ui.txtR3->setTextBackgroundColor(Qt::white);
+    ui.txtR4->setTextBackgroundColor(Qt::white);
+    ui.txtR5->setTextBackgroundColor(Qt::white);
+    ui.txtR6->setTextBackgroundColor(Qt::white);
+    ui.txtR7->setTextBackgroundColor(Qt::white);
+    ui.txtR8->setTextBackgroundColor(Qt::white);
+    ui.txtR9->setTextBackgroundColor(Qt::white);
+    ui.txtRa->setTextBackgroundColor(Qt::white);
+    ui.txtRb->setTextBackgroundColor(Qt::white);
+    ui.txtRc->setTextBackgroundColor(Qt::white);
+    ui.txtRd->setTextBackgroundColor(Qt::white);
+    ui.txtRe->setTextBackgroundColor(Qt::white);
+
+    // Clear the text out of all registers
     ui.txtR0->clear();ui.txtR1->clear();ui.txtR2->clear();ui.txtR3->clear();
     ui.txtR4->clear();ui.txtR5->clear();ui.txtR6->clear();ui.txtR7->clear();
     ui.txtR8->clear();ui.txtR9->clear();ui.txtRa->clear();ui.txtRb->clear();
@@ -217,7 +288,7 @@ void ARM360::abortProgram() {
     clearRegisters();
 }
 
-// Run the whole program until the end of file is reached or an error occures.
+// Run the whole program until the end of file is reached or an error occurs.
 void ARM360::runProgram() {
     //onBuildClicked();
 
@@ -257,7 +328,7 @@ void ARM360::executeStep() {
             orc->translateAndLoad(programFile);
         }
 
-        // There are more instrucitons past this step.
+        // There are more instructions past this step.
         else if (orc->getProgramState()->registers[15].getValue() != -1) {
             if (ui.txtIn->toPlainText().toStdString().size() > 0) {
                 orc->sendInput(vectorToCharArray(orc->convertToHexChars(stringToShort(ui.txtIn->toPlainText().toStdString()))));
