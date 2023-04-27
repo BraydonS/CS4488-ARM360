@@ -66,10 +66,10 @@ TEST(Hex4Digit, getValueTest) {
 }
 
 TEST(Hex4Digit, getHexCharsTest) {
-	std::array<char, 5> array = {'000b'};
+	std::array<char, 5> expectedResult = {'+','0','0','0','b'};
 	hex4Digit.setValue(11);
-	// C++ kept removing leading 0s from this array so called index in comparision
-	EXPECT_EQ('b', '0');
+	std::array<char, 5> result = hex4Digit.getHexChars();
+	EXPECT_EQ(expectedResult, result);
 }
 
 TEST(Hex4Digit, getStringTest) {
