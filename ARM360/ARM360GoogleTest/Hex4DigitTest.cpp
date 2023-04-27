@@ -69,7 +69,7 @@ TEST(Hex4Digit, getHexCharsTest) {
 	std::array<char, 5> array = {'000b'};
 	hex4Digit.setValue(11);
 	// C++ kept removing leading 0s from this array so called index in comparision
-	EXPECT_EQ(array[0], hex4Digit.getHexChars()[3]);
+	EXPECT_EQ('b', '0');
 }
 
 TEST(Hex4Digit, getStringTest) {
