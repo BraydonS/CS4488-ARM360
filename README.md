@@ -17,6 +17,7 @@ their values at the bottom of the interface, a view of the program counter's val
 a view of the loaded instructions at the top-middle of the interface, and several labeled buttons - see below for use.
 - A text file containing the instructions must be first loaded into the program by pressing "Load" and navigating to the desired file
   - If you attempt to build/run the program without a file loaded, the program will warn you and stall
+  - <b>WARNING:</b> If you edit the instructions within the text box, it will edit them in the file they were loaded from
 - Once the text is loaded, the instructions must be properly built into the system by pressing "Build"
 - The instructions can now be executed either all at once, or one at a time
   - Press "Run" to execute all instructions, in sequence, until the end of the file is reached
