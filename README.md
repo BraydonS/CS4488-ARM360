@@ -23,7 +23,7 @@ a view of the loaded instructions at the top-middle of the interface, and severa
   - Press "Run" to execute all instructions, in sequence, until the end of the file is reached
   - Press "Next" to only execute the next, unexecuted instruction. This allows for detailed visuals of the changing registers
 
-###Project Demo
+### Project Demo
 ![ARM360 Demo](https://user-images.githubusercontent.com/46699115/235189973-5bb7ffc5-5293-4793-8f19-b75c8e129646.gif)
 
 
