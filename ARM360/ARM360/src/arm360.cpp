@@ -182,14 +182,20 @@ void ARM360::getRegisters() {
     ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
     ui.txtOut->insertPlainText(QString::fromStdString((program->output.getString())));
 
-
-
-
-
-
-
-
-
+    if (ui.txtPC->toPlainText().compare("+0000") != 0) {
+        //highlight the register PC
+        ui.txtPC->setStyleSheet("background-color: yellow");
+        ui.txtPC->clear();
+        ui.txtPC->setTextBackgroundColor(Qt::yellow);
+        ui.txtPC->insertPlainText(arrayToQString(program->registers[15].getHexChars()));
+    }
+    if (ui.txtOut->toPlainText().compare("+0000") != 0) {
+        //highlight the register Out
+        ui.txtOut->setStyleSheet("background-color: yellow");
+        ui.txtOut->clear();
+        ui.txtOut->setTextBackgroundColor(Qt::yellow);
+        ui.txtOut->insertPlainText(QString::fromStdString((program->output.getString())));
+    }
 }
 
 void ARM360::highlightRegisters() {
@@ -198,53 +204,86 @@ void ARM360::highlightRegisters() {
     // Set the text background color to yellow if the value of the register is not the default
 
     if (program->registers[0].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR0->setStyleSheet("background-color: yellow");
         ui.txtR0->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[1].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR1->setStyleSheet("background-color: yellow");
         ui.txtR1->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[2].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR2->setStyleSheet("background-color: yellow");
         ui.txtR2->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[3].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR3->setStyleSheet("background-color: yellow");
         ui.txtR3->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[4].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR4->setStyleSheet("background-color: yellow");
         ui.txtR4->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[5].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR5->setStyleSheet("background-color: yellow");
         ui.txtR5->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[6].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR6->setStyleSheet("background-color: yellow");
         ui.txtR6->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[7].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR7->setStyleSheet("background-color: yellow");
         ui.txtR7->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[8].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR8->setStyleSheet("background-color: yellow");
         ui.txtR8->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[9].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtR9->setStyleSheet("background-color: yellow");
         ui.txtR9->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[10].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRa->setStyleSheet("background-color: yellow");
         ui.txtRa->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[11].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRb->setStyleSheet("background-color: yellow");
         ui.txtRb->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[12].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRc->setStyleSheet("background-color: yellow");
         ui.txtRc->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[13].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRd->setStyleSheet("background-color: yellow");
         ui.txtRd->setTextBackgroundColor(Qt::yellow);
     }
     if (program->registers[14].getHexChars() != std::array<char, 5>{'+', '0', '0', '0', '0'}) {
+        ui.txtRe->setStyleSheet("background-color: yellow");
         ui.txtRe->setTextBackgroundColor(Qt::yellow);
     }
 }
 
 void ARM360::clearRegisters() {
+    ui.txtR0->setStyleSheet("");
+    ui.txtR1->setStyleSheet("");
+    ui.txtR2->setStyleSheet("");
+    ui.txtR3->setStyleSheet("");
+    ui.txtR4->setStyleSheet("");
+    ui.txtR5->setStyleSheet("");
+    ui.txtR6->setStyleSheet("");
+    ui.txtR7->setStyleSheet("");
+    ui.txtR8->setStyleSheet("");
+    ui.txtR9->setStyleSheet("");
+    ui.txtRa->setStyleSheet("");
+    ui.txtRb->setStyleSheet("");
+    ui.txtRc->setStyleSheet("");
+    ui.txtRd->setStyleSheet("");
+    ui.txtRe->setStyleSheet("");
+    ui.txtPC->setStyleSheet("");
+    ui.txtOut->setStyleSheet("");
+
     // Set the text background color to white for all registers
     ui.txtR0->setTextBackgroundColor(Qt::white);
     ui.txtR1->setTextBackgroundColor(Qt::white);
@@ -261,6 +300,8 @@ void ARM360::clearRegisters() {
     ui.txtRc->setTextBackgroundColor(Qt::white);
     ui.txtRd->setTextBackgroundColor(Qt::white);
     ui.txtRe->setTextBackgroundColor(Qt::white);
+    ui.txtOut->setTextBackgroundColor(Qt::white);
+    ui.txtPC->setTextBackgroundColor(Qt::white);
 
     // Clear the text out of all registers
     ui.txtR0->clear();ui.txtR1->clear();ui.txtR2->clear();ui.txtR3->clear();
@@ -301,37 +342,6 @@ void ARM360::initializeMemoryTable() {}
 void ARM360::abortProgram() {
     orc->clearProgram();
     clearRegisters();
-
-    //clears the register highlights
-    ui.txtR0->setStyleSheet("");
-    ui.txtR1->setStyleSheet("");
-    ui.txtR2->setStyleSheet("");
-    ui.txtR3->setStyleSheet("");
-    ui.txtR4->setStyleSheet("");
-    ui.txtR5->setStyleSheet("");
-    ui.txtR6->setStyleSheet("");
-    ui.txtR7->setStyleSheet("");
-    ui.txtR8->setStyleSheet("");
-    ui.txtR9->setStyleSheet("");
-    ui.txtRa->setStyleSheet("");
-    ui.txtRb->setStyleSheet("");
-    ui.txtRc->setStyleSheet("");
-    ui.txtRd->setStyleSheet("");
-    ui.txtRe->setStyleSheet("");
-    ui.txtPC->setStyleSheet("");
-    ui.txtOut->setStyleSheet("");
-
-
-
-
-
-
-
-
-    
-
-    
-
 }
 
 // Run the whole program until the end of file is reached or an error occurs.
@@ -340,111 +350,6 @@ void ARM360::runProgram() {
 
     while (true) {
         if (orc->getProgramState()->registers[15].getValue() == -1) {
-            
-            // Highlights the registers, PC and out textbox if updates
-
-            if (ui.txtR0->toPlainText() != "+0000") {
-                //highlight the register 0
-                ui.txtR0->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtR1->toPlainText() != "+0000") {
-                //highlight the registers 1
-                ui.txtR1->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtR2->toPlainText() != "+0000") {
-                //highlight the register 2
-                ui.txtR2->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR3->toPlainText() != "+0000") {
-                //highlight the register 3
-                ui.txtR3->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR4->toPlainText() != "+0000") {
-                //highlight the register 4
-                ui.txtR4->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR5->toPlainText() != "+0000") {
-                //highlight the register 5
-                ui.txtR5->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR6->toPlainText() != "+0000") {
-                //highlight the register 6
-                ui.txtR6->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR7->toPlainText() != "+0000") {
-                //highlight the register 7
-                ui.txtR7->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR8->toPlainText() != "+0000") {
-                //highlight the register 8
-                ui.txtR8->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtR9->toPlainText() != "+0000") {
-                //highlight the register 9
-                ui.txtR9->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtRa->toPlainText() != "+0000") {
-                //highlight the register a
-                ui.txtRa->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtRb->toPlainText() != "+0000") {
-                //highlight the register b
-                ui.txtRb->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtRc->toPlainText() != "+0000") {
-                //highlight the register c
-                ui.txtRc->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtRd->toPlainText() != "+0000") {
-                //highlight the register d
-                ui.txtRd->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtRe->toPlainText() != "+0000") {
-                //highlight the register e
-                ui.txtRe->setStyleSheet("background-color: yellow");
-            }
-
-            if (ui.txtPC->toPlainText() != "+0000") {
-                //highlight the register PC
-                ui.txtPC->setStyleSheet("background-color: yellow");
-            }
-
-
-            if (ui.txtOut->toPlainText() != "+0000") {
-                //highlight the register Out
-                ui.txtOut->setStyleSheet("background-color: yellow");
-            }
-            
-            
-            
-
-
-
-
-
-
-
             QMessageBox::information(this, tr("Complete"), tr("The end of the file has been reached."));
             break;
         }
